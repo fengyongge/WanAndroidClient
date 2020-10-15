@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        >
+        <TextView
+            android:id="@+id/tvNavigationCategoryName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center|left"
+            android:textSize="16sp"
+            tools:text="test" />
+
+        <com.donkingliang.labels.LabelsView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/navigationLabels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            app:labelBackground="@drawable/label_tag_blue"
+            app:labelTextColor="@color/selector_label_blue"
+            app:labelTextPaddingBottom="5dp"
+            app:labelTextPaddingLeft="10dp"
+            app:labelTextPaddingRight="10dp"
+            app:labelTextPaddingTop="5dp"
+            app:labelTextSize="14sp"
+            app:lineMargin="10dp"
+            app:maxSelect="5"
+            app:selectType="SINGLE"
+            app:wordMargin="15dp" />
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white_ec" />
+
+    </LinearLayout>
+
+</LinearLayout>

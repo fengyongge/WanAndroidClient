@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        >
+        <TextView
+            android:id="@+id/oeDetailTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="标题标题标题标题标题"
+            android:textSize="16sp"
+            android:textColor="@color/white_ef"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/oeDetailCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="#广告"
+            android:textColor="@color/white_e6"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/oeDetailDes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
+            android:textColor="@color/white_e6"
+            android:textSize="14sp"
+            android:lineSpacingExtra="1.5dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

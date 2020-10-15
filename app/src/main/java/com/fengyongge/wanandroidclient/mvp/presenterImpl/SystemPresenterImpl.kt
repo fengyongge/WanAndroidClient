@@ -1,0 +1,82 @@
+package com.fengyongge.wanandroidclient.mvp.presenterImpl
+
+import com.fengyongge.baselib.mvp.BasePresenter
+import com.fengyongge.baselib.mvp.IBaseView
+import com.fengyongge.baselib.net.BaseResponse
+import com.fengyongge.baselib.net.exception.ResponseException
+import com.fengyongge.baselib.rx.observer.BaseObserver
+import com.fengyongge.wanandroidclient.bean.SystemArticleBean
+import com.fengyongge.wanandroidclient.bean.SystemCategoryBean
+import com.fengyongge.wanandroidclient.mvp.contract.SystemContact
+import com.fengyongge.wanandroidclient.mvp.modelImpl.SystemModelImpl
+
+class SystemPresenterImpl :BasePresenter<SystemContact.View>(),SystemContact.Presenter {
+
+    lateinit var mModel: SystemModelImpl
+    override fun postCollect(id: Int) {
+        mView?.let {
+            mModel.postCollect(id)
+                .subscribe(object : BaseObserver<BaseResponse<String>>() {
+                    override fun onSuccess(data: BaseResponse<String>) {
+                        it.postCollectShow(data)
+                    }
+
+                    override fun onError(e: ResponseException) {
+                        it.onError(e)
+                    }
+
+                })
+        }
+    }
+
+    override fun postCancleCollect(id: Int) {
+        mView?.let {
+            mModel.postCancleCollect(id)
+                .subscribe(object : BaseObserver<BaseResponse<String>>() {
+                    override fun onSuccess(data: BaseResponse<String>) {
+                        it.postCancleCollectShow(data)
+                    }
+
+                    override fun onError(e: ResponseException) {
+                        it.onError(e)
+                    }
+
+                })
+        }
+    }
+    override fun getSystemCategory() {
+        mView?.let {
+            mModel.getSystemCategory().subscribe(object : BaseObserver<BaseResponse<List<SystemCategoryBean>>>() {
+                override fun onSuccess(data: BaseResponse<List<SystemCategoryBean>>) {
+                    it.getSystemCategoryShow(data)
+                }
+                override fun onError(e: ResponseException) {
+                    it.onError(e)
+
+                }
+
+            })
+        }
+    }
+
+    override fun getSystemArticle(pageNum: Int, cid: Int) {
+        mView?.let {
+            mModel.getSystemArticle(pageNum,cid).subscribe(object : BaseObserver<BaseResponse<SystemArticleBean>>() {
+
+                override fun onSuccess(data: BaseResponse<SystemArticleBean>) {
+                    it.getSystemArticleShow(data)
+                }
+                override fun onError(e: ResponseException) {
+                    it.onError(e)
+
+                }
+
+            })
+        }
+    }
+
+    override fun attach(view: IBaseView) {
+        super.attach(view)
+        mModel = SystemModelImpl()
+    }
+}

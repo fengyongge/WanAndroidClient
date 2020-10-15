@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivSearchBack"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_back"
+            />
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/common_search_bg"
+            android:gravity="center_vertical"
+            android:hint="请输入关键字，多个情况用空格隔开"
+            android:paddingLeft="28dp"
+            android:singleLine="true"
+            android:textColor="@color/gray_66"
+            android:textColorHint="@color/white_cc"
+            android:textSize="15sp"
+            android:imeOptions="actionSearch"
+            android:paddingRight="25dp"
+            />
+
+        <ImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_search"
+            />
+
+        <ImageView
+            android:id="@+id/ivSearchClose"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_close" />
+    </RelativeLayout>
+
+</LinearLayout>

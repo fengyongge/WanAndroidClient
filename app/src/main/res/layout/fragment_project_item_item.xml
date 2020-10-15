@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:paddingBottom="15dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="15dp"
+    >
+
+    <ImageView
+        android:id="@+id/ivProjectCover"
+        android:layout_alignParentLeft="true"
+        android:layout_width="80dp"
+        android:layout_height="120dp" />
+
+
+    <RelativeLayout
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/ivProjectCover">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            tools:text="标题标题标题标题标题标题标题标题标题标题标题"
+            android:maxLines="2"
+            android:minLines="2"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            tools:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:minLines="2"
+            android:ellipsize="end"
+            />
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvContent">
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                tools:text="20200901"
+                android:textSize="12sp"
+                />
+
+            <ImageView
+                android:id="@+id/ivProjectCollect"
+                android:layout_alignParentRight="true"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_collect"
+                />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

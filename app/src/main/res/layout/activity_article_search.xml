@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.fengyongge.wanandroidclient.activity.channel.SystemActivity">
+
+
+    <include
+        android:id="@+id/llSearchContent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        layout="@layout/activity_article_search_homepage"
+        />
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:id="@+id/swipeRefreshLayoutSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleViewSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>

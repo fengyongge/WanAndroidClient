@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+
+
+
+    <include
+        layout="@layout/activity_common_search_title"/>
+
+
+    <ScrollView
+        android:id="@+id/scrollViewSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rlHistory"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:text="搜索记录"
+                    android:textColor="@color/gray_70"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/ivClearHistory"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_garbage"
+                    />
+            </RelativeLayout>
+
+            <com.donkingliang.labels.LabelsView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/searchHistoryLabels"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlHistory"
+                app:labelBackground="@drawable/label_tag_gray"
+                app:labelTextColor="@color/selector_label_gray"
+                app:labelTextPaddingBottom="5dp"
+                app:labelTextPaddingLeft="10dp"
+                app:labelTextPaddingRight="10dp"
+                app:labelTextPaddingTop="5dp"
+                app:labelTextSize="14sp"
+                app:lineMargin="10dp"
+                app:maxSelect="5"
+                app:selectType="SINGLE"
+                app:wordMargin="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginBottom="10dp"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <LinearLayout
+                    android:id="@+id/llHotTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvHot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="5dp"
+                        android:text="热门搜索"
+                        android:textColor="@color/gray_70"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerInParent="true"
+                        android:layout_toRightOf="@+id/tvHot"
+                        android:src="@drawable/ic_hot" />
+                </LinearLayout>
+
+
+                <com.donkingliang.labels.LabelsView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/searchLabels"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/llHotTitle"
+                    android:layout_marginTop="10dp"
+                    app:labelBackground="@drawable/label_tag_blue"
+                    app:labelTextColor="@color/selector_label_blue"
+                    app:labelTextPaddingBottom="5dp"
+                    app:labelTextPaddingLeft="10dp"
+                    app:labelTextPaddingRight="10dp"
+                    app:labelTextPaddingTop="5dp"
+                    app:labelTextSize="14sp"
+                    app:lineMargin="10dp"
+                    app:maxSelect="5"
+                    app:selectType="SINGLE"
+                    app:wordMargin="15dp" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

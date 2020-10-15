@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:id="@+id/llTitle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/vp2Channel"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/llHomeArticle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/tvArticle"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:text="热门博文"
+                android:textColor="@color/selector_homepage_tab_title"
+                android:textSize="16dp" />
+
+            <View
+                android:gravity="center"
+                android:id="@+id/viewArticle"
+                android:layout_width="30dp"
+                android:layout_height="3dp"
+                android:background="@drawable/shape_tab_bg"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llHomeProject"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/tvProject"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:text="热门项目"
+                android:textColor="@color/selector_homepage_tab_title"
+                android:textSize="16dp" />
+
+            <View
+                android:id="@+id/viewProject"
+                android:layout_width="30dp"
+                android:layout_height="3dp"
+                android:gravity="center"
+                android:background="@drawable/shape_tab_bg"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

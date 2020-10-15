@@ -1,0 +1,3 @@
+include ':baselib'
+include ':app'
+rootProject.name = "wanandroid"

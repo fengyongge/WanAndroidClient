@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <View
+        android:id="@+id/viewOe"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray_70" />
+
+    <TextView
+        android:id="@+id/tvOeDetailCommentDes"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_ef"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        />
+
+</LinearLayout>
