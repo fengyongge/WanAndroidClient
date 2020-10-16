@@ -12,13 +12,12 @@
         layout="@layout/common_title"
         />
 
-    <WebView
+    <com.fengyongge.wanandroidclient.common.view.ProgressWebView
         android:id="@+id/articleWebView"
         android:layout_below="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-
 
 
 </RelativeLayout>

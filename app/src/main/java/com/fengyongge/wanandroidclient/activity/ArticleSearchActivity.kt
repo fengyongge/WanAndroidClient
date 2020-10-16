@@ -145,6 +145,8 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
             etSearch.text = Editable.Factory.getInstance().newEditable(searchContent)
         }
 
+
+
         ivClearHistory.setOnClickListener {
             deleteNotify()
         }

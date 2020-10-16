@@ -1,9 +1,12 @@
 package com.fengyongge.baselib
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.annotation.LayoutRes
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import com.umeng.analytics.MobclickAgent
+import kotlin.system.exitProcess
+
 /**
  * describe
  *
@@ -13,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
  */
 abstract class BaseActivity : AppCompatActivity() {
     private lateinit var mContext: BaseActivity
+    var activitys = mutableListOf<Activity>()
+
 
     @LayoutRes
     abstract fun initLayout(): Int
@@ -26,4 +31,28 @@ abstract class BaseActivity : AppCompatActivity() {
         initData()
         initView()
     }
+
+    override fun onResume() {
+        super.onResume()
+        activitys?.let {
+            it.add(this)
+        }
+        MobclickAgent.onResume(this)
+    }
+    override fun onPause() {
+        super.onPause()
+        MobclickAgent.onPause(this)
+    }
+
+    open fun exitApp() {
+        if (activitys != null) {
+            for (activity in activitys) {
+                activity?.finish()
+            }
+        }
+        exitProcess(0)
+    }
+
+
+
 }

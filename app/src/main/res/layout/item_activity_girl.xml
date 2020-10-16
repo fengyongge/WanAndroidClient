@@ -10,5 +10,6 @@
         android:adjustViewBounds="true"
         android:minHeight="200dp"
         android:padding="2.5dp"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        />
 </LinearLayout>

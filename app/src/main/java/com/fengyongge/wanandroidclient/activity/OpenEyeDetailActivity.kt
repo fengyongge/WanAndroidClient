@@ -163,9 +163,9 @@ class OpenEyeDetailActivity : BaseMvpActivity<OpenEysPresenterImpl>(), OpenEyeCo
                         holder.getView<TextView>(R.id.tvOeDetailUserCommentTime)
                     Glide.with(context).load(item.comment.avatar)
                         .apply(RequestOptions.bitmapTransform(CircleCrop()))
-                        .error(R.drawable.openeye_default_user)
-                        .placeholder(R.drawable.openeye_default_user)
-                        .fallback(R.drawable.openeye_default_user)
+                        .error(R.drawable.default_openeye_user)
+                        .placeholder(R.drawable.default_openeye_user)
+                        .fallback(R.drawable.default_openeye_user)
                         .into(ivOeDetailUserLogo)
                     tvOeDetailUserName.text = item.comment.nickname
                     tvOeDetailUserComment.text = item.comment.message

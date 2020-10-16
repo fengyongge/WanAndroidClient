@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#4672ff</color>
     <color name="colorAccent">#4672ff</color>
 
+    <color name="transparent">#00000000</color>
+
     <color name="blue_theme">#347AEB</color>
     <color name="blue_eb">#347AEB</color>
     <color name="blue_ed">#3C80ED</color>

@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.fengyongge.wanandroidclient.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,64 +14,68 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
-        <activity
-            android:name="com.fengyongge.wanandroidclient.activity.SplishActivity"
-            android:theme="@style/AppTheme.Splash" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.WxAccountSearchActivity"
+        <activity android:name=".activity.SplishActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.channel.QuestionAnswerActivity"
+        <activity android:name=".activity.WxAccountSearchActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.ArticleSearchActivity"
+        <activity android:name=".activity.channel.QuestionAnswerActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.MyShareActivity"
+        <activity android:name=".activity.ArticleSearchActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.SettingActivity"
+        <activity android:name=".activity.MyShareActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.AboutActivity"
+        <activity android:name=".activity.SettingActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.MyCollectArticleActivity"
+        <activity android:name=".activity.AboutActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.channel.SystemArticleActivity"
+        <activity android:name=".activity.MyCollectArticleActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.RegisterActivity"
+        <activity android:name=".activity.channel.SystemArticleActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.channel.SystemActivity"
+        <activity android:name=".activity.RegisterActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.channel.GirlActivity"
+        <activity android:name=".activity.channel.SystemActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.WebViewActivity"
+        <activity android:name=".activity.channel.GirlActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.ShareProjectActivity"
+        <activity android:name=".activity.WebViewActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.LoginActivity"
+        <activity android:name=".activity.ShareProjectActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.channel.ProjectActivity"
+        <activity android:name=".activity.LoginActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.fengyongge.wanandroidclient.activity.OpenEyeDetailActivity"
+        <activity android:name=".activity.channel.ProjectActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.OpenEyeDetailActivity"
             android:screenOrientation="portrait" />
 
         <activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity" />

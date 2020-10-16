@@ -4,10 +4,12 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -416,6 +418,18 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
 
         override fun getCount(): Int {
             return fragmentList.size
+        }
+
+        override fun instantiateItem(container: ViewGroup, position: Int): Any {
+
+
+            var bannerFragment = fragmentList[position]
+
+            bannerFragment
+
+
+            return super.instantiateItem(container, position)
+
         }
     }
 

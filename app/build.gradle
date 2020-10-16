@@ -3,27 +3,89 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
+
+    signingConfigs {
+        debug {
+
+        }
+        release{
+            keyAlias 'wanandroid'
+            keyPassword 'q1w2e3r4'
+            storeFile file("./wanandroid.jks")
+            storePassword 'q1w2e3r4'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "cn.fengyongge.wanandroid"
+        applicationId "com.fengyongge.wanandroid"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
-
+        versionName "1.0.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        // Sets the maximum number of DEX processes
+        // that can be started concurrently.
+        maxProcessCount 8
+        // Sets the maximum memory allocation pool size
+        // for the dex operation.
+        javaMaxHeapSize "4g"
+        // Enables Gradle to pre-dex library dependencies.
+        preDexLibraries true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        beta {
+            signingConfig signingConfigs.release
+            buildConfigField 'String', 'BUGLY_APP_ID', '"5a331f52dd"'
+            buildConfigField 'String', 'UMENG_KEY', '"5f881d5b94846f78a9739937"'
+            debuggable false
 
+        }
+        debug {
+            //混淆
+            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            buildConfigField 'String', 'BUGLY_APP_ID', '"5a331f52dd"'
+            buildConfigField 'String', 'UMENY_KEY', '"5f881d5b94846f78a9739937"'
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+
+
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "v${defaultConfig.versionName}_${variant.buildType.name + "_" + releaseTime()}_zsq.apk"
         }
     }
 }
@@ -48,7 +110,6 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$room_version"
     kapt 'android.arch.persistence.room:compiler:1.1.1'
 
-    //
     implementation 'com.google.android.material:material:1.2.1'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
@@ -58,8 +119,9 @@ dependencies {
     implementation 'com.zzti.fengyongge:imagepicker:1.4.2'
     implementation "com.github.donkingliang:LabelsView:1.4.0"
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.12'
-
     implementation project(':baselib')
-
+    api 'com.tencent.bugly:crashreport_upgrade:1.4.5'
+    api 'com.tencent.bugly:nativecrashreport:3.7.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
 }

@@ -123,6 +123,9 @@ class SystemArticleActivity : BaseMvpActivity<SystemPresenterImpl>(), SystemCont
     private fun loadMore(isRefresh: Boolean,pageNum: Int){
         this.isRefresh = isRefresh
         mPresenter?.getSystemArticle(pageNum,cid)
+        if(isRefresh){
+            DialogUtils.showProgress(SystemArticleActivity@this,"数据加载中")
+        }
     }
 
     override fun initData() {
@@ -171,7 +174,9 @@ class SystemArticleActivity : BaseMvpActivity<SystemPresenterImpl>(), SystemCont
             }else{
                 systemArticleAdapter.loadMoreModule.loadMoreEnd()
             }
+            DialogUtils.dismissProgressMD()
         }else{
+            DialogUtils.dismissProgressMD()
             ToastUtils.showToast(SystemArticleActivity@this,data.errorMsg)
         }
     }

@@ -9,11 +9,13 @@ import com.fengyongge.baselib.mvp.BaseMvpFragment
 import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.baselib.net.exception.ResponseException
 import com.fengyongge.baselib.utils.DialogUtils
+import com.fengyongge.baselib.utils.RxNotify
 import com.fengyongge.baselib.utils.SharedPreferencesUtils
 import com.fengyongge.baselib.utils.ToastUtils
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.*
+import com.fengyongge.wanandroidclient.bean.LogoutUpdateBean
 import com.fengyongge.wanandroidclient.bean.UserInforBean
 import com.fengyongge.wanandroidclient.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.UserInforContact
@@ -39,6 +41,17 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
         tvCollect.setOnClickListener(this)
         tvShare.setOnClickListener(this)
         tvAbout.setOnClickListener(this)
+
+        RxNotify.instance?.let {
+            it.apply {
+                toObservable(LogoutUpdateBean::class.java)
+                    .subscribe {
+                        if(it.isUpdate){
+                            setDefault()
+                        }
+                    }
+            }
+        }
     }
 
     override fun initData() {
@@ -51,6 +64,8 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
         var ivRight = activity?.findViewById<ImageView>(R.id.ivRight)
         ivRight?.visibility = View.GONE
         setDefault()
+
+
     }
 
     private fun setDefault(){

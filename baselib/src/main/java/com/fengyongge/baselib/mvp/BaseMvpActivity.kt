@@ -33,4 +33,6 @@ abstract class BaseMvpActivity<P : IBasePresenter> : BaseActivity(),IBaseView{
         return this
     }
 
+
+
 }

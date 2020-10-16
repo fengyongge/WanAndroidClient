@@ -1,6 +1,9 @@
 package com.fengyongge.wanandroidclient.activity
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import com.fengyongge.baselib.mvp.BaseMvpActivity
 import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.baselib.net.exception.ResponseException
@@ -28,6 +31,17 @@ class MyShareActivity : BaseMvpActivity<SharePresenterImpl>(),ShareContract.View
     }
 
     override fun initView() {
+        initTitle()
+    }
+
+
+    private fun initTitle(){
+        var tvTitle = findViewById<TextView>(R.id.tvTitle)
+        tvTitle?.text = "我的分享"
+        var ivLeft = findViewById<ImageView>(R.id.ivLeft)
+        ivLeft.visibility = View.VISIBLE
+        ivLeft.setBackgroundResource(R.drawable.ic_back)
+        ivLeft.setOnClickListener { finish() }
     }
 
     override fun initData() {

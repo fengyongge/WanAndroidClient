@@ -51,7 +51,4 @@ class BannerFragment : BaseFragment() {
 
     }
 
-
-
-
 }

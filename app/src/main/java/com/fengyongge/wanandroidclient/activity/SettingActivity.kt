@@ -1,21 +1,21 @@
 package com.fengyongge.wanandroidclient.activity
 
+import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.fengyongge.baselib.mvp.BaseMvpActivity
 import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.SharedPreferencesUtils
-import com.fengyongge.baselib.utils.ToastUtils
-import com.fengyongge.baselib.utils.ToolsUtils
+import com.fengyongge.baselib.utils.*
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
+import com.fengyongge.wanandroidclient.bean.LogoutUpdateBean
 import com.fengyongge.wanandroidclient.bean.UserInforBean
 import com.fengyongge.wanandroidclient.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.UserInforContact
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.UserInforPresenterImpl
+import com.tencent.bugly.beta.Beta
 import kotlinx.android.synthetic.main.activity_setting.*
 
 /**
@@ -36,6 +36,8 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
 
     override fun initView() {
         rlLogout.setOnClickListener(this)
+        llContract.setOnClickListener(this)
+        llVersion.setOnClickListener(this)
         initTitle()
     }
 
@@ -63,6 +65,9 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
         if (data.errorCode == "0") {
             ToastUtils.showToast(this, "登出成功")
             logoutHandle()
+            var logoutUpdateBean = LogoutUpdateBean()
+            logoutUpdateBean.isUpdate = true
+            RxNotify.instance?.post(logoutUpdateBean)
             finish()
         } else {
             ToastUtils.showToast(this, data.errorMsg)
@@ -85,7 +90,6 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
 
     override fun onClick(v: View?) {
         when(v?.id){
-
             R.id.rlLogout ->{
                 if (isLogin()) {
                     DialogUtils.showAlertDialog(
@@ -99,7 +103,6 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
                             override fun onCancelClick() {
                                 DialogUtils.dismissAlertDialog()
                             }
-
                         })
 
                 } else {
@@ -109,13 +112,41 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
             R.id.llContract ->{
 
             }
+            R.id.llVersion ->{
+                loadUpgradeInfo(this)
+            }
             else ->{
 
             }
-
         }
-
     }
+
+    private fun loadUpgradeInfo(context: Context) {
+        /***** 获取升级信息  */
+        val upgradeInfo = Beta.getUpgradeInfo()
+        if (upgradeInfo == null) {
+            ToastUtils.showToast(context,"已经是最新版本了")
+            return
+        }
+        Beta.checkUpgrade(true, false)
+        val info = StringBuilder()
+        info.append("id: ").append(upgradeInfo.id).append("\n")
+        info.append("标题: ").append(upgradeInfo.title).append("\n")
+        info.append("升级说明: ").append(upgradeInfo.newFeature).append("\n")
+        info.append("versionCode: ").append(upgradeInfo.versionCode).append("\n")
+        info.append("versionName: ").append(upgradeInfo.versionName).append("\n")
+        info.append("发布时间: ").append(upgradeInfo.publishTime).append("\n")
+        info.append("安装包Md5: ").append(upgradeInfo.apkMd5).append("\n")
+        info.append("安装包下载地址: ").append(upgradeInfo.apkUrl).append("\n")
+        info.append("安装包大小: ").append(upgradeInfo.fileSize).append("\n")
+        info.append("弹窗间隔（ms）: ").append(upgradeInfo.popInterval).append("\n")
+        info.append("弹窗次数: ").append(upgradeInfo.popTimes).append("\n")
+        info.append("发布类型（0:测试 1:正式）: ").append(upgradeInfo.publishType).append("\n")
+        info.append("弹窗类型（1:建议 2:强制 3:手工）: ").append(upgradeInfo.upgradeType)
+            .append("\n")
+        info.append("图片地址：").append(upgradeInfo.imageUrl)
+    }
+
 
     private fun isLogin(): Boolean{
         if(SharedPreferencesUtils(App.getContext()).get(Const.IS_LOGIN,false)){

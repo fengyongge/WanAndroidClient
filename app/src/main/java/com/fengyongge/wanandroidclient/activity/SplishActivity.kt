@@ -1,5 +1,6 @@
 package com.fengyongge.wanandroidclient.activity
 
+import android.content.Intent
 import com.fengyongge.baselib.BaseActivity
 import com.fengyongge.wanandroidclient.R
 
@@ -16,6 +17,7 @@ class SplishActivity : BaseActivity() {
     }
 
     override fun initView() {
+        startActivity(Intent(SplishActivity@this,MainActivity::class.java))
     }
 
     override fun initData() {

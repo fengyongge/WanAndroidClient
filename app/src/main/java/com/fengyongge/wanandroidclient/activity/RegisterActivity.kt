@@ -11,11 +11,13 @@ import com.fengyongge.baselib.mvp.BaseMvpActivity
 import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.baselib.net.exception.ResponseException
 import com.fengyongge.baselib.utils.DialogUtils
+import com.fengyongge.baselib.utils.RxNotify
 import com.fengyongge.baselib.utils.SharedPreferencesUtils
 import com.fengyongge.baselib.utils.ToastUtils
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.LoginBean
+import com.fengyongge.wanandroidclient.bean.LogoutUpdateBean
 import com.fengyongge.wanandroidclient.bean.RegisterBean
 import com.fengyongge.wanandroidclient.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.LoginContact
@@ -146,6 +148,9 @@ class RegisterActivity : BaseMvpActivity<LoginPresenterImpl>(), LoginContact.Vie
                 put(Const.USER_ID,data.data.id)
             }
             startActivity(Intent(LoginActivity@this,MainActivity::class.java))
+            var logoutUpdateBean = LogoutUpdateBean()
+            logoutUpdateBean.isUpdate = true
+            RxNotify.instance?.post(logoutUpdateBean)
             finish()
         }else{
             ToastUtils.showToast(LoginActivity@this,data.errorMsg)

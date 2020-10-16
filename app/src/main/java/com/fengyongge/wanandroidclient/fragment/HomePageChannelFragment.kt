@@ -12,10 +12,7 @@ import com.fengyongge.baselib.utils.ScreenUtls
 import com.fengyongge.baselib.utils.SizeUtils
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
-import com.fengyongge.wanandroidclient.activity.channel.GirlActivity
-import com.fengyongge.wanandroidclient.activity.channel.ProjectActivity
-import com.fengyongge.wanandroidclient.activity.channel.QuestionAnswerActivity
-import com.fengyongge.wanandroidclient.activity.channel.SystemActivity
+import com.fengyongge.wanandroidclient.activity.channel.*
 import kotlinx.android.synthetic.main.fragment_homepage_header_channel.*
 
 /**
@@ -28,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_homepage_header_channel.*
 class HomePageChannelFragment : BaseFragment() {
 
     private lateinit var myAdapter: MyAdapter
-    private var list = mutableListOf("项目","体系","问答","妹子")
+    private var list = mutableListOf("项目","体系","问答","面试","妹子")
 
     override fun initLayout(): Int {
         return R.layout.fragment_homepage_header_channel
@@ -51,6 +48,12 @@ class HomePageChannelFragment : BaseFragment() {
                 }
                 "问答" ->{
                     startActivity(Intent(activity, QuestionAnswerActivity::class.java))
+                }
+                "面试" ->{
+                    var intent = Intent(context, SystemArticleActivity::class.java)
+                    intent.putExtra("cid", 73)
+                    intent.putExtra("titleName", "面试")
+                    startActivity(intent)
                 }
                 "妹子" ->{
                     startActivity(Intent(activity,
@@ -94,9 +97,13 @@ class HomePageChannelFragment : BaseFragment() {
                     "问答" ->{
                         ivBanner.setImageResource(R.drawable.channel_question)
                     }
+                    "面试" ->{
+                        ivBanner.setImageResource(R.drawable.channel_interview)
+                    }
                     "妹子" ->{
                         ivBanner.setImageResource(R.drawable.channel_girl)
                     }
+
                 }
             }
         }

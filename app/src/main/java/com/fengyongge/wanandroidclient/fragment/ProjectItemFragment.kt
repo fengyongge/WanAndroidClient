@@ -142,6 +142,8 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
                 tvTime.text = TimeUtils.formatDateLongToString(publishTime,"yyyy-MM-dd HH:mm")
                 Glide.with(context)
                     .load(envelopePic)
+                    .error(R.drawable.default_project_img)
+                    .placeholder(R.drawable.default_project_img)
                     .into(ivProjectCover)
             }
         }

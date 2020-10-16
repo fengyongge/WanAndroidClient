@@ -1,6 +1,7 @@
 package com.fengyongge.wanandroidclient.activity
 
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -8,7 +9,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.fengyongge.baselib.BaseActivity
+import com.fengyongge.baselib.utils.SharedPreferencesUtils
+import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
+import com.fengyongge.wanandroidclient.common.dialog.AgreementDialog
 import com.fengyongge.wanandroidclient.fragment.*
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +37,12 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
+        SharedPreferencesUtils(App.getContext())?.run {
+            if(!get("isShow",false)){
+                readAgreement()
+            }
+        }
+
         var viewPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager, fragmentList)
         viewPager.adapter = viewPagerAdapter
         tablayout.setupWithViewPager(viewPager)
@@ -54,6 +64,27 @@ class MainActivity : BaseActivity() {
                 set(position)
             }
         })
+    }
+
+    private fun readAgreement(){
+        val agreementDialog =
+            AgreementDialog(MainActivity@this, object :
+                AgreementDialog.AnimationDialogEventListener {
+                override fun clickAnimationView(view: View?, vararg parames: Any?) {
+                    val dialogContent = parames[0] as String
+                    if (dialogContent == "cancle") {
+                        exitApp()
+                        return
+                    } else if (dialogContent == "confirm") {
+                        SharedPreferencesUtils(App.getContext())?.let {
+                            it.put("isShow",true)
+                        }
+                    }
+                }
+            })
+        agreementDialog.setCancelable(false)
+        agreementDialog.setCanceledOnTouchOutside(false)
+        agreementDialog.show()
     }
 
     override fun initData() {
