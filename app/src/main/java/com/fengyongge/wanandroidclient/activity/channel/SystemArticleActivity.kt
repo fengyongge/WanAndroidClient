@@ -124,7 +124,7 @@ class SystemArticleActivity : BaseMvpActivity<SystemPresenterImpl>(), SystemCont
         this.isRefresh = isRefresh
         mPresenter?.getSystemArticle(pageNum,cid)
         if(isRefresh){
-            DialogUtils.showProgress(SystemArticleActivity@this,"数据加载中")
+            DialogUtils.showProgress(SystemArticleActivity@this,getString(R.string.collect_success))
         }
     }
 
@@ -138,7 +138,7 @@ class SystemArticleActivity : BaseMvpActivity<SystemPresenterImpl>(), SystemCont
 
     override fun postCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(this, "收藏成功")
+            ToastUtils.showToast(this, getString(R.string.collect_success))
             systemArticleAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(this,data.errorMsg)
@@ -147,7 +147,7 @@ class SystemArticleActivity : BaseMvpActivity<SystemPresenterImpl>(), SystemCont
 
     override fun postCancleCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(this, "取消收藏成功")
+            ToastUtils.showToast(this, getString(R.string.collect_cancle))
             systemArticleAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(this,data.errorMsg)

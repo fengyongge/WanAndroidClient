@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -20,6 +19,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
@@ -35,6 +35,9 @@ import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.bean.ArticleBean
 import com.fengyongge.wanandroidclient.bean.BannerBean
 import com.fengyongge.wanandroidclient.bean.DataX
+import com.fengyongge.wanandroidclient.bean.DataX.Companion.TYPE_ONE
+import com.fengyongge.wanandroidclient.bean.DataX.Companion.TYPE_TWO
+import com.fengyongge.wanandroidclient.bean.openeye.Item
 import com.fengyongge.wanandroidclient.mvp.contract.HomePageContract
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.HomePagePresenterImpl
 import kotlinx.android.synthetic.main.common_homepage_title.*
@@ -209,23 +212,72 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
     }
 
 
-    class MyAdapter : BaseQuickAdapter<DataX, BaseViewHolder>(R.layout.item_fragment_homepage),
+//    class MyAdapter : BaseQuickAdapter<DataX, BaseViewHolder>(R.layout.item_fragment_homepage),
+//        LoadMoreModule {
+//        override fun convert(holder: BaseViewHolder, item: DataX) {
+//            val ivHomePageCollect = holder.getView<ImageView>(R.id.ivHomePageCollect)
+//            val tvContent = holder.getView<TextView>(R.id.tvContent)
+//            val tvTime = holder.getView<TextView>(R.id.tvTime)
+//            with(item){
+//                tvContent.text = title
+//                tvTime.text = niceDate
+//            }
+//            if (item.collect) {
+//                ivHomePageCollect.setImageResource(R.drawable.ic_collect_fill)
+//            } else {
+//                ivHomePageCollect.setImageResource(R.drawable.ic_collect)
+//            }
+//        }
+//    }
+//    item_fragment_homepage
+
+      class MyAdapter : BaseMultiItemQuickAdapter<DataX, BaseViewHolder>(),
         LoadMoreModule {
+
+          init {
+              addItemType(TYPE_ONE,R.layout.item_fragment_homepage_article)
+              addItemType(TYPE_TWO,R.layout.item_fragment_homepage_project)
+          }
         override fun convert(holder: BaseViewHolder, item: DataX) {
-            val ivHomePageCollect = holder.getView<ImageView>(R.id.ivHomePageCollect)
-            val tvContent = holder.getView<TextView>(R.id.tvContent)
-            val tvTime = holder.getView<TextView>(R.id.tvTime)
-            with(item){
-                tvContent.text = title
-                tvTime.text = niceDate
-            }
-            if (item.collect) {
-                ivHomePageCollect.setImageResource(R.drawable.ic_collect_fill)
-            } else {
-                ivHomePageCollect.setImageResource(R.drawable.ic_collect)
+
+            when(item?.type){
+                TYPE_ONE ->{
+                    val ivHomePageCollect = holder.getView<ImageView>(R.id.ivHomePageCollect)
+                    val tvContent = holder.getView<TextView>(R.id.tvContent)
+                    val tvTime = holder.getView<TextView>(R.id.tvTime)
+                    with(item){
+                        tvContent.text = title
+                        tvTime.text = niceDate
+                    }
+                    if (item.collect) {
+                        ivHomePageCollect.setImageResource(R.drawable.ic_collect_fill)
+                    } else {
+                        ivHomePageCollect.setImageResource(R.drawable.ic_collect)
+                    }
+                }
+                TYPE_TWO ->{
+
+                    val ivHomePageCollect = holder.getView<ImageView>(R.id.ivHomePageCollect)
+                    val tvContent = holder.getView<TextView>(R.id.tvContent)
+                    val tvTime = holder.getView<TextView>(R.id.tvTime)
+                    with(item){
+                        tvContent.text = title
+                        tvTime.text = niceDate
+                    }
+                    if (item.collect) {
+                        ivHomePageCollect.setImageResource(R.drawable.ic_collect_fill)
+                    } else {
+                        ivHomePageCollect.setImageResource(R.drawable.ic_collect)
+                    }
+
+                }
             }
         }
     }
+
+
+
+
 
 
     private fun loadMore(isRefresh: Boolean, pageNum: Int) {
@@ -238,7 +290,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
             mPresenter?.articleList(pageNum)
         }
         if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,"数据加载中") }
+            activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
         }
     }
 
@@ -268,11 +320,24 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
         }
     }
 
+    override fun stickArticleShow(data: BaseResponse<List<DataX>>) {
+        if(data.data.isNotEmpty()){
+            for(index in data.data.indices){
+                data.data[index].itemType = TYPE_ONE
+                myAdapter.addData(index,data.data[index])
+            }
+        }
+    }
+
+
 
 
     override fun articleListShow(data: BaseResponse<ArticleBean>) {
         if (data.errorCode == "0") {
             list = data.data.datas as MutableList<DataX>
+            for(item in list){
+                item.itemType = TYPE_ONE
+            }
             if (list.isNotEmpty()) {
                 offset = data.data.offset
                 myAdapter.loadMoreModule.loadMoreComplete()
@@ -292,11 +357,17 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
             DialogUtils.dismissProgressMD()
             activity?.let { ToastUtils.showToast(it, data.errorMsg) }
         }
+
+        mPresenter?.stickArticle()
+
     }
 
     override fun projectListShow(data: BaseResponse<ArticleBean>) {
         if (data.errorCode == "0") {
             list = data.data.datas as MutableList<DataX>
+            for(item in list){
+                item.itemType = TYPE_TWO
+            }
             if (list.isNotEmpty()) {
                 offset = data.data.offset
                 myAdapter.loadMoreModule.loadMoreComplete()
@@ -316,6 +387,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
             DialogUtils.dismissProgressMD()
             activity?.let { ToastUtils.showToast(it, data.errorMsg) }
         }
+
     }
 
     override fun onError(data: ResponseException) {
@@ -325,7 +397,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
 
     override fun postCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(activity, "收藏成功")
+            ToastUtils.showToast(activity, getString(R.string.collect_success))
             myAdapter.notifyItemChanged(collectPosition+1)
         }else{
             ToastUtils.showToast(activity,data.errorMsg)
@@ -334,7 +406,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
 
     override fun postCancleCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(activity, "取消收藏成功")
+            ToastUtils.showToast(activity, getString(R.string.collect_cancle))
             myAdapter.notifyItemChanged(collectPosition+1)
         }else{
             ToastUtils.showToast(activity,data.errorMsg)
@@ -422,11 +494,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
 
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
 
-
             var bannerFragment = fragmentList[position]
-
-            bannerFragment
-
 
             return super.instantiateItem(container, position)
 

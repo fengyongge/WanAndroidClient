@@ -138,7 +138,8 @@ class MyCollectArticleActivity : BaseMvpActivity<MyCollectPresenterImpl>(),
     override fun postCancleCollectShow(data: BaseResponse<String>) {
         if(data.errorCode == "0"){
             myAdapter.removeAt(collectPosition)
-            ToastUtils.showToast(this,"取消收藏成功")
+            ToastUtils.showToast(this, getString(R.string.collect_cancle))
+
         }else{
             ToastUtils.showToast(this, data.errorMsg)
         }

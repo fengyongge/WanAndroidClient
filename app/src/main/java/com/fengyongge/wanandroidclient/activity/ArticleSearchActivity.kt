@@ -156,7 +156,7 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     searchContent = etSearch.text.toString()
                     if (TextUtils.isEmpty(searchContent)) {
-                        ToastUtils.showToast(this@ArticleSearchActivity, "搜索内容不能为空")
+                        ToastUtils.showToast(this@ArticleSearchActivity, getString(R.string.search_hint))
                     } else {
                         loadMore(true, 0)
                     }
@@ -211,7 +211,7 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
 
     override fun postCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(this, "收藏成功")
+            ToastUtils.showToast(this, getString(R.string.collect_success))
             articleSearchAdapter.notifyItemChanged(collectPosition)
         } else {
             ToastUtils.showToast(this, data.errorMsg)
@@ -220,7 +220,7 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
 
     override fun postCancleCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(this, "取消收藏成功")
+            ToastUtils.showToast(this, getString(R.string.collect_cancle))
             articleSearchAdapter.notifyItemChanged(collectPosition)
         } else {
             ToastUtils.showToast(this, data.errorMsg)

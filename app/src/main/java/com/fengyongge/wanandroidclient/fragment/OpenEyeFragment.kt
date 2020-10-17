@@ -248,7 +248,7 @@ class OpenEyeFragment : BaseMvpFragment<OpenEysPresenterImpl>(),OpenEyeContract.
         this.isRefresh = isRefresh
         if(isRefresh){
             dateString = ""
-            activity?.let { DialogUtils.showProgress(it,"数据加载中") }
+            activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
         }
         mPresenter?.getOpenEyeDaily(dateString,0)
     }

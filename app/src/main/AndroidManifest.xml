@@ -76,7 +76,7 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".activity.OpenEyeDetailActivity"
-            android:screenOrientation="portrait" />
+             />
 
         <activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity" />
     </application>

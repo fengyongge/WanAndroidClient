@@ -6,16 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        >
+
 
         <RelativeLayout
             android:layout_marginLeft="10dp"
@@ -56,12 +47,9 @@
                     android:src="@drawable/ic_collect"
                     />
 
-
             </RelativeLayout>
 
         </RelativeLayout>
 
-
-    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

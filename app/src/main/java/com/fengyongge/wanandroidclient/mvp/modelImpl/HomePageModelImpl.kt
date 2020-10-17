@@ -4,6 +4,7 @@ import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.wanandroidclient.api.WanAndroidRetrofit
 import com.fengyongge.wanandroidclient.bean.ArticleBean
 import com.fengyongge.wanandroidclient.bean.BannerBean
+import com.fengyongge.wanandroidclient.bean.DataX
 import com.fengyongge.wanandroidclient.mvp.contract.HomePageContract
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,13 +18,18 @@ class HomePageModelImpl : HomePageContract.Model {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun articleList(pageNum: Int): Observable<BaseResponse<ArticleBean>> {
+    override fun stickArticle(): Observable<BaseResponse<List<DataX>>> {
+        return WanAndroidRetrofit.service
+            .stickArticle()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
 
+    override fun articleList(pageNum: Int): Observable<BaseResponse<ArticleBean>> {
        return WanAndroidRetrofit.service
            .articleList(pageNum)
            .subscribeOn(Schedulers.io())
            .observeOn(AndroidSchedulers.mainThread())
-
     }
 
     override fun projectList(pageNum: Int): Observable<BaseResponse<ArticleBean>> {

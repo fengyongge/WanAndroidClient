@@ -70,6 +70,13 @@ interface WanandroidApi {
 
 
     /**
+     * 首页热门置顶文章列表
+     */
+    @GET("article/top/json")
+    fun stickArticle(): Observable<BaseResponse<List<DataX>>>
+
+
+    /**
      * 首页热门文章列表
      */
     @GET("article/list/{pageNum}/json")

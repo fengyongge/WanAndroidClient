@@ -7,6 +7,7 @@ import com.fengyongge.baselib.net.exception.ResponseException
 import com.fengyongge.baselib.rx.observer.BaseObserver
 import com.fengyongge.wanandroidclient.bean.ArticleBean
 import com.fengyongge.wanandroidclient.bean.BannerBean
+import com.fengyongge.wanandroidclient.bean.DataX
 import com.fengyongge.wanandroidclient.mvp.contract.HomePageContract
 import com.fengyongge.wanandroidclient.mvp.modelImpl.HomePageModelImpl
 
@@ -25,8 +26,19 @@ class HomePagePresenterImpl : BasePresenter<HomePageContract.View>(), HomePageCo
                 }
             })
         }
+    }
 
-
+    override fun stickArticle() {
+        mView?.getCurrentView().let {
+            mModel.stickArticle().subscribe(object : BaseObserver<BaseResponse<List<DataX>>>() {
+                override fun onSuccess(data: BaseResponse<List<DataX>>) {
+                    mView?.stickArticleShow(data)
+                }
+                override fun onError(e: ResponseException) {
+                    mView?.onError(e)
+                }
+            })
+        }
     }
 
     override fun articleList(pageNum: Int) {

@@ -6,12 +6,14 @@ import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.baselib.net.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.ArticleBean
 import com.fengyongge.wanandroidclient.bean.BannerBean
+import com.fengyongge.wanandroidclient.bean.DataX
 import io.reactivex.Observable
 
 interface HomePageContract {
 
     interface Presenter : IBasePresenter {
         fun bannerList()
+        fun stickArticle()
         fun articleList(pageNum: Int)
         fun projectList(pageNum: Int)
         fun postCollect(id: Int)
@@ -20,6 +22,7 @@ interface HomePageContract {
 
     interface Model {
         fun bannerList(): Observable<BaseResponse<List<BannerBean>>>
+        fun stickArticle(): Observable<BaseResponse<List<DataX>>>
         fun articleList(pageNum: Int): Observable<BaseResponse<ArticleBean>>
         fun projectList(pageNum: Int): Observable<BaseResponse<ArticleBean>>
         fun postCollect(id: Int): Observable<BaseResponse<String>>
@@ -28,6 +31,7 @@ interface HomePageContract {
 
     interface View : IBaseView {
         fun bannerListShow(data: BaseResponse<List<BannerBean>>)
+        fun stickArticleShow(data: BaseResponse<List<DataX>>)
         fun articleListShow(data: BaseResponse<ArticleBean>)
         fun projectListShow(data: BaseResponse<ArticleBean>)
         fun onError(data: ResponseException)

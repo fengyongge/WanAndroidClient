@@ -42,7 +42,7 @@ class NavigationFragment : BaseMvpFragment<NavigationPresenterImpl>(),Navigation
         recycleViewNavigation.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         navigationAdapter = NavigationAdapter(navigationList)
         recycleViewNavigation.adapter = navigationAdapter
-        activity?.let { DialogUtils.showProgress(it,"数据加载中") }
+        activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
         mPresenter?.getNavigation()
     }
 

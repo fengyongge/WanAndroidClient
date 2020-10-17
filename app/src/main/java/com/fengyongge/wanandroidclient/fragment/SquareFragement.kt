@@ -132,7 +132,7 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
     private fun loadMore(isRefresh: Boolean, pageNum: Int) {
         this.isRefresh = isRefresh
         if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,"数据加载中") }
+            activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
         }
         mPresenter?.getSquareProject(pageNum)
     }
@@ -156,7 +156,7 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
 
     override fun postCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(activity, "收藏成功")
+            ToastUtils.showToast(activity, getString(R.string.collect_success))
             myAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(activity,data.errorMsg)
@@ -165,7 +165,7 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
 
     override fun postCancleCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(activity, "取消收藏成功")
+            ToastUtils.showToast(activity, getString(R.string.collect_cancle))
             myAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(activity,data.errorMsg)

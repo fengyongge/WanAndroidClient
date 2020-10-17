@@ -111,7 +111,7 @@ class QuestionAnswerActivity : BaseMvpActivity<QuestionAnswerPresenterImpl>(),Qu
         this.isRefresh = isRefresh
         mPresenter?.getQuestionAnswer(pageNum)
         if(isRefresh){
-            DialogUtils.showProgress(QuestionAnswerActivity@this,"数据加载中")
+            DialogUtils.showProgress(QuestionAnswerActivity@this,getString(R.string.collect_success))
         }
     }
 
@@ -121,7 +121,7 @@ class QuestionAnswerActivity : BaseMvpActivity<QuestionAnswerPresenterImpl>(),Qu
 
     override fun postCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(this, "收藏成功")
+            ToastUtils.showToast(this, getString(R.string.collect_success))
             adapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(this,data.errorMsg)
@@ -130,7 +130,7 @@ class QuestionAnswerActivity : BaseMvpActivity<QuestionAnswerPresenterImpl>(),Qu
 
     override fun postCancleCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(this, "取消收藏成功")
+            ToastUtils.showToast(this, getString(R.string.collect_cancle))
             adapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(this,data.errorMsg)

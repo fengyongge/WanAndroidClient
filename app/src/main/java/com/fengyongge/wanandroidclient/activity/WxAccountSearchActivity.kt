@@ -146,7 +146,7 @@ class WxAccountSearchActivity : BaseMvpActivity<WxAccountPresenterImpl>(), WxAcc
         this.isRefresh = isRefresh
         mPresenter?.getSearchWxContent( wxAccountId, pageNum,searchContent)
         if(isRefresh){
-            DialogUtils.showProgress(this,"数据加载中")
+            DialogUtils.showProgress(this,getString(R.string.collect_success))
         }
     }
 
@@ -187,7 +187,7 @@ class WxAccountSearchActivity : BaseMvpActivity<WxAccountPresenterImpl>(), WxAcc
 
     override fun postCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(this, "收藏成功")
+            ToastUtils.showToast(this, getString(R.string.collect_success))
             contentAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(this,data.errorMsg)
@@ -196,7 +196,7 @@ class WxAccountSearchActivity : BaseMvpActivity<WxAccountPresenterImpl>(), WxAcc
 
     override fun postCancleCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(this, "取消收藏成功")
+            ToastUtils.showToast(this, getString(R.string.collect_cancle))
             contentAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(this,data.errorMsg)

@@ -1,5 +1,7 @@
 package com.fengyongge.wanandroidclient.bean
 
+import com.chad.library.adapter.base.entity.MultiItemEntity
+
 data class ArticleBean(
     val curPage: Int,
     val datas: List<DataX>,
@@ -42,8 +44,13 @@ data class DataX(
     val type: Int,
     val userId: Int,
     val visible: Int,
-    val zan: Int
-)
+    val zan: Int, override var itemType: Int
+): MultiItemEntity{
+    companion object{
+        const val TYPE_ONE = 1
+        const val TYPE_TWO = 2
+    }
+}
 
 data class Tag(
     val name: String,

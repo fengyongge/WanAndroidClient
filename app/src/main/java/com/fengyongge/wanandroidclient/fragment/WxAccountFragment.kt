@@ -162,7 +162,7 @@ class WxAccountFragment : BaseMvpFragment<WxAccountPresenterImpl>(), WxAccountCo
 
     override fun postCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(activity, "收藏成功")
+            ToastUtils.showToast(activity, getString(R.string.collect_success))
             contentAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(activity,data.errorMsg)
@@ -171,7 +171,7 @@ class WxAccountFragment : BaseMvpFragment<WxAccountPresenterImpl>(), WxAccountCo
 
     override fun postCancleCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(activity, "取消收藏成功")
+            ToastUtils.showToast(activity, getString(R.string.collect_cancle))
             contentAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(activity,data.errorMsg)
@@ -264,7 +264,7 @@ class WxAccountFragment : BaseMvpFragment<WxAccountPresenterImpl>(), WxAccountCo
         this.isRefresh = isRefresh
         mPresenter?.getWxHistoryList("" + wxAccountId, pageNum)
         if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,"数据加载中") }
+            activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
         }
     }
 

@@ -33,7 +33,7 @@ class ShareProjectActivity : BaseMvpActivity<SharePresenterImpl>(), ShareContrac
         btShare.background.alpha = 100
         btShare.isEnabled = false
         btShare.setOnClickListener {
-            DialogUtils.showProgress(this,"数据提交中...")
+            DialogUtils.showProgress(this,getString(R.string.commit_hint))
             mPresenter?.postShare(etShareTitle.text.toString(), etShareLink.text.toString())
         }
         etShareTitle.addTextChangedListener(object : TextWatcher {

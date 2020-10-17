@@ -159,14 +159,14 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
         this.isRefresh = isRefresh
         mPresenter?.getProjectByType(pageNum,""+cid)
         if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,"数据加载中") }
+            activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
         }
     }
 
 
     override fun postCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(activity, "收藏成功")
+            ToastUtils.showToast(activity, getString(R.string.collect_success))
             myAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(activity,data.errorMsg)
@@ -175,7 +175,7 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
 
     override fun postCancleCollectShow(data: BaseResponse<String>) {
         if (data.errorCode == "0") {
-            ToastUtils.showToast(activity, "取消收藏成功")
+            ToastUtils.showToast(activity, getString(R.string.collect_cancle))
             myAdapter.notifyItemChanged(collectPosition)
         }else{
             ToastUtils.showToast(activity,data.errorMsg)

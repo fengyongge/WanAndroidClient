@@ -43,7 +43,7 @@ class SystemFragment: BaseMvpFragment<SystemPresenterImpl>(),SystemContact.View 
         recycleViewSystem.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         systemAdapter = SystemAdapter(systemCategoryList)
         recycleViewSystem.adapter = systemAdapter
-        activity?.let { DialogUtils.showProgress(it,"数据加载中") }
+        activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
         mPresenter?.getSystemCategory()
     }
 

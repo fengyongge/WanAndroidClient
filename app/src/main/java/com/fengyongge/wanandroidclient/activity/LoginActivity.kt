@@ -165,7 +165,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenterImpl>(),LoginContact.View,Vi
 
             }
             R.id.btLogin ->{
-                DialogUtils.showProgress(this,"登录中...")
+                DialogUtils.showProgress(this,getString(R.string.login_hint))
                 mPresenter?.postLogin(etUserName.text.toString().trim(),etPassword.text.toString().trim())
             }
         }
