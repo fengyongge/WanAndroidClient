@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white_f5">
 
     <include
         android:id="@+id/title"
@@ -22,8 +22,9 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@color/white"
             >
 
             <TextView
@@ -56,12 +57,14 @@
 
 
         <RelativeLayout
+            android:layout_marginTop="20dp"
             android:id="@+id/llContract"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@color/white"
             >
 
             <TextView
@@ -88,36 +91,126 @@
             android:layout_height="0.5dp"
             android:background="@color/white_cc" />
 
-    </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rlOpenSource"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@color/white"
+            >
 
-
-
-    <RelativeLayout
-        android:id="@+id/rlLogout"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:id="@+id/OpenSource"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="版权信息"
+                android:textColor="@color/black_55"
+                android:textSize="16sp" />
+            <TextView
+                android:drawableRight="@drawable/ic_arrow_right"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/black_55"
+                android:textSize="16sp" />
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/white_cc" />
 
+        <RelativeLayout
+            android:id="@+id/rlAbout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:id="@+id/tvAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="关于"
+                android:textColor="@color/black_55"
+                android:textSize="16sp" />
+            <TextView
+                android:drawableRight="@drawable/ic_arrow_right"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/black_55"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/rlLogout"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:id="@+id/tvLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="退出登录"
+                android:textColor="@color/black_55"
+                android:textSize="16sp" />
+            <TextView
+                android:drawableRight="@drawable/ic_arrow_right"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/black_55"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        >
+
 
         <TextView
             android:layout_alignParentLeft="true"
-            android:id="@+id/tvLogout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="退出登录"
-            android:textColor="@color/blue_theme"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            android:text="玩Android APP Copyright @2020-2020\n冯永阁版权所有,禁止商业使用 "
+            android:textColor="@color/white_ce"
+            android:textSize="14sp" />
 
     </RelativeLayout>
 

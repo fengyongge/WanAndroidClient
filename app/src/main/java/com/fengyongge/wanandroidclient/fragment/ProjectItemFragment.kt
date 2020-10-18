@@ -159,7 +159,7 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
         this.isRefresh = isRefresh
         mPresenter?.getProjectByType(pageNum,""+cid)
         if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
+            activity?.let { DialogUtils.showProgress(it,getString(R.string.load_hint1)) }
         }
     }
 

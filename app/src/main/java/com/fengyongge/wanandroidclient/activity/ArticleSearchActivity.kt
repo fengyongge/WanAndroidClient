@@ -13,6 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.donkingliang.labels.LabelsView
 import com.fengyongge.baselib.mvp.BaseMvpActivity
 import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.baselib.net.exception.ResponseException
@@ -273,15 +274,35 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
         ), LoadMoreModule {
         override fun convert(holder: BaseViewHolder, item: SearchData) {
             var ivSearchCollect = holder.getView<ImageView>(R.id.ivSearchCollect)
-            var tvSearchContent = holder.getView<TextView>(R.id.tvSearchContent)
-            var tvSearchTime = holder.getView<TextView>(R.id.tvSearchTime)
-            tvSearchContent.text = item.title
-            tvSearchTime.text = item.niceDate
-            if (item.collect) {
-                ivSearchCollect.setImageResource(R.drawable.ic_collect_fill)
-            } else {
-                ivSearchCollect.setImageResource(R.drawable.ic_collect)
+            var tvSearchArticleContent = holder.getView<TextView>(R.id.tvSearchArticleContent)
+            var tvSearchArticleAuthor = holder.getView<TextView>(R.id.tvSearchArticleAuthor)
+            var tvSearchArticleType = holder.getView<TextView>(R.id.tvSearchArticleType)
+            var tvSearchArticleTime = holder.getView<TextView>(R.id.tvSearchArticleTime)
+            var tvSearchArticleNew = holder.getView<TextView>(R.id.tvSearchArticleNew)
+            val lvSearchArticleTag = holder.getView<LabelsView>(R.id.lvSearchArticleTag)
+            with(item){
+                tvSearchArticleAuthor.text = if(shareUser == "") author else shareUser
+                tvSearchArticleContent.text = title
+                tvSearchArticleTime.text = niceDate
+                tvSearchArticleType.text = item.superChapterName+"/"+item.chapterName
+                if(item.tags.isNotEmpty()){
+                    lvSearchArticleTag.visibility = View.VISIBLE
+                    lvSearchArticleTag.setLabels(item.tags) { _, _, data -> data?.name }
+                }else{
+                    lvSearchArticleTag.visibility = View.GONE
+                }
+                if (item.collect) {
+                    ivSearchCollect.setImageResource(R.drawable.ic_collect_fill)
+                } else {
+                    ivSearchCollect.setImageResource(R.drawable.ic_collect)
+                }
+                if(item.fresh){
+                    tvSearchArticleNew.visibility = View.VISIBLE
+                }else{
+                    tvSearchArticleNew.visibility = View.GONE
+                }
             }
+
         }
     }
 

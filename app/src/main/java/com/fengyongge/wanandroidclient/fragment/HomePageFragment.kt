@@ -20,9 +20,9 @@ import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.donkingliang.labels.LabelsView
 import com.fengyongge.baselib.mvp.BaseMvpFragment
 import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.baselib.net.exception.ResponseException
@@ -32,12 +32,12 @@ import com.fengyongge.baselib.utils.ToastUtils
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.ArticleSearchActivity
 import com.fengyongge.wanandroidclient.activity.WebViewActivity
+import com.fengyongge.wanandroidclient.activity.channel.ProjectActivity
 import com.fengyongge.wanandroidclient.bean.ArticleBean
 import com.fengyongge.wanandroidclient.bean.BannerBean
 import com.fengyongge.wanandroidclient.bean.DataX
 import com.fengyongge.wanandroidclient.bean.DataX.Companion.TYPE_ONE
 import com.fengyongge.wanandroidclient.bean.DataX.Companion.TYPE_TWO
-import com.fengyongge.wanandroidclient.bean.openeye.Item
 import com.fengyongge.wanandroidclient.mvp.contract.HomePageContract
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.HomePagePresenterImpl
 import kotlinx.android.synthetic.main.common_homepage_title.*
@@ -102,6 +102,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
         }
 
         myAdapter.apply {
+            addChildClickViewIds(R.id.tvProjectMore)
             addChildClickViewIds(R.id.ivHomePageCollect)
             setOnItemClickListener { _, _, position ->
                 activity?.let {
@@ -120,6 +121,12 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
                             dataX.collect = true
                             mPresenter?.postCollect(myAdapter.data[position].id)
                         }
+                    }
+                    R.id.tvProjectMore ->{
+                        var dataX = adapter.data[position] as DataX
+                        var intent = Intent(activity,ProjectActivity::class.java)
+                        intent.putExtra("chapterId",dataX.chapterId)
+                        startActivity(intent)
                     }
                 }
             }
@@ -212,25 +219,6 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
     }
 
 
-//    class MyAdapter : BaseQuickAdapter<DataX, BaseViewHolder>(R.layout.item_fragment_homepage),
-//        LoadMoreModule {
-//        override fun convert(holder: BaseViewHolder, item: DataX) {
-//            val ivHomePageCollect = holder.getView<ImageView>(R.id.ivHomePageCollect)
-//            val tvContent = holder.getView<TextView>(R.id.tvContent)
-//            val tvTime = holder.getView<TextView>(R.id.tvTime)
-//            with(item){
-//                tvContent.text = title
-//                tvTime.text = niceDate
-//            }
-//            if (item.collect) {
-//                ivHomePageCollect.setImageResource(R.drawable.ic_collect_fill)
-//            } else {
-//                ivHomePageCollect.setImageResource(R.drawable.ic_collect)
-//            }
-//        }
-//    }
-//    item_fragment_homepage
-
       class MyAdapter : BaseMultiItemQuickAdapter<DataX, BaseViewHolder>(),
         LoadMoreModule {
 
@@ -240,14 +228,39 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
           }
         override fun convert(holder: BaseViewHolder, item: DataX) {
 
-            when(item?.type){
+            when (item?.itemType) {
                 TYPE_ONE ->{
+                    val tvHomeArticleTag = holder.getView<TextView>(R.id.tvHomeArticleTag)
+                    val tvHomeArticleNew = holder.getView<TextView>(R.id.tvHomeArticleNew)
                     val ivHomePageCollect = holder.getView<ImageView>(R.id.ivHomePageCollect)
-                    val tvContent = holder.getView<TextView>(R.id.tvContent)
-                    val tvTime = holder.getView<TextView>(R.id.tvTime)
+                    val tvArticleContent = holder.getView<TextView>(R.id.tvArticleContent)
+                    val tvHomeArticleType = holder.getView<TextView>(R.id.tvHomeArticleType)
+                    val tvHomeArticleAuthor = holder.getView<TextView>(R.id.tvHomeArticleAuthor)
+                    val tvHomeArticleTime = holder.getView<TextView>(R.id.tvHomeArticleTime)
+                    val lvArticleTag = holder.getView<LabelsView>(R.id.lvArticleTag)
                     with(item){
-                        tvContent.text = title
-                        tvTime.text = niceDate
+                        tvArticleContent.text = title
+                        tvHomeArticleTime.text = niceDate
+                        tvHomeArticleAuthor.text =  "作者:"+item.author
+                        tvHomeArticleType.text = item.superChapterName+"/"+item.chapterName
+                        if(item.tags.isNotEmpty()){
+                            lvArticleTag.visibility = View.VISIBLE
+                            lvArticleTag.setLabels(item.tags) { _, _, data -> data?.name }
+                        }else{
+                            lvArticleTag.visibility = View.GONE
+                        }
+
+                        if(item.fresh){
+                            tvHomeArticleNew.visibility = View.VISIBLE
+                        }else{
+                            tvHomeArticleNew.visibility = View.GONE
+                        }
+                        if(item.stick){
+                            tvHomeArticleTag.visibility = View.VISIBLE
+                        }else{
+                            tvHomeArticleTag.visibility = View.GONE
+                        }
+
                     }
                     if (item.collect) {
                         ivHomePageCollect.setImageResource(R.drawable.ic_collect_fill)
@@ -256,29 +269,25 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
                     }
                 }
                 TYPE_TWO ->{
-
-                    val ivHomePageCollect = holder.getView<ImageView>(R.id.ivHomePageCollect)
-                    val tvContent = holder.getView<TextView>(R.id.tvContent)
-                    val tvTime = holder.getView<TextView>(R.id.tvTime)
+                    val tvHomeProjectTime = holder.getView<TextView>(R.id.tvHomeProjectTime)
+                    val tvHomeProjectContent = holder.getView<TextView>(R.id.tvHomeProjectContent)
+                    val ivHomeProjectCollect = holder.getView<ImageView>(R.id.ivHomeProjectCollect)
+                    val tvHomeProjectAuthor = holder.getView<TextView>(R.id.tvHomeProjectAuthor)
                     with(item){
-                        tvContent.text = title
-                        tvTime.text = niceDate
+                        tvHomeProjectContent.text = title
+                        tvHomeProjectTime.text = niceDate
+                        tvHomeProjectAuthor.text = item.author
                     }
                     if (item.collect) {
-                        ivHomePageCollect.setImageResource(R.drawable.ic_collect_fill)
+                        ivHomeProjectCollect.setImageResource(R.drawable.ic_collect_fill)
                     } else {
-                        ivHomePageCollect.setImageResource(R.drawable.ic_collect)
+                        ivHomeProjectCollect.setImageResource(R.drawable.ic_collect)
                     }
 
                 }
             }
         }
     }
-
-
-
-
-
 
     private fun loadMore(isRefresh: Boolean, pageNum: Int) {
         mPresenter?.bannerList()
@@ -290,7 +299,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
             mPresenter?.articleList(pageNum)
         }
         if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
+            activity?.let { DialogUtils.showProgress(it,getString(R.string.load_hint1)) }
         }
     }
 
@@ -324,6 +333,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
         if(data.data.isNotEmpty()){
             for(index in data.data.indices){
                 data.data[index].itemType = TYPE_ONE
+                data.data[index].stick = true
                 myAdapter.addData(index,data.data[index])
             }
         }

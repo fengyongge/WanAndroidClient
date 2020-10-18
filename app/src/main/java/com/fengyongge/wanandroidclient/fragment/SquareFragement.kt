@@ -81,7 +81,7 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
         }
 
         myAdapter.apply {
-            addChildClickViewIds(R.id.ivLike)
+            addChildClickViewIds(R.id.ivSquareCollect)
             setOnItemClickListener { _, _, position ->
                 activity?.let {
                     startActivity(WebViewActivity.getIntent(it,myAdapter.data[position].link))
@@ -89,7 +89,7 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
             }
             setOnItemChildClickListener { adapter, view, position ->
                 when (view?.id) {
-                    R.id.ivLike -> {
+                    R.id.ivSquareCollect -> {
                         var squareItemData = adapter.data[position] as SquareItemData
                         collectPosition = position
                         if(squareItemData.collect){
@@ -132,7 +132,7 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
     private fun loadMore(isRefresh: Boolean, pageNum: Int) {
         this.isRefresh = isRefresh
         if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
+            activity?.let { DialogUtils.showProgress(it,getString(R.string.load_hint1)) }
         }
         mPresenter?.getSquareProject(pageNum)
     }
@@ -141,16 +141,29 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
         BaseQuickAdapter<SquareItemData, BaseViewHolder>(R.layout.item_fragment_square, data),
         LoadMoreModule {
         override fun convert(holder: BaseViewHolder, item: SquareItemData) {
-            var ivLike = holder.getView<ImageView>(R.id.ivLike)
-            var tvSquareContent = holder.getView<TextView>(R.id.tvSquareContent)
-            var tvSquareTime = holder.getView<TextView>(R.id.tvSquareTime)
-            tvSquareContent.text = item.title
-            tvSquareTime.text = item.niceDate
-            if (item.collect) {
-                ivLike.setImageResource(R.drawable.ic_collect_fill)
-            } else {
-                ivLike.setImageResource(R.drawable.ic_collect)
+            var ivSquareCollect = holder.getView<ImageView>(R.id.ivSquareCollect)
+            var tvSquareArticleContent = holder.getView<TextView>(R.id.tvSquareArticleContent)
+            var tvSquareArticleAuthor = holder.getView<TextView>(R.id.tvSquareArticleAuthor)
+            var tvSquareArticleTime = holder.getView<TextView>(R.id.tvSquareArticleTime)
+            var tvSquareNew = holder.getView<TextView>(R.id.tvSquareNew)
+
+            with(item){
+                tvSquareArticleContent.text = title
+                tvSquareArticleTime.text = niceDate
+                tvSquareArticleAuthor.text = "分享人:"+shareUser
+                if (collect) {
+                    ivSquareCollect.setImageResource(R.drawable.ic_collect_fill)
+                } else {
+                    ivSquareCollect.setImageResource(R.drawable.ic_collect)
+                }
+                if(fresh){
+                    tvSquareNew.visibility = View.VISIBLE
+                }else{
+                    tvSquareNew.visibility = View.GONE
+                }
             }
+
+
         }
     }
 

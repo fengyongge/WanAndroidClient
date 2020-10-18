@@ -43,7 +43,7 @@ class SystemFragment: BaseMvpFragment<SystemPresenterImpl>(),SystemContact.View 
         recycleViewSystem.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         systemAdapter = SystemAdapter(systemCategoryList)
         recycleViewSystem.adapter = systemAdapter
-        activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
+        activity?.let { DialogUtils.showProgress(it,getString(R.string.load_hint1)) }
         mPresenter?.getSystemCategory()
     }
 

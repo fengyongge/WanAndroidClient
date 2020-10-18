@@ -1,6 +1,7 @@
 package com.fengyongge.wanandroidclient.activity
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -38,6 +39,7 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
         rlLogout.setOnClickListener(this)
         llContract.setOnClickListener(this)
         llVersion.setOnClickListener(this)
+        rlAbout.setOnClickListener(this)
         initTitle()
     }
 
@@ -114,6 +116,9 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
             }
             R.id.llVersion ->{
                 loadUpgradeInfo(this)
+            }
+            R.id.rlAbout ->{
+                startActivity(Intent(SettingActivity@this, AboutActivity::class.java))
             }
             else ->{
 

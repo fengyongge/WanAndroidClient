@@ -2,8 +2,10 @@ package com.fengyongge.wanandroidclient.activity
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.webkit.JavascriptInterface
 import android.webkit.WebSettings
@@ -65,17 +67,31 @@ class WebViewActivity : BaseActivity() {
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
 
-        articleWebView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                view.loadUrl(url)
-                return super.shouldOverrideUrlLoading(view, url)
+
+        val webViewClient: WebViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(wv: WebView, url: String): Boolean {
+                if (url == null) return false
+                try {
+                    if (url.startsWith("jianshu://")) {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        startActivity(intent)
+                        return true
+                    }
+                } catch (e: java.lang.Exception) {
+                    return false
+                }
+                wv.loadUrl(url)
+                return true
             }
         }
+        articleWebView.webViewClient = webViewClient
+
     }
 
     override fun initData() {
         var intent = intent
         link = intent.getStringExtra(LINK)
+        Log.i("fyg", "link:$link")
         articleWebView.loadUrl(link)
     }
 

@@ -1,53 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rlItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+
+        <LinearLayout
+            android:id="@+id/llHomeArticleTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginRight="10dp"
+                android:id="@+id/tvHomeArticleTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_article_tab_red_bg"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="2dp"
+                android:text="置顶"
+                android:textSize="12sp"
+                android:textColor="@color/red_34" />
+
+            <TextView
+                android:layout_marginRight="10dp"
+                android:id="@+id/tvHomeArticleNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_article_tab_red_bg"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="2dp"
+                android:text="新"
+                android:textSize="12sp"
+                android:textColor="@color/red_34" />
+
+            <TextView
+                android:id="@+id/tvHomeArticleType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                tools:text="干货资源 / 干货资源" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvArticleContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llHomeArticleTag"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="14sp"
+            tools:text="假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字" />
+
+
+        <com.donkingliang.labels.LabelsView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/lvArticleTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvArticleContent"
+            android:layout_marginTop="10dp"
+            app:labelBackground="@drawable/shape_article_tab_blue_bg"
+            app:labelTextColor="@color/blue_theme"
+            app:labelTextPaddingBottom="2dp"
+            app:labelTextPaddingLeft="4dp"
+            app:labelTextPaddingRight="4dp"
+            app:labelTextPaddingTop="2dp"
+            app:labelTextSize="12sp"
+            app:lineMargin="10dp"
+            app:wordMargin="10dp" />
 
 
         <RelativeLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lvArticleTag"
+            android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/tvContent"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="2"
-                android:ellipsize="end"
-                tools:text="假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字" />
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvContent"
-                android:layout_marginTop="15dp"
-                >
+                android:layout_alignParentLeft="true">
 
                 <TextView
-                    android:id="@+id/tvTime"
+                    android:id="@+id/tvHomeArticleAuthor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:textSize="12sp"
+                    tools:text="fyg" />
+
+                <TextView
+                    android:id="@+id/tvHomeArticleTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12sp"
                     tools:text="1天前" />
 
-                <ImageView
-                    android:id="@+id/ivHomePageCollect"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_collect"
-                    />
+            </LinearLayout>
 
-            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/ivHomePageCollect"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_collect" />
 
         </RelativeLayout>
 
+    </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rlItem"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/white_ec" />
 </RelativeLayout>

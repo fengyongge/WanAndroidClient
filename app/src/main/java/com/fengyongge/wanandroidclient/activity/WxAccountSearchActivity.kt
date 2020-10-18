@@ -146,7 +146,7 @@ class WxAccountSearchActivity : BaseMvpActivity<WxAccountPresenterImpl>(), WxAcc
         this.isRefresh = isRefresh
         mPresenter?.getSearchWxContent( wxAccountId, pageNum,searchContent)
         if(isRefresh){
-            DialogUtils.showProgress(this,getString(R.string.collect_success))
+            DialogUtils.showProgress(this,getString(R.string.load_hint1))
         }
     }
 

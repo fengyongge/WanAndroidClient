@@ -40,7 +40,6 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
         tvSetting.setOnClickListener(this)
         tvCollect.setOnClickListener(this)
         tvShare.setOnClickListener(this)
-        tvAbout.setOnClickListener(this)
 
         RxNotify.instance?.let {
             it.apply {
@@ -140,9 +139,6 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
                 } else {
                     startActivity(Intent(activity, LoginActivity::class.java))
                 }
-            }
-            R.id.tvAbout ->{
-                startActivity(Intent(activity, AboutActivity::class.java))
             }
         }
     }

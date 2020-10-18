@@ -32,6 +32,8 @@ class ProjectActivity : BaseMvpActivity<ProjectPresenterImpl>(),ProjectContract.
     private var fragmentList = mutableListOf<Fragment>()
     private var titleList = mutableListOf<String>()
     private lateinit var myFragmentViewPager: FragmentStatePagerAdapter
+    private var getIntentParms = 0
+    private var selectFragment = 0
 
     override fun initPresenter(): ProjectPresenterImpl {
         return ProjectPresenterImpl()
@@ -52,6 +54,9 @@ class ProjectActivity : BaseMvpActivity<ProjectPresenterImpl>(),ProjectContract.
         ivLeft.visibility = View.VISIBLE
         ivLeft.setBackgroundResource(R.drawable.ic_back)
         ivLeft.setOnClickListener { finish() }
+        intent?.let {
+            getIntentParms =  it.getIntExtra("chapterId",0)
+        }
     }
 
     override fun initData() {
@@ -67,6 +72,7 @@ class ProjectActivity : BaseMvpActivity<ProjectPresenterImpl>(),ProjectContract.
             )
         vpProject.adapter = myFragmentViewPager
         tlProject.setupWithViewPager(vpProject)
+        vpProject.currentItem = selectFragment
     }
 
 
@@ -113,6 +119,9 @@ class ProjectActivity : BaseMvpActivity<ProjectPresenterImpl>(),ProjectContract.
                 for (index in data.data.indices) {
                     titleList.add(data.data[index].name)
                     fragmentList.add(ProjectItemFragment.newInstance(data.data[index].id))
+                    if(data.data[index].id == getIntentParms){
+                        selectFragment = index
+                    }
                 }
                 setupWithViewPager()
             }

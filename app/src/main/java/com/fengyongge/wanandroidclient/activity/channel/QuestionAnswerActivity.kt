@@ -111,7 +111,7 @@ class QuestionAnswerActivity : BaseMvpActivity<QuestionAnswerPresenterImpl>(),Qu
         this.isRefresh = isRefresh
         mPresenter?.getQuestionAnswer(pageNum)
         if(isRefresh){
-            DialogUtils.showProgress(QuestionAnswerActivity@this,getString(R.string.collect_success))
+            DialogUtils.showProgress(QuestionAnswerActivity@this,getString(R.string.load_hint1))
         }
     }
 

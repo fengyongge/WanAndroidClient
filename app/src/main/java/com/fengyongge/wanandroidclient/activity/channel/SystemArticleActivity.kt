@@ -124,7 +124,7 @@ class SystemArticleActivity : BaseMvpActivity<SystemPresenterImpl>(), SystemCont
         this.isRefresh = isRefresh
         mPresenter?.getSystemArticle(pageNum,cid)
         if(isRefresh){
-            DialogUtils.showProgress(SystemArticleActivity@this,getString(R.string.collect_success))
+            DialogUtils.showProgress(SystemArticleActivity@this,getString(R.string.load_hint1))
         }
     }
 

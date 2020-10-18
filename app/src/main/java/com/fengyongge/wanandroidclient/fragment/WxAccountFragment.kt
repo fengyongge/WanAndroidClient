@@ -264,7 +264,7 @@ class WxAccountFragment : BaseMvpFragment<WxAccountPresenterImpl>(), WxAccountCo
         this.isRefresh = isRefresh
         mPresenter?.getWxHistoryList("" + wxAccountId, pageNum)
         if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,getString(R.string.collect_success)) }
+            activity?.let { DialogUtils.showProgress(it,getString(R.string.load_hint1)) }
         }
     }
 

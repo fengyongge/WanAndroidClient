@@ -14,8 +14,23 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center|left"
+                android:textColor="@color/black_28"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="近期分享"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleViewSquare"

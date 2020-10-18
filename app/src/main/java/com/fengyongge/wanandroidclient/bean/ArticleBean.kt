@@ -44,7 +44,8 @@ data class DataX(
     val type: Int,
     val userId: Int,
     val visible: Int,
-    val zan: Int, override var itemType: Int
+    val zan: Int, override var itemType: Int,
+    var stick: Boolean = false
 ): MultiItemEntity{
     companion object{
         const val TYPE_ONE = 1

@@ -1,62 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
-
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
+        android:id="@+id/rlItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="5dp"
-        >
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvSquareArticleContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llHomeArticleTag"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="14sp"
+            tools:text="假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字" />
+
 
         <RelativeLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvSquareArticleContent"
+            android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/tvSquareContent"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="2"
-                android:ellipsize="end"
-                tools:text="假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字假装有文字" />
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvSquareContent"
-                android:layout_marginTop="15dp"
-                >
+                android:layout_alignParentLeft="true">
 
                 <TextView
-                    android:id="@+id/tvSquareTime"
+                    android:id="@+id/tvSquareNew"
+                    android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/shape_article_tab_red_bg"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="2dp"
+                    android:text="新"
+                    android:textSize="12sp"
+                    android:textColor="@color/red_34" />
+
+                <TextView
+                    android:id="@+id/tvSquareArticleAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginRight="10dp"
+                    tools:text="fyg" />
+
+                <TextView
+                    android:id="@+id/tvSquareArticleTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
                     tools:text="1天前" />
 
-                <ImageView
-                    android:id="@+id/ivLike"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_alignParentRight="true" />
+            </LinearLayout>
 
 
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/ivSquareCollect"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_collect" />
 
         </RelativeLayout>
 
+    </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rlItem"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/white_ec" />
 </RelativeLayout>

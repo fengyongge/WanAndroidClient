@@ -150,27 +150,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:gravity="center"
-                android:text="设置"
+                android:text="系统设置"
                 android:textColor="@color/black_55"
                 android:textSize="16sp" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/white_ec" />
-
-            <TextView
-                android:id="@+id/tvAbout"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:gravity="center"
-                android:text="关于项目"
-                android:textColor="@color/black_55"
-                android:textSize="16sp" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/white_ec" />
-
 
 
         </LinearLayout>

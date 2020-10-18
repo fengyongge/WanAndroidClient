@@ -91,7 +91,7 @@ class GirlActivity : BaseMvpActivity<GirlPresenterImpl>(),GirlContract.view,Swip
         this.isRefresh = isRefresh
         mPresenter?.getGankGirl(pageNum, Const.PAGE_SIZE)
        if(isRefresh){
-           DialogUtils.showProgress(GirlActivity@this,getString(R.string.collect_success))
+           DialogUtils.showProgress(GirlActivity@this,getString(R.string.load_hint1))
        }
     }
 

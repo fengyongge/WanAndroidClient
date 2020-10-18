@@ -37,10 +37,15 @@ data class SearchData(
     val shareUser: String,
     val superChapterId: Int,
     val superChapterName: String,
-    val tags: List<Any>,
+    val tags: List<SearchTag>,
     val title: String,
     val type: Int,
     val userId: Int,
     val visible: Int,
     val zan: Int
+)
+
+data class SearchTag(
+    val name: String,
+    val url: String
 )
