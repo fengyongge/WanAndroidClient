@@ -2,21 +2,20 @@ package com.fengyongge.wanandroidclient.activity
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.webkit.JavascriptInterface
 import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.ImageView
 import android.widget.TextView
 import com.fengyongge.baselib.BaseActivity
-import com.fengyongge.baselib.utils.NetUtils
+import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
+import com.fengyongge.wanandroidclient.common.view.ProgressWebView
+import com.tencent.smtt.sdk.CookieSyncManager
+import com.tencent.smtt.sdk.WebView
 import kotlinx.android.synthetic.main.activity_article_detail.*
+
 
 /**
  * describe
@@ -28,14 +27,20 @@ import kotlinx.android.synthetic.main.activity_article_detail.*
 class WebViewActivity : BaseActivity() {
 
     lateinit var link: String
+    lateinit var title: String
+    var isPrivacy =false
 
-    companion object{
+    companion object {
         const val LINK = "link"
+        const val TITLE = "title"
         fun getIntent(
             context: Context,
-            link: String): Intent{
-            var intent = Intent(context,WebViewActivity::class.java)
-            intent.putExtra(LINK,link)
+            link: String,
+            title: String
+            ): Intent {
+            var intent = Intent(context, WebViewActivity::class.java)
+            intent.putExtra(LINK, link)
+            intent.putExtra(TITLE, title)
             return intent
         }
     }
@@ -44,9 +49,9 @@ class WebViewActivity : BaseActivity() {
         return R.layout.activity_article_detail
     }
 
-    fun initTitle(){
+    private fun initTitle() {
         var tvTitle = findViewById<TextView>(R.id.tvTitle)
-        tvTitle?.text = "详情"
+        tvTitle?.text = title
         var ivLeft = findViewById<ImageView>(R.id.ivLeft)
         ivLeft.visibility = View.VISIBLE
         ivLeft.setBackgroundResource(R.drawable.ic_back)
@@ -55,68 +60,35 @@ class WebViewActivity : BaseActivity() {
 
     override fun initView() {
         initTitle()
-        articleWebView.scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
-        articleWebView.isScrollbarFadingEnabled = true
-        articleWebView.addJavascriptInterface(this, "jsApi")
-        val settings: WebSettings = articleWebView.settings
-        settings.javaScriptEnabled = true
-        settings.loadWithOverviewMode = true
-        settings.useWideViewPort = true
-        settings.blockNetworkImage = false //解决图片不显示
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-        }
-
-
-        val webViewClient: WebViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(wv: WebView, url: String): Boolean {
-                if (url == null) return false
-                try {
-                    if (url.startsWith("jianshu://")) {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        startActivity(intent)
-                        return true
-                    }
-                } catch (e: java.lang.Exception) {
-                    return false
-                }
-                wv.loadUrl(url)
-                return true
-            }
-        }
-        articleWebView.webViewClient = webViewClient
-
     }
 
     override fun initData() {
         var intent = intent
-        link = intent.getStringExtra(LINK)
-        Log.i("fyg", "link:$link")
-        articleWebView.loadUrl(link)
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-        if (!NetUtils.isConnected(this@WebViewActivity)) {
-            articleWebView.loadUrl("file:///android_asset/offline.html")
-        } else if (!TextUtils.isEmpty(link)) {
+        isPrivacy = intent.getBooleanExtra("isPrivacy",false)
+        title = intent.getStringExtra(TITLE)
+        if(isPrivacy){
+            articleWebView.loadUrl("file:///android_asset/privacy_policy.html");
+        }else{
+            link = intent.getStringExtra(LINK)
             articleWebView.loadUrl(link)
         }
     }
 
-
-    @JavascriptInterface
-    fun webReload() {
-        articleWebView.post(Runnable {
-            articleWebView.clearHistory()
-            if (!NetUtils.isConnected(this@WebViewActivity)) {
-                articleWebView.loadUrl("file:///android_asset/offline.html")
-            } else if (!TextUtils.isEmpty(link)) {
-                articleWebView.loadUrl(link)
-            }
-        })
+    override fun onResume() {
+        super.onResume()
+        articleWebView.onResume()
     }
 
+    override fun onPause() {
+        super.onPause()
+        articleWebView.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        articleWebView?.let {
+            articleWebView.destroy()
+        }
+    }
 
 }

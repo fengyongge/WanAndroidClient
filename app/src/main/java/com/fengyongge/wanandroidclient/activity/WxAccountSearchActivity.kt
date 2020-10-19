@@ -82,7 +82,7 @@ class WxAccountSearchActivity : BaseMvpActivity<WxAccountPresenterImpl>(), WxAcc
         contentAdapter.apply {
             addChildClickViewIds(R.id.ivWxAccountCollect)
             setOnItemClickListener { adapter, view, position ->
-                startActivity( WebViewActivity.getIntent(this@WxAccountSearchActivity,contentAdapter.data[position].link))
+                startActivity( WebViewActivity.getIntent(this@WxAccountSearchActivity,contentAdapter.data[position].link,"${contentAdapter.data[position].chapterName}文章搜索"))
             }
             setOnItemChildClickListener { adapter, view, position ->
                 when(view?.id){

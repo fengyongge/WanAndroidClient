@@ -12,12 +12,14 @@
         layout="@layout/common_title"
         />
 
-    <com.fengyongge.wanandroidclient.common.view.ProgressWebView
+
+    <com.fengyongge.wanandroidclient.common.view.MyX5WebView
         android:id="@+id/articleWebView"
-        android:layout_below="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:scrollbars="none"
+        android:layout_below="@+id/title"
+       />
 
 
 </RelativeLayout>

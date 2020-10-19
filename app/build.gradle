@@ -122,6 +122,7 @@ dependencies {
     implementation project(':baselib')
     api 'com.tencent.bugly:crashreport_upgrade:1.4.5'
     api 'com.tencent.bugly:nativecrashreport:3.7.1'
+    api 'com.tencent.tbs.tbssdk:sdk:43939'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
 }

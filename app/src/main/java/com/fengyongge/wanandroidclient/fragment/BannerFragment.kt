@@ -1,10 +1,13 @@
 package com.fengyongge.wanandroidclient.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.fengyongge.baselib.BaseFragment
+import com.fengyongge.baselib.utils.ToastUtils
 import com.fengyongge.wanandroidclient.R
+import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.bean.BannerBean
 import kotlinx.android.synthetic.main.fragment_banner.*
 
@@ -38,6 +41,12 @@ class BannerFragment : BaseFragment() {
         activity?.let {
             Glide.with(it).load(bannerBean.imagePath)
                 .into(ivBanner)
+        }
+
+        cdBanner.setOnClickListener {
+            activity?.let {
+                startActivity(WebViewActivity.getIntent(it,bannerBean.url,bannerBean.title))
+            }
         }
     }
 

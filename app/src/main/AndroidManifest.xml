@@ -3,6 +3,11 @@
     package="com.fengyongge.wanandroidclient">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".App"
@@ -13,70 +18,69 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".activity.MainActivity"
             android:launchMode="singleTask"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity
+            android:name=".activity.SplishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WxAccountSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.channel.QuestionAnswerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ArticleSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MyShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MyCollectArticleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.channel.SystemArticleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.channel.SystemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.channel.GirlActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ShareProjectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.channel.ProjectActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.OpenEyeDetailActivity" />
 
-
-        <activity android:name=".activity.SplishActivity"
+        <activity android:name=".activity.OpenSourceActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".activity.WxAccountSearchActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.channel.QuestionAnswerActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.ArticleSearchActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.MyShareActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.SettingActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.AboutActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.MyCollectArticleActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.channel.SystemArticleActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.RegisterActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.channel.SystemActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.channel.GirlActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.WebViewActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.ShareProjectActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.channel.ProjectActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.OpenEyeDetailActivity"
-             />
 
         <activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity" />
     </application>

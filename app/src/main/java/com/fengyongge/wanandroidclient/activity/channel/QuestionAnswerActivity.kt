@@ -74,7 +74,7 @@ class QuestionAnswerActivity : BaseMvpActivity<QuestionAnswerPresenterImpl>(),Qu
             setOnItemClickListener { adapter, view, position ->
                 
                 var qaData = adapter.data[position] as QaData
-                startActivity(WebViewActivity.getIntent(this@QuestionAnswerActivity,qaData.link))
+                startActivity(WebViewActivity.getIntent(this@QuestionAnswerActivity,qaData.link,"问答"))
 
             }
 

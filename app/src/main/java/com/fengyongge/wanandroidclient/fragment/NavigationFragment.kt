@@ -91,7 +91,7 @@ class NavigationFragment : BaseMvpFragment<NavigationPresenterImpl>(),Navigation
 
             labels.setOnLabelClickListener(LabelsView.OnLabelClickListener { label, data, position ->
                 var article = data as Article
-                context.startActivity(WebViewActivity.getIntent(context,article.link))
+                context.startActivity(WebViewActivity.getIntent(context,article.link,article.title))
 
             })
 

@@ -40,6 +40,7 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
         llContract.setOnClickListener(this)
         llVersion.setOnClickListener(this)
         rlAbout.setOnClickListener(this)
+        rlOpenSource.setOnClickListener(this)
         initTitle()
     }
 
@@ -51,7 +52,7 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
         ivLeft.visibility = View.VISIBLE
         ivLeft.setBackgroundResource(R.drawable.ic_back)
         ivLeft.setOnClickListener { finish() }
-        tvVersionCode.text = "版本号 V${ToolsUtils.getVersionName(this)}"
+        tvVersionCode.text = "V${ToolsUtils.getVersionName(this)}"
 
         if (isLogin()) {
             rlLogout.visibility = View.VISIBLE
@@ -112,7 +113,13 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
                 }
             }
             R.id.llContract ->{
-
+                var intent = Intent(SettingActivity@this,WebViewActivity::class.java)
+                intent.putExtra("isPrivacy",true)
+                intent.putExtra("title","隐私政策与用户说明")
+                startActivity(intent)
+            }
+            R.id.rlOpenSource ->{
+                startActivity(Intent(SettingActivity@this, OpenSourceActivity::class.java))
             }
             R.id.llVersion ->{
                 loadUpgradeInfo(this)

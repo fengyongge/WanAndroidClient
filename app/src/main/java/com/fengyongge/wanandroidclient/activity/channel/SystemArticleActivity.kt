@@ -84,7 +84,7 @@ class SystemArticleActivity : BaseMvpActivity<SystemPresenterImpl>(), SystemCont
                 startActivity(
                     WebViewActivity.getIntent(
                         this@SystemArticleActivity,
-                        systemArticleAdapter.data[position].link
+                        systemArticleAdapter.data[position].link,"体系"
                     )
                 )
             }

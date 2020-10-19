@@ -43,8 +43,6 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
     private var isRefresh = false
     private var collectPosition: Int = 0
 
-
-
     companion object{
         private const val CID = "cid"
         fun newInstance(cid: Int)= ProjectItemFragment().apply {
@@ -92,7 +90,7 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
         myAdapter.apply {
             addChildClickViewIds(R.id.ivProjectCollect)
             setOnItemClickListener { _, _, position ->
-                startActivity(activity?.let { WebViewActivity.getIntent(it,myAdapter.data[position].link) })
+                startActivity(activity?.let { WebViewActivity.getIntent(it,myAdapter.data[position].link,myAdapter.data[position].title) })
             }
             setOnItemChildClickListener { adapter, view, position ->
                 when (view?.id) {
@@ -158,9 +156,6 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
     private fun loadMore(isRefresh: Boolean,pageNum: Int){
         this.isRefresh = isRefresh
         mPresenter?.getProjectByType(pageNum,""+cid)
-        if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,getString(R.string.load_hint1)) }
-        }
     }
 
 
@@ -204,9 +199,7 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
                     showEmptyView()
                 }
             }
-            DialogUtils.dismissProgressMD()
         }
-        DialogUtils.dismissProgressMD()
     }
 
     private fun showEmptyView(){
@@ -214,7 +207,6 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
     }
 
     override fun onError(data: ResponseException) {
-        DialogUtils.dismissProgressMD()
         ToastUtils.showToast(activity,data.getErrorMessage())
     }
 

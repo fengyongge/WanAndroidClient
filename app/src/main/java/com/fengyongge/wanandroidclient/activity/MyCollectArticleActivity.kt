@@ -71,7 +71,7 @@ class MyCollectArticleActivity : BaseMvpActivity<MyCollectPresenterImpl>(),
         myAdapter.apply {
             addChildClickViewIds(R.id.ivMyCollect)
             setOnItemClickListener { _, _, position ->
-                startActivity(WebViewActivity.getIntent(this@MyCollectArticleActivity,myAdapter.data[position].link))
+                startActivity(WebViewActivity.getIntent(this@MyCollectArticleActivity,myAdapter.data[position].link,"我的收藏"))
             }
             setOnItemChildClickListener { _, view, position ->
                 when (view?.id) {

@@ -10,6 +10,7 @@ import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
+import com.tencent.smtt.sdk.QbSdk
 import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 
@@ -28,6 +29,7 @@ class App: Application() {
         AppDataBase.getInstance(this)
         initUmeng()
         initBugly()
+        initTbs()
     }
 
     companion object {
@@ -128,6 +130,17 @@ class App: Application() {
 
         //        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, false); //新版本用以下初始化方式替换
         Bugly.init(applicationContext, Const.BUGLY_APP_ID, false)
+    }
+
+    private fun initTbs(){
+        QbSdk.initX5Environment(this,object :QbSdk.PreInitCallback{
+            override fun onCoreInitFinished() {
+            }
+
+            override fun onViewInitFinished(p0: Boolean) {
+            }
+
+        })
     }
 
 

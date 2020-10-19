@@ -106,7 +106,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
             addChildClickViewIds(R.id.ivHomePageCollect)
             setOnItemClickListener { _, _, position ->
                 activity?.let {
-                    startActivity(WebViewActivity.getIntent(it,myAdapter.data[position].link))
+                    startActivity(WebViewActivity.getIntent(it,myAdapter.data[position].link,myAdapter.data[position].title))
                 }
             }
             setOnItemChildClickListener { adapter, view, position ->

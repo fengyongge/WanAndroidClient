@@ -107,7 +107,7 @@ class WxAccountFragment : BaseMvpFragment<WxAccountPresenterImpl>(), WxAccountCo
                 startActivity(activity?.let {
                     WebViewActivity.getIntent(
                         it,
-                        contentAdapter.data[position].link
+                        contentAdapter.data[position].link,contentAdapter.data[position].title
                     )
                 })
             }

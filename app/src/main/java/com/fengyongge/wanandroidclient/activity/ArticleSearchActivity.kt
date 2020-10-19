@@ -94,7 +94,7 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
                 startActivity(
                     WebViewActivity.getIntent(
                         this@ArticleSearchActivity,
-                        articleSearchAdapter.data[position].link
+                        articleSearchAdapter.data[position].link,"文章搜索"
                     )
                 )
             }
