@@ -12,6 +12,7 @@ import com.fengyongge.baselib.net.exception.ResponseException
 import com.fengyongge.baselib.utils.DialogUtils
 import com.fengyongge.baselib.utils.ToastUtils
 import com.fengyongge.wanandroidclient.R
+import com.fengyongge.wanandroidclient.bean.MyShareBean
 import com.fengyongge.wanandroidclient.mvp.contract.ShareContract
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.SharePresenterImpl
 import kotlinx.android.synthetic.main.activity_share_project.*
@@ -78,8 +79,7 @@ class ShareProjectActivity : BaseMvpActivity<SharePresenterImpl>(), ShareContrac
 
     private fun legalJudge() {
         var legal = !TextUtils.isEmpty(etShareTitle.text.toString()) &&
-                !TextUtils.isEmpty(etShareLink.text.toString()) &&
-                !TextUtils.isEmpty(etContent.text.toString())
+                !TextUtils.isEmpty(etShareLink.text.toString())
         if (legal) {
             btShare.background.alpha = 255
             btShare.isEnabled = true
@@ -117,9 +117,10 @@ class ShareProjectActivity : BaseMvpActivity<SharePresenterImpl>(), ShareContrac
         }
     }
 
-    override fun getShareListShow(data: BaseResponse<String>) {
-
+    override fun getShareListShow(data: BaseResponse<MyShareBean>) {
+        TODO("Not yet implemented")
     }
+
 
     override fun postDeleteMyShareShow(data: BaseResponse<String>) {
 

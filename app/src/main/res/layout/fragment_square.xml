@@ -48,7 +48,7 @@
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
-        android:src="@drawable/ic_share"
+        android:src="@drawable/ic_toshare"
         app:backgroundTint="@color/blue_theme"
         app:borderWidth="0.0dip"
         app:elevation="5.0dip"

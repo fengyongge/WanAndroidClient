@@ -39,8 +39,7 @@ import kotlinx.android.synthetic.main.activity_open_eye_detail.*
  * @version V1.0
  * @date 2020/09/08
  */
-class OpenEyeDetailActivity : BaseMvpActivity<OpenEysPresenterImpl>(), OpenEyeContract.View,
-    SwipeRefreshLayout.OnRefreshListener {
+class OpenEyeDetailActivity : BaseMvpActivity<OpenEysPresenterImpl>(), OpenEyeContract.View{
     var list = mutableListOf<OpenEyeDetailBean>()
     private lateinit var myAdapter: MyAdapter
     private lateinit var playUrl: String
@@ -56,13 +55,6 @@ class OpenEyeDetailActivity : BaseMvpActivity<OpenEysPresenterImpl>(), OpenEyeCo
     }
 
     override fun initView() {
-        swipeRefreshLayoutOpenEyeDetail.setOnRefreshListener(this)
-        swipeRefreshLayoutOpenEyeDetail.setColorSchemeColors(
-            ContextCompat.getColor(
-                this,
-                R.color.colorPrimary
-            )
-        )
         jzVideoPlayerStandard = findViewById(R.id.videoplayer)
         getIntentParms()
         rvRelatedRideo.layoutManager =
@@ -249,12 +241,5 @@ class OpenEyeDetailActivity : BaseMvpActivity<OpenEysPresenterImpl>(), OpenEyeCo
         ToastUtils.showToast(this, data.getErrorMessage())
         DialogUtils.dismissProgressMD()
     }
-
-    override fun onRefresh() {
-        swipeRefreshLayoutOpenEyeDetail.isRefreshing = false
-        list.clear()
-        loadData()
-    }
-
 
 }

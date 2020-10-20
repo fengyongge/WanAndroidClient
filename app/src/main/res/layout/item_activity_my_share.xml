@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/rlItem"
+        android:id="@+id/rlMyShareItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -16,17 +16,17 @@
 
 
         <TextView
-            android:id="@+id/tvCollectType"
+            android:id="@+id/tvMyShareType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             tools:text="干货资源 / 干货资源" />
 
         <TextView
-            android:id="@+id/tvCollectContent"
+            android:id="@+id/tvMyShareContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvCollectType"
+            android:layout_below="@+id/tvMyShareType"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="2"
@@ -35,7 +35,7 @@
 
 
         <RelativeLayout
-            android:layout_below="@+id/tvCollectContent"
+            android:layout_below="@+id/tvMyShareContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -47,7 +47,7 @@
                 android:layout_alignParentLeft="true">
 
                 <TextView
-                    android:id="@+id/tvCollectAuthor"
+                    android:id="@+id/tvMyShareAuthor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -57,21 +57,13 @@
                     />
 
                 <TextView
-                    android:id="@+id/tvCollectTime"
+                    android:id="@+id/tvMyShareTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
                     tools:text="1天前" />
 
             </LinearLayout>
-
-
-            <ImageView
-                android:id="@+id/ivMyCollect"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_collect" />
 
         </RelativeLayout>
 
@@ -80,7 +72,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/rlItem"
+        android:layout_below="@+id/rlMyShareItem"
         android:layout_marginTop="5dp"
         android:layout_marginRight="1dp"
         android:background="@color/white_ec" />

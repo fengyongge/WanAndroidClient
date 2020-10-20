@@ -1,7 +1,6 @@
 package com.fengyongge.wanandroidclient.fragment
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -138,7 +137,6 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 scrollHeight += dy
                 var temptHeight  = SizeUtils.dp2px(170)+  SizeUtils.dp2px(116)
-                Log.i("fyg","scrollHeight$scrollHeight"+"temptHeight${temptHeight}")
                 if(scrollHeight >temptHeight){
                     title1.visibility = View.VISIBLE
                     title2.visibility = View.GONE
@@ -207,7 +205,11 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
 
 
     override fun initLoad() {
+        initTitle()
         loadMore(true, 0)
+    }
+
+    private fun initTitle(){
         var tvTitle = activity?.findViewById<TextView>(R.id.tvTitle)
         tvTitle?.text = "首页"
         var ivRight = activity?.findViewById<ImageView>(R.id.ivRight)
@@ -316,17 +318,21 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
     override fun bannerListShow(data: BaseResponse<List<BannerBean>>) {
         if (data.errorCode == "0") {
             if (data.data.isNotEmpty()) {
-                bannerList.clear()
-                fragmentList.clear()
-                for (index in data.data.indices) {
-                    bannerList.add(data.data[index])
-                    fragmentList.add(BannerFragment.getNewInstance(bannerList[index]))
-                }
-                bannerFragmentStatePagerAdapter.setAdapter(fragmentList)
+                setBannerData(data)
             } else {
                 ToastUtils.showToast(activity, data.errorMsg)
             }
         }
+    }
+
+    private fun setBannerData(data: BaseResponse<List<BannerBean>>){
+        bannerList.clear()
+        fragmentList.clear()
+        for (index in data.data.indices) {
+            bannerList.add(data.data[index])
+            fragmentList.add(BannerFragment.getNewInstance(bannerList[index]))
+        }
+        bannerFragmentStatePagerAdapter.setAdapter(fragmentList)
     }
 
     override fun stickArticleShow(data: BaseResponse<List<DataX>>) {
@@ -464,25 +470,6 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
 
         return view
     }
-
-//    class BannerFragmentStateAdapter(fm: FragmentActivity) : FragmentStateAdapter(fm) {
-//
-//        private var fragmentList = mutableListOf<Fragment>()
-//
-//        fun setAdapter(fragmentList: MutableList<Fragment>){
-//            this.fragmentList.clear()
-//            this.fragmentList .addAll(fragmentList)
-//            notifyDataSetChanged()
-//        }
-//
-//        override fun getItemCount(): Int {
-//            return fragmentList.size
-//        }
-//
-//        override fun createFragment(position: Int): Fragment {
-//            return fragmentList[position]
-//        }
-//    }
 
     class BannerFragmentStateAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
 

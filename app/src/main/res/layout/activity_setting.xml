@@ -24,6 +24,42 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/llShareApplication"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:text="分享应用"
+                    android:textColor="@color/black_55"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:gravity="center"
+                    android:textColor="@color/black_55"
+                    android:textSize="16sp"
+                     />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/llVersion"
+                android:background="@color/white_cc" />
+
+            <RelativeLayout
                 android:id="@+id/llVersion"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -55,12 +91,6 @@
 
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_below="@+id/llVersion"
-                android:background="@color/white_cc" />
-
 
             <RelativeLayout
                 android:id="@+id/llContract"
@@ -78,7 +108,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:gravity="center"
-                    android:text="隐私政策与用户说明"
+                    android:text="隐私政策与用户协议"
                     android:textColor="@color/black_55"
                     android:textSize="16sp" />
 
@@ -211,7 +241,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:gravity="center"
-            android:text="玩Android APP Copyright 冯永阁 @2020-2020\n\n仅供学习交流,禁止商业使用 "
+            android:text="玩Android APP Copyright fengyongge @2020\n\n仅供学习交流,禁止商业使用 "
             android:textColor="@color/white_ce"
             android:textSize="14sp" />
 

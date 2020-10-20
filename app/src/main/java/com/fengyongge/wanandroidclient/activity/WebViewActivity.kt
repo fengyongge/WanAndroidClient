@@ -2,19 +2,13 @@ package com.fengyongge.wanandroidclient.activity
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.util.Log
 import android.view.View
-import android.webkit.WebSettings
 import android.widget.ImageView
 import android.widget.TextView
 import com.fengyongge.baselib.BaseActivity
-import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
-import com.fengyongge.wanandroidclient.common.view.ProgressWebView
-import com.tencent.smtt.sdk.CookieSyncManager
-import com.tencent.smtt.sdk.WebView
 import kotlinx.android.synthetic.main.activity_article_detail.*
+import kotlinx.android.synthetic.main.common_title.*
 
 
 /**
@@ -56,6 +50,15 @@ class WebViewActivity : BaseActivity() {
         ivLeft.visibility = View.VISIBLE
         ivLeft.setBackgroundResource(R.drawable.ic_back)
         ivLeft.setOnClickListener { finish() }
+        if(tvTitle.text == "隐私政策与用户协议"){
+            ivRight.visibility = View.GONE
+        }else{
+            ivRight.visibility = View.VISIBLE
+            ivRight.setBackgroundResource(R.drawable.ic_share)
+            ivRight.setOnClickListener {
+                shareArticle(title+"\n"+link)
+            }
+        }
     }
 
     override fun initView() {
@@ -74,6 +77,21 @@ class WebViewActivity : BaseActivity() {
         }
     }
 
+    /**
+     * Android原生分享功能
+     * 默认选取手机所有可以分享的APP
+     */
+    fun shareArticle(shareContent: String) {
+        var share_intent = Intent()
+        share_intent.action = Intent.ACTION_SEND
+        share_intent.type = "text/plain"
+        share_intent.putExtra(Intent.EXTRA_SUBJECT, "share")
+        share_intent.putExtra(Intent.EXTRA_TEXT, shareContent)
+        share_intent = Intent.createChooser(share_intent, "分享文章")
+        startActivity(share_intent)
+    }
+
+
     override fun onResume() {
         super.onResume()
         articleWebView.onResume()
@@ -90,5 +108,7 @@ class WebViewActivity : BaseActivity() {
             articleWebView.destroy()
         }
     }
+
+
 
 }

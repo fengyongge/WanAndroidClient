@@ -191,8 +191,8 @@ interface WanandroidApi {
     /**
      * 获取我的分享列表
      */
-    @GET("lg/private_articles/{pageNum}/json")
-    fun getShareList(@Path("pageNum")pageNum: Int): Observable<BaseResponse<String>>
+    @GET("user/lg/private_articles/{pageNum}/json")
+    fun getShareList(@Path("pageNum")pageNum: Int): Observable<BaseResponse<MyShareBean>>
 
     /**
      * 删除我的分享

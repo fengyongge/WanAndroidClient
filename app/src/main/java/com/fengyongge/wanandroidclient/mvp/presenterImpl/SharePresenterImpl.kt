@@ -5,6 +5,7 @@ import com.fengyongge.baselib.mvp.IBaseView
 import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.baselib.net.exception.ResponseException
 import com.fengyongge.baselib.rx.observer.BaseObserver
+import com.fengyongge.wanandroidclient.bean.MyShareBean
 import com.fengyongge.wanandroidclient.mvp.contract.ShareContract
 import com.fengyongge.wanandroidclient.mvp.modelImpl.ShareModelImpl
 
@@ -31,8 +32,8 @@ class SharePresenterImpl : BasePresenter<ShareContract.View>(), ShareContract.Pr
     override fun getShareList(pageNum: Int) {
         mView?.let {
             shareModelImpl.getShareList(pageNum)
-                .subscribe(object : BaseObserver<BaseResponse<String>>() {
-                    override fun onSuccess(data: BaseResponse<String>) {
+                .subscribe(object : BaseObserver<BaseResponse<MyShareBean>>() {
+                    override fun onSuccess(data: BaseResponse<MyShareBean>) {
                         it.getShareListShow(data)
                     }
 

@@ -3,17 +3,17 @@ package com.fengyongge.wanandroidclient.common.dialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
-import android.text.Html
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.TextPaint
+import android.text.*
 import android.text.method.LinkMovementMethod
-import android.text.style.URLSpan
+import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import com.fengyongge.wanandroidclient.R
+import com.fengyongge.wanandroidclient.activity.WebViewActivity
+
 
 /**
  * describe
@@ -73,9 +73,8 @@ open class AgreementDialog : Dialog {
     }
 
     var tvHint: TextView? = null
-    var url: String? = null
+    var url: String = ""
     private fun init(view: View) {
-        url = ""
         tvHint = view.findViewById<View>(R.id.tvHint) as TextView
         val tvContent = view.findViewById<View>(R.id.tvContent) as TextView
         val tvCancle = view.findViewById<View>(R.id.tvCancle) as TextView
@@ -101,6 +100,16 @@ open class AgreementDialog : Dialog {
     }
 
     private fun customLink() {
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+//            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//            //记得修改com.xxx.fileprovider与androidmanifest相同
+//            uri = FileProvider.getUriForFile(mContext,"com.ice.AAAAA.fileprovider",apkFile);
+//            intent.setDataAndType(uri,"application/vnd.android.package-archive");
+//        }else{
+//            uri = Uri.parse("file://" + apkFile.toString());
+//        }
+//        "file:///android_asset/privacy_policy.html
+
         val content1 = "您可通过阅读完整的"
         val content2 = "《用户协议》"
         val content3 = "和"
@@ -113,22 +122,32 @@ open class AgreementDialog : Dialog {
         val secondEnd = secondStart + content4.length
         val spannableString1 = SpannableString(content)
         spannableString1.setSpan(
-            URLSpanNoUnderline(url),
+            URLSpanNoUnderline(),
             firsrStart, firsrEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         spannableString1.setSpan(
-            URLSpanNoUnderline(url),
+            URLSpanNoUnderline(),
             secondStart, secondEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
+
         tvHint!!.text = spannableString1
         tvHint!!.movementMethod = LinkMovementMethod.getInstance()
     }
 
-    inner class URLSpanNoUnderline(url: String?) : URLSpan(url) {
+    inner class URLSpanNoUnderline : ClickableSpan() {
+        override fun onClick(widget: View) {
+            var intent = Intent(mContext,WebViewActivity::class.java)
+            intent.putExtra("isPrivacy",true)
+            intent.putExtra("title","隐私政策与用户协议")
+            mContext.startActivity(intent)
+        }
+
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = false
             ds.color = mContext.resources.getColor(R.color.blue_theme)
         }
     }
+
+
 }

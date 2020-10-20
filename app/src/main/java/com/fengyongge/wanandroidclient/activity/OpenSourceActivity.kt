@@ -53,9 +53,10 @@ class OpenSourceActivity : BaseActivity() {
 
     private fun loadData(){
         list.clear()
-        list.add(OpenSourceBean("wanandroidApi","zhanghongyang","android学习开放网站","https://wanandroid.com/blog/show/2"))
+        list.add(OpenSourceBean("玩Android","fengyongge","玩Android客户端，有文章，有美图，有视频，玩中学Android","https://github.com/fengyongge/WanAndroidClient"))
+        list.add(OpenSourceBean("wanandroidApi","zhanghongyang","玩Android是一个每日推荐20~30篇Android优质文章的站点,提供Android常用工具和常用网站,并以知识体系的形式展现所有的文章分类。","https://wanandroid.com/blog/show/2"))
         list.add(OpenSourceBean("openeyeApi","kaiyanapp","每日精选视频推介,让你大开眼界","https://www.kaiyanapp.com/"))
-        list.add(OpenSourceBean("meiziApi","daimajia","干货集中营","https://gank.io/api"))
+        list.add(OpenSourceBean("meiziApi","daimajia","干货集中营,每天提供一张精选的妹纸图片,一个精选的休息视频,若干精选的Android,ios,web等相关的技术干货","https://gank.io/api"))
         list.add(OpenSourceBean("Jetpack","google","Jetpack 是一个由多个库组成的套件，可帮助开发者遵循最佳做法，减少样板代码并编写可在各种 Android 版本和设备中一致运行的代码，让开发者精力集中编写重要的代码","https://developer.android.google.cn/jetpack"))
         list.add(OpenSourceBean("gson","google","A Java serialization/deserialization library to convert Java Objects into JSON and back","https://github.com/google/gson"))
         list.add(OpenSourceBean("retrofit2","square","A type-safe HTTP client for Android and the JVM","https://github.com/square/retrofit"))
@@ -63,7 +64,7 @@ class OpenSourceActivity : BaseActivity() {
         list.add(OpenSourceBean("glide","bumptech","An image loading and caching library for Android focused on smooth scrolling","https://github.com/bumptech/glide"))
         list.add(OpenSourceBean("glide-transformations","wasabeef","An Android transformation library providing a variety of image transformations for Glide.","https://github.com/wasabeef/glide-transformations"))
         list.add(OpenSourceBean("leakcanary","square","A memory leak detection library for Android.","https://github.com/square/leakcanary"))
-        list.add(OpenSourceBean("imagepicker","fengyongge","","imagepicker是一款用于在Android设备上获取照片（拍照或从相册、文件中选择）、压缩图片的开源工具库"))
+        list.add(OpenSourceBean("imagepicker","fengyongge","imagepicker是一款用于在Android设备上获取照片（拍照或从相册、文件中选择）、压缩图片的开源工具库。","imagepicker是一款用于在Android设备上获取照片（拍照或从相册、文件中选择）、压缩图片的开源工具库"))
         list.add(OpenSourceBean("BaseRecyclerViewAdapterHelper","CymChad","BRVAH:Powerful and flexible RecyclerAdapter","https://github.com/CymChad/BaseRecyclerViewAdapterHelper"))
         list.add(OpenSourceBean("material-dialogs","afollestad","material-dialogs","https://github.com/afollestad/material-dialogs"))
         list.add(OpenSourceBean("LabelsView","donkingliang","Android的标签列表控件。可以设置标签的选中效果。 可以设置标签的选中类型：不可选中、单选、限数量多选和不限数量多选等， 并支持设置必选项、单行显示、最大显示行数等功能","https://github.com/donkingliang/LabelsView"))
@@ -71,6 +72,7 @@ class OpenSourceActivity : BaseActivity() {
         list.add(OpenSourceBean("umeng","umeng","友盟数据统计","https://www.umeng.com/"))
         list.add(OpenSourceBean("tbssdk","tencent","腾讯浏览器服务","https://x5.tencent.com/"))
         list.add(OpenSourceBean("bugly","tencent","应用更新,异常上报和运营统计","https://bugly.qq.com/v2/"))
+        list.add(OpenSourceBean("iconfont","alibaba","confont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。","https://www.iconfont.cn/"))
         myAdapter.setNewInstance(list)
     }
 

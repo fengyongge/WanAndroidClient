@@ -2,6 +2,7 @@ package com.fengyongge.wanandroidclient.mvp.modelImpl
 
 import com.fengyongge.baselib.net.BaseResponse
 import com.fengyongge.wanandroidclient.api.WanAndroidRetrofit
+import com.fengyongge.wanandroidclient.bean.MyShareBean
 import com.fengyongge.wanandroidclient.mvp.contract.ShareContract
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,7 +15,7 @@ class ShareModelImpl : ShareContract.Model{
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())    }
 
-    override fun getShareList(pageNum: Int): Observable<BaseResponse<String>> {
+    override fun getShareList(pageNum: Int): Observable<BaseResponse<MyShareBean>> {
         return WanAndroidRetrofit.service
             .getShareList(pageNum)
             .subscribeOn(Schedulers.io())

@@ -16,7 +16,9 @@ import com.fengyongge.wanandroidclient.R
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse
 import com.tencent.smtt.sdk.*
+import java.io.ByteArrayInputStream
 import java.util.*
+
 
 class MyX5WebView : WebView {
     var progressBar: ProgressBar? = null
@@ -75,15 +77,17 @@ class MyX5WebView : WebView {
             domStorageEnabled = true
             allowFileAccess = true
             layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
-            setSupportZoom(true)
+            setSupportZoom(false)
             useWideViewPort = true
             setSupportMultipleWindows(true)
             setAppCacheEnabled(true)
             setGeolocationEnabled(true)
             setAppCacheMaxSize(Long.MAX_VALUE)
-            pluginState = WebSettings.PluginState.ON_DEMAND
             setRenderPriority(WebSettings.RenderPriority.HIGH)
-            setSupportMultipleWindows(false) 
+            setSupportMultipleWindows(false)
+            //适配手机
+            layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN;
+            loadWithOverviewMode = true;
         }
     }
 
@@ -144,7 +148,7 @@ class MyX5WebView : WebView {
                 url: String
             ): Boolean {
 
-                return if (url.startsWith("http") || url.startsWith("https") || url.startsWith("ftp")) {
+                return if (url.startsWith("http") || url.startsWith("https") || url.startsWith("ftp") ) {
                     false
                 } else {
                     try {
@@ -165,6 +169,7 @@ class MyX5WebView : WebView {
             ): WebResourceResponse {
                 return super.shouldInterceptRequest(view, request)
             }
+
 
             override fun onLoadResource(
                 webView: WebView,

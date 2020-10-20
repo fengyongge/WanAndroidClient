@@ -46,7 +46,12 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             tools:text="标题"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:maxEms="8"
             android:textColor="@color/black_28"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:textSize="17sp" />
 
         <Button

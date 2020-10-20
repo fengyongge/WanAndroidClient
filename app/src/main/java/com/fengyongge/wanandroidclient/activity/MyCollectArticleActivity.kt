@@ -1,5 +1,7 @@
 package com.fengyongge.wanandroidclient.activity
 
+import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -95,8 +97,10 @@ class MyCollectArticleActivity : BaseMvpActivity<MyCollectPresenterImpl>(),
 
     private fun loadMore(isRefresh: Boolean, pageNum: Int) {
         this.isRefresh = isRefresh
+        if(isRefresh){
+            DialogUtils.showProgress(MyShareActivity@this,getString(R.string.load_hint1))
+        }
         mPresenter?.getCollectList(pageNum)
-
     }
 
     override fun initData() {
@@ -123,16 +127,16 @@ class MyCollectArticleActivity : BaseMvpActivity<MyCollectPresenterImpl>(),
                 if(pageNum==0){
                     showNotEmpty()
                 }
-
             }
-
+            DialogUtils.dismissProgressMD()
         } else {
+            DialogUtils.dismissProgressMD()
             ToastUtils.showToast(this, data.errorMsg)
         }
     }
 
     private fun showNotEmpty(){
-
+        myAdapter.setEmptyView(LayoutInflater.from(this).inflate(R.layout.activity_common_empty,null))
     }
 
     override fun postCancleCollectShow(data: BaseResponse<String>) {
@@ -158,10 +162,19 @@ class MyCollectArticleActivity : BaseMvpActivity<MyCollectPresenterImpl>(),
         LoadMoreModule {
         override fun convert(holder: BaseViewHolder, item: CollectDataItem) {
             var ivMyCollect = holder.getView<ImageView>(R.id.ivMyCollect)
-            var tvMyCollectContent = holder.getView<TextView>(R.id.tvMyCollectContent)
-            var tvMyCollectTime = holder.getView<TextView>(R.id.tvMyCollectTime)
-            tvMyCollectContent.text = item.title
-            tvMyCollectTime.text = item.niceDate
+            var tvCollectType = holder.getView<TextView>(R.id.tvCollectType)
+            var tvCollectContent = holder.getView<TextView>(R.id.tvCollectContent)
+            var tvCollectAuthor = holder.getView<TextView>(R.id.tvCollectAuthor)
+            var tvCollectTime = holder.getView<TextView>(R.id.tvCollectTime)
+            tvCollectContent.text = item.title
+            tvCollectTime.text = item.niceDate
+            if(TextUtils.isEmpty(item.author)){
+                tvCollectAuthor.visibility = View.GONE
+            }else{
+                tvCollectAuthor.visibility = View.VISIBLE
+                tvCollectAuthor.text = item.author
+            }
+            tvCollectType.text = item.chapterName
             ivMyCollect.setImageResource(R.drawable.ic_collect_fill)
         }
 

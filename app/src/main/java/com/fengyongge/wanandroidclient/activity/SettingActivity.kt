@@ -41,6 +41,7 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
         llVersion.setOnClickListener(this)
         rlAbout.setOnClickListener(this)
         rlOpenSource.setOnClickListener(this)
+        llShareApplication.setOnClickListener(this)
         initTitle()
     }
 
@@ -115,7 +116,7 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
             R.id.llContract ->{
                 var intent = Intent(SettingActivity@this,WebViewActivity::class.java)
                 intent.putExtra("isPrivacy",true)
-                intent.putExtra("title","隐私政策与用户说明")
+                intent.putExtra("title","隐私政策与用户协议")
                 startActivity(intent)
             }
             R.id.rlOpenSource ->{
@@ -127,10 +128,27 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
             R.id.rlAbout ->{
                 startActivity(Intent(SettingActivity@this, AboutActivity::class.java))
             }
+            R.id.llShareApplication ->{
+                share()
+            }
             else ->{
 
             }
         }
+    }
+
+
+    /**
+     * Android原生分享功能
+     */
+    private fun share() {
+        var share_intent = Intent()
+        share_intent.action = Intent.ACTION_SEND
+        share_intent.type = "text/plain"
+        share_intent.putExtra(Intent.EXTRA_SUBJECT, "分享")
+        share_intent.putExtra(Intent.EXTRA_TEXT, "推荐您使用一款Android学习相关的一款应用:玩Android\n开源地址:https://github.com/fengyongge/WanAndroidClient")
+        share_intent = Intent.createChooser(share_intent, "分享")
+        startActivity(share_intent)
     }
 
     private fun loadUpgradeInfo(context: Context) {

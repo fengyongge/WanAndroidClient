@@ -8,31 +8,16 @@
     android:orientation="vertical"
     tools:context="com.fengyongge.wanandroidclient.activity.OpenEyeDetailActivity">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayoutOpenEyeDetail"
+
+    <cn.jzvd.JZVideoPlayerStandard
+        android:id="@+id/videoplayer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:layout_height="200dp" />
 
-            <cn.jzvd.JZVideoPlayerStandard
-                android:id="@+id/videoplayer"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvRelatedRideo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="10dp"
-                />
-
-        </LinearLayout>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRelatedRideo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp" />
 
 </LinearLayout>
