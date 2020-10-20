@@ -59,21 +59,45 @@
 # 应用框架
 
 开发语言使用[kotlin](https://kotlinlang.org/)
+
 项目整体框架[MVP](https://github.com/android/architecture-samples/tree/todo-mvp)
+
 应用组件使用[Jetpack](https://developer.android.google.cn/jetpack)
+
 由于gank和openeye模块内容不是太多，主要以wanandroid文章为主，所以没有必要组件话这两块内容
 相关优化([leakcanary](https://github.com/square/leakcanary))
 
 # 开源库说明
 
 [app开源库相关引用](https://github.com/fengyongge/WanAndroidClient/blob/master/app/build.gradle)
+
 [base开源库相关引用](https://github.com/fengyongge/WanAndroidClient/blob/master/baselib/build.gradle)
 
 # 感谢
 [张鸿洋](https://github.com/hongyangAndroid)
+
 [开眼](https://www.kaiyanapp.com/)
+
 [代码家](https://github.com/daimajia)
+
 [冯永阁(笔者)](https://github.com/fengyongge)
 
 ## 如果感觉有一点价值，可以star或者fork，提issues,完善它，谢谢！
+
+## License
+```
+Copyright 2016 fengyongge
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
 
