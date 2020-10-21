@@ -28,7 +28,8 @@
 ### 「广场」 
 - wanandroid码友实时分享的文章
 - 分享自己的文章或者项目
-「开眼」 
+
+### 「开眼」
 - 开眼每日精选视频
 
 ### 「我的」 
@@ -51,10 +52,7 @@
 
 # 更新日志
 
-## 1.0.0(20200908)
-- 【新增】基础库搭建
-- 【新增】主应用新增首页、公众号、广场、开眼、我的
-- 【新增】项目、体系、问答、面试、妹子
+[更新日志](https://github.com/fengyongge/WanAndroidClient/blob/master/doc/updateLog.md)
 
 # 应用框架
 
@@ -64,7 +62,7 @@
 
 应用组件使用[Jetpack](https://developer.android.google.cn/jetpack)
 
-由于gank和openeye模块内容不是太多，主要以wanandroid文章为主，所以没有必要组件话这两块内容
+由于gank和openeye模块内容不是太多，主要以wanandroid文章为主，所以暂不考虑组件化
 相关优化([leakcanary](https://github.com/square/leakcanary))
 
 # 开源库说明
