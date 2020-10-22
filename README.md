@@ -56,14 +56,7 @@
 
 # 应用框架
 
-开发语言使用[kotlin](https://kotlinlang.org/)
-
-项目整体框架[MVP](https://github.com/android/architecture-samples/tree/todo-mvp)
-
-应用组件使用[Jetpack](https://developer.android.google.cn/jetpack)
-
-由于gank和openeye模块内容不是太多，主要以wanandroid文章为主，所以暂不考虑组件化
-相关优化([leakcanary](https://github.com/square/leakcanary))
+[更新日志](https://github.com/fengyongge/WanAndroidClient/blob/master/doc/architecture.md)
 
 # 开源库说明
 
