@@ -1,7 +1,9 @@
 # 玩Android客户端架构更新日志
 ## 玩Android客户端简介
 玩Android客户端，有文章，有美图，有视频，玩中学Android，Android开发不错的选择！
+
 [开源地址](https://github.com/fengyongge/WanAndroidClient)
+
 [下载地址](https://www.pgyer.com/lZUG)
 
 
@@ -14,7 +16,7 @@
 
 ### 应用组件使用[Jetpack](https://developer.android.google.cn/jetpack)
 
-####【Foundation】
+#### 【Foundation】
 
 - AppCompat
 
@@ -22,17 +24,17 @@
 
 - multidex
 
-####【Architecture】
+#### 【Architecture】
 
 - Room
 
-####【Behavior】
+#### 【Behavior】
 
 - Preferences
 
 - ViewPager2
 
-####【UI】
+#### 【UI】
 
 
 
