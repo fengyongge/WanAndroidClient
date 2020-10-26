@@ -60,7 +60,7 @@
 
 # 开源库说明
 
-[app开源库相关引用](https://github.com/fengyongge/WanAndroidClient/blob/master/app/build.gradle)
+[app开源库相关引用](https://github.com/fengyongge/WanAndroidClient/blob/master/version.gradle)
 
 # 感谢
 [张鸿洋](https://github.com/hongyangAndroid)
