@@ -3,9 +3,9 @@ package com.fengyongge.wanandroidclient.mvp.presenterImpl
 
 import com.fengyongge.baselib.mvp.BasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.rx.observer.BaseObserver
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.core.BaseObserver
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.ProjectBean
 import com.fengyongge.wanandroidclient.bean.ProjectTypeBeanItem
 import com.fengyongge.wanandroidclient.mvp.contract.ProjectContract
@@ -79,7 +79,7 @@ class ProjectPresenterImpl : BasePresenter<ProjectContract.View>(), ProjectContr
                     }
 
                     override fun onError(e: ResponseException) {
-                        mView?.onError(e)
+                        mView?.getProjectByTypeFail(e)
                     }
 
                 })

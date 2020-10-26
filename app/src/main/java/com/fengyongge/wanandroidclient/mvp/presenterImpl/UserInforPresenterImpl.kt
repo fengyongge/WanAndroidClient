@@ -2,9 +2,9 @@ package com.fengyongge.wanandroidclient.mvp.presenterImpl
 
 import com.fengyongge.baselib.mvp.BasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.rx.observer.BaseObserver
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.core.BaseObserver
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.UserInforBean
 import com.fengyongge.wanandroidclient.mvp.contract.UserInforContact
 import com.fengyongge.wanandroidclient.mvp.modelImpl.UserInforModelImpl
@@ -29,20 +29,7 @@ class UserInforPresenterImpl : BasePresenter<UserInforContact.View>(), UserInfor
 
     }
 
-    override fun getLogout() {
-        mView?.getCurrentView().let {
-            model.getLogout().subscribe(object :
-                BaseObserver<BaseResponse<String>>() {
-                override fun onSuccess(data: BaseResponse<String>) {
-                    mView?.getLogoutShow(data)
-                }
 
-                override fun onError(e: ResponseException) {
-                    mView?.onError(e)
-                }
-            })
-        }
-    }
 
     override fun attach(view: IBaseView) {
         super.attach(view)

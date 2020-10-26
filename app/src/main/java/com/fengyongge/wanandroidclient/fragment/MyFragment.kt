@@ -5,13 +5,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpFragment
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.RxNotify
-import com.fengyongge.baselib.utils.SharedPreferencesUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.wanandroidclient.common.RxNotify
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.*
@@ -71,17 +71,23 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
         if (isLogin()) {
             tvHint.visibility = View.GONE
             llUserInfor.visibility = View.VISIBLE
-            tvUserName.text = SharedPreferencesUtils(App.getContext()).get(Const.NICKNAME, hintContent)
+            tvUserName.text = SharedPreferencesUtils(
+                App.getContext()
+            ).get(Const.NICKNAME, hintContent)
             activity?.let {
                 Glide.with(it).load(R.drawable.ic_default_user_blue)
                     .into(ivAvatar)
             }
-            tvUserName.text = SharedPreferencesUtils(App.getContext()).get(Const.NICKNAME, hintContent)
+            tvUserName.text = SharedPreferencesUtils(
+                App.getContext()
+            ).get(Const.NICKNAME, hintContent)
             mPresenter?.getAccount()
         } else {
             tvHint.visibility = View.VISIBLE
             llUserInfor.visibility = View.GONE
-            tvUserName.text = SharedPreferencesUtils(App.getContext()).get(Const.NICKNAME, hintContent)
+            tvUserName.text = SharedPreferencesUtils(
+                App.getContext()
+            ).get(Const.NICKNAME, hintContent)
             activity?.let {
                 Glide.with(it).load(R.drawable.ic_default_user_gray)
                     .into(ivAvatar)
@@ -92,11 +98,6 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
     override fun initPresenter(): UserInforPresenterImpl {
         return UserInforPresenterImpl()
     }
-
-    override fun getLogoutShow(data: BaseResponse<String>) {
-
-    }
-
 
     override fun getAccountShow(data: BaseResponse<UserInforBean>) {
         if (data.errorCode == "0") {
@@ -144,7 +145,8 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
     }
 
     private fun isLogin(): Boolean{
-        if(SharedPreferencesUtils(App.getContext()).get(Const.IS_LOGIN,false)){
+        if(SharedPreferencesUtils(App.getContext())
+                .get(Const.IS_LOGIN,false)){
             return true
         }
         return false

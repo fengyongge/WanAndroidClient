@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.donkingliang.labels.LabelsView
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpFragment
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.channel.SystemArticleActivity
 import com.fengyongge.wanandroidclient.bean.Children
@@ -78,6 +78,12 @@ class SystemFragment: BaseMvpFragment<SystemPresenterImpl>(),SystemContact.View 
 
     override fun getSystemArticleShow(data: BaseResponse<SystemArticleBean>) {
 
+    }
+
+    override fun getSystemArticleFail(data: ResponseException) {
+        DialogUtils.dismissProgressMD()
+        ToastUtils.showToast(activity,data.getErrorMessage())
+        systemAdapter.loadMoreModule.loadMoreFail()
     }
 
     override fun onError(data: ResponseException) {

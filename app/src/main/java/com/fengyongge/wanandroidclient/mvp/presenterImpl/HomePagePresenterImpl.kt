@@ -2,9 +2,9 @@ package com.fengyongge.wanandroidclient.mvp.presenterImpl
 
 import com.fengyongge.baselib.mvp.BasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.rx.observer.BaseObserver
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.core.BaseObserver
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.ArticleBean
 import com.fengyongge.wanandroidclient.bean.BannerBean
 import com.fengyongge.wanandroidclient.bean.DataX
@@ -13,16 +13,21 @@ import com.fengyongge.wanandroidclient.mvp.modelImpl.HomePageModelImpl
 
 class HomePagePresenterImpl : BasePresenter<HomePageContract.View>(), HomePageContract.Presenter {
 
+    var isGetBannerSuccess = false
+    var isGetArticleSuccess = false
+    var isGetProjectSuccess = false
+
     lateinit var mModel: HomePageModelImpl
     override fun bannerList() {
         mView?.getCurrentView().let {
             mModel.bannerList().subscribe(object : BaseObserver<BaseResponse<List<BannerBean>>>() {
                 override fun onSuccess(data: BaseResponse<List<BannerBean>>) {
+                    isGetBannerSuccess = true
                     mView?.bannerListShow(data)
                 }
 
                 override fun onError(e: ResponseException) {
-                    mView?.onError(e)
+                    mView?.bannerListFail(e)
                 }
             })
         }
@@ -45,11 +50,12 @@ class HomePagePresenterImpl : BasePresenter<HomePageContract.View>(), HomePageCo
         mView?.getCurrentView().let {
             mModel.articleList(pageNum).subscribe(object : BaseObserver<BaseResponse<ArticleBean>>() {
                     override fun onSuccess(data: BaseResponse<ArticleBean>) {
+                        isGetArticleSuccess = true
                         mView?.articleListShow(data)
                     }
 
                     override fun onError(e: ResponseException) {
-                        mView?.onError(e)
+                        mView?.articleListFail(e)
                     }
                 })
         }
@@ -60,11 +66,12 @@ class HomePagePresenterImpl : BasePresenter<HomePageContract.View>(), HomePageCo
             mModel.projectList(pageNum).subscribe(object :
                 BaseObserver<BaseResponse<ArticleBean>>() {
                 override fun onSuccess(data: BaseResponse<ArticleBean>) {
+                    isGetProjectSuccess = true
                     mView?.projectListShow(data)
                 }
 
                 override fun onError(e: ResponseException) {
-                    mView?.onError(e)
+                    mView?.projectListFail(e)
                 }
             })
         }
@@ -99,6 +106,14 @@ class HomePagePresenterImpl : BasePresenter<HomePageContract.View>(), HomePageCo
                     }
 
                 })
+        }
+    }
+
+    override fun onAllFail() {
+        if(!isGetBannerSuccess && !isGetArticleSuccess && !isGetProjectSuccess) {
+            mView?.let {
+                it.onAllFail()
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 package com.fengyongge.wanandroidclient.fragment
 
 import android.content.Intent
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -13,10 +14,10 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.baselib.mvp.BaseMvpFragment
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.activity.WxAccountSearchActivity
@@ -214,6 +215,12 @@ class WxAccountFragment : BaseMvpFragment<WxAccountPresenterImpl>(), WxAccountCo
         }
     }
 
+    override fun getWxHistoryListFail(e: ResponseException) {
+        DialogUtils.dismissProgressMD()
+        ToastUtils.showToast(activity, e.getErrorMessage())
+        contentAdapter.loadMoreModule.loadMoreFail()
+    }
+
     private fun showEmpty() {
         contentAdapter.setEmptyView(LayoutInflater.from(activity).inflate(R.layout.activity_common_empty,null))
     }
@@ -250,7 +257,12 @@ class WxAccountFragment : BaseMvpFragment<WxAccountPresenterImpl>(), WxAccountCo
             var ivWxAccountCollect = holder.getView<ImageView>(R.id.ivWxAccountCollect)
             var tvWxAccountTitle = holder.getView<TextView>(R.id.tvWxAccountTitle)
             var tvWxAccountTime = holder.getView<TextView>(R.id.tvWxAccountTime)
-            tvWxAccountTitle.text = item.title
+            var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                Html.fromHtml(item.title, Html.FROM_HTML_MODE_LEGACY).toString()
+            } else {
+                Html.fromHtml(item.title).toString()
+            }
+            tvWxAccountTitle.text = filtTitle
             tvWxAccountTime.text = item.niceDate
             if (item.collect) {
                 ivWxAccountCollect.setImageResource(R.drawable.ic_collect_fill)

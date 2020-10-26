@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.ScreenUtls
+import com.fengyongge.androidcommonutils.ktutils.SizeUtils
 import com.fengyongge.baselib.BaseFragment
-import com.fengyongge.baselib.utils.ScreenUtls
-import com.fengyongge.baselib.utils.SizeUtils
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.channel.*
@@ -81,7 +81,7 @@ class HomePageChannelFragment : BaseFragment() {
             val tvBanner = holder.getView<TextView>(R.id.tvBanner)
             val ivBanner = holder.getView<ImageView>(R.id.ivBanner)
             var layoutParams = llItem.layoutParams
-            layoutParams.width = (ScreenUtls.getScreenWidth(App.getContext())-4*SizeUtils.dp2px(5))/5
+            layoutParams.width = (ScreenUtls.getScreenWidth(App.getContext())-4* SizeUtils.dp2px(5))/5
             layoutParams.height = layoutParams.width
 
             item?.let {

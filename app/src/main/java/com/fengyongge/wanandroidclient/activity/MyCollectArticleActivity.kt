@@ -1,5 +1,6 @@
 package com.fengyongge.wanandroidclient.activity
 
+import android.text.Html
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.CollectDataItem
 import com.fengyongge.wanandroidclient.bean.MyCollectBean
@@ -125,7 +126,7 @@ class MyCollectArticleActivity : BaseMvpActivity<MyCollectPresenterImpl>(),
             } else {
                 myAdapter.loadMoreModule.loadMoreEnd()
                 if(pageNum==0){
-                    showNotEmpty()
+                    showEmpty()
                 }
             }
             DialogUtils.dismissProgressMD()
@@ -135,7 +136,13 @@ class MyCollectArticleActivity : BaseMvpActivity<MyCollectPresenterImpl>(),
         }
     }
 
-    private fun showNotEmpty(){
+    override fun getCollectListFail(data: ResponseException) {
+        myAdapter.loadMoreModule.loadMoreFail()
+        ToastUtils.showToast(this, data.getErrorMessage())
+        DialogUtils.dismissProgressMD()
+    }
+
+    private fun showEmpty(){
         myAdapter.setEmptyView(LayoutInflater.from(this).inflate(R.layout.activity_common_empty,null))
     }
 
@@ -143,13 +150,12 @@ class MyCollectArticleActivity : BaseMvpActivity<MyCollectPresenterImpl>(),
         if(data.errorCode == "0"){
             myAdapter.removeAt(collectPosition)
             ToastUtils.showToast(this, getString(R.string.collect_cancle))
-
         }else{
             ToastUtils.showToast(this, data.errorMsg)
         }
     }
 
-    override fun onError(data: ResponseException) {
+    override fun postCancleCollectFail(data: ResponseException) {
         ToastUtils.showToast(this, data.getErrorMessage())
         DialogUtils.dismissProgressMD()
     }
@@ -166,7 +172,12 @@ class MyCollectArticleActivity : BaseMvpActivity<MyCollectPresenterImpl>(),
             var tvCollectContent = holder.getView<TextView>(R.id.tvCollectContent)
             var tvCollectAuthor = holder.getView<TextView>(R.id.tvCollectAuthor)
             var tvCollectTime = holder.getView<TextView>(R.id.tvCollectTime)
-            tvCollectContent.text = item.title
+            var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                Html.fromHtml(item.title, Html.FROM_HTML_MODE_LEGACY).toString()
+            } else {
+                Html.fromHtml(item.title).toString()
+            }
+            tvCollectContent.text = filtTitle
             tvCollectTime.text = item.niceDate
             if(TextUtils.isEmpty(item.author)){
                 tvCollectAuthor.visibility = View.GONE

@@ -3,6 +3,7 @@ package com.fengyongge.wanandroidclient.activity
 import android.app.Activity
 import android.content.Context
 import android.text.Editable
+import android.text.Html
 import android.text.TextUtils
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -14,11 +15,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.WxAccountBeanItem
 import com.fengyongge.wanandroidclient.bean.WxAccountSearchBean
@@ -209,6 +210,10 @@ class WxAccountSearchActivity : BaseMvpActivity<WxAccountPresenterImpl>(), WxAcc
 
     }
 
+    override fun getWxHistoryListFail(e: ResponseException) {
+        TODO("Not yet implemented")
+    }
+
     override fun onError(e: ResponseException) {
         DialogUtils.dismissProgressMD()
         ToastUtils.showToast(WxAccountSearchActivity@this,e.getErrorMessage())
@@ -221,7 +226,12 @@ class WxAccountSearchActivity : BaseMvpActivity<WxAccountPresenterImpl>(), WxAcc
             var ivWxAccountCollect = holder.getView<ImageView>(R.id.ivWxAccountCollect)
             var tvWxAccountTitle = holder.getView<TextView>(R.id.tvWxAccountTitle)
             var tvWxAccountTime = holder.getView<TextView>(R.id.tvWxAccountTime)
-            tvWxAccountTitle.text = item.title
+            var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                Html.fromHtml(item.title, Html.FROM_HTML_MODE_LEGACY).toString()
+            } else {
+                Html.fromHtml(item.title).toString()
+            }
+            tvWxAccountTitle.text = filtTitle
             tvWxAccountTime.text = item.niceDate
             if (item.collect) {
                 ivWxAccountCollect.setImageResource(R.drawable.ic_collect_fill)

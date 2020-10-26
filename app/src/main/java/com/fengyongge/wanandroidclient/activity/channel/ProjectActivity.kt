@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.ProjectBean
 import com.fengyongge.wanandroidclient.bean.ProjectTypeBeanItem
@@ -131,6 +131,10 @@ class ProjectActivity : BaseMvpActivity<ProjectPresenterImpl>(),ProjectContract.
     }
 
     override fun getProjectByType(data: BaseResponse<ProjectBean>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getProjectByTypeFail(data: ResponseException) {
         TODO("Not yet implemented")
     }
 

@@ -1,5 +1,6 @@
 package com.fengyongge.wanandroidclient.activity.channel
 
+import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,11 +10,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.bean.SystemArticleBean
@@ -181,6 +182,12 @@ class SystemArticleActivity : BaseMvpActivity<SystemPresenterImpl>(), SystemCont
         }
     }
 
+    override fun getSystemArticleFail(data: ResponseException) {
+        DialogUtils.dismissProgressMD()
+        ToastUtils.showToast(SystemArticleActivity@this,data.getErrorMessage())
+        systemArticleAdapter.loadMoreModule.loadMoreFail()
+    }
+
     override fun onError(data: ResponseException) {
         ToastUtils.showToast(SystemArticleActivity@this,data.getErrorMessage())
         DialogUtils.dismissProgressMD()
@@ -193,7 +200,12 @@ class SystemArticleActivity : BaseMvpActivity<SystemPresenterImpl>(), SystemCont
             var ivSystemArticleCollect = holder.getView<ImageView>(R.id.ivSystemArticleCollect)
             var tvSystemArticleContent = holder.getView<TextView>(R.id.tvSystemArticleContent)
             var tvSystemArticleTime = holder.getView<TextView>(R.id.tvSystemArticleTime)
-            tvSystemArticleContent.text = item.title
+            var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                Html.fromHtml(item.title, Html.FROM_HTML_MODE_LEGACY).toString()
+            } else {
+                Html.fromHtml(item.title).toString()
+            }
+            tvSystemArticleContent.text = filtTitle
             tvSystemArticleTime.text =item.niceDate
             if (item.collect) {
                 ivSystemArticleCollect.setImageResource(R.drawable.ic_collect_fill)

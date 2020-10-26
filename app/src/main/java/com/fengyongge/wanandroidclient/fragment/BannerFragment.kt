@@ -1,11 +1,9 @@
 package com.fengyongge.wanandroidclient.fragment
 
 
-import android.content.Intent
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.fengyongge.baselib.BaseFragment
-import com.fengyongge.baselib.utils.ToastUtils
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.bean.BannerBean

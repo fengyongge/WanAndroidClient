@@ -2,7 +2,7 @@ package com.fengyongge.wanandroidclient.mvp.contract
 
 import com.fengyongge.baselib.mvp.IBasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.exception.ResponseException
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.GankGirlBean
 import io.reactivex.Observable
 
@@ -20,8 +20,8 @@ class GirlContract {
     }
 
     interface view : IBaseView{
-
         fun getGankGirlShow(data: GankGirlBean)
+        fun getGankGirlFail(data: ResponseException)
         fun onError(data: ResponseException)
 
     }

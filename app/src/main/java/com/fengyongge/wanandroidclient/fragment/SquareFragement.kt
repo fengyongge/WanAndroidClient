@@ -1,6 +1,7 @@
 package com.fengyongge.wanandroidclient.fragment
 
 import android.content.Intent
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -11,12 +12,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpFragment
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.SharedPreferencesUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.ArticleSearchActivity
@@ -105,7 +106,8 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
         }
 
         fabShare.setOnClickListener {
-            if (SharedPreferencesUtils(App.getContext()).get(Const.IS_LOGIN, false)) {
+            if (SharedPreferencesUtils(App.getContext())
+                    .get(Const.IS_LOGIN, false)) {
                 startActivity(Intent(activity, ShareProjectActivity::class.java))
             } else {
                 startActivity(Intent(activity, LoginActivity::class.java))
@@ -148,7 +150,12 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
             var tvSquareNew = holder.getView<TextView>(R.id.tvSquareNew)
 
             with(item){
-                tvSquareArticleContent.text = title
+                var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    Html.fromHtml(item.title, Html.FROM_HTML_MODE_LEGACY).toString()
+                } else {
+                    Html.fromHtml(item.title).toString()
+                }
+                tvSquareArticleContent.text = filtTitle
                 tvSquareArticleTime.text = niceDate
                 tvSquareArticleAuthor.text = "分享人:"+shareUser
                 if (collect) {
@@ -207,6 +214,12 @@ class SquareFragement : BaseMvpFragment<SquarePresenterImpl>(), SquareContract.V
             DialogUtils.dismissProgressMD()
             activity?.let { ToastUtils.showToast(it, data.errorMsg) }
         }
+    }
+
+    override fun getSquareProjectFail(data: ResponseException) {
+        DialogUtils.dismissProgressMD()
+        myAdapter.loadMoreModule.loadMoreFail()
+        activity?.let { ToastUtils.showToast(it, data.getErrorMessage()) }
     }
 
     private fun showEmptyView() {

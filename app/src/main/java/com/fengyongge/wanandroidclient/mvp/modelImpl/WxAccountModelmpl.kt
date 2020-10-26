@@ -1,6 +1,6 @@
 package com.fengyongge.wanandroidclient.mvp.modelImpl
 
-import com.fengyongge.baselib.net.BaseResponse
+import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.wanandroidclient.api.WanAndroidRetrofit
 import com.fengyongge.wanandroidclient.bean.WxAccountBeanItem
 import com.fengyongge.wanandroidclient.bean.WxAccountSearchBean

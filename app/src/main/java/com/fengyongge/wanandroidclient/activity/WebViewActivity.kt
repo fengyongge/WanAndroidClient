@@ -2,6 +2,8 @@ package com.fengyongge.wanandroidclient.activity
 
 import android.content.Context
 import android.content.Intent
+import android.text.Html
+import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -45,11 +47,23 @@ class WebViewActivity : BaseActivity() {
 
     private fun initTitle() {
         var tvTitle = findViewById<TextView>(R.id.tvTitle)
-        tvTitle?.text = title
+        var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString()
+        } else {
+            Html.fromHtml(title).toString()
+        }
+        tvTitle?.text = filtTitle
         var ivLeft = findViewById<ImageView>(R.id.ivLeft)
         ivLeft.visibility = View.VISIBLE
+        ivSecondLeft.visibility = View.VISIBLE
+        ivSecondLeft.setBackgroundResource(R.drawable.ic_close)
         ivLeft.setBackgroundResource(R.drawable.ic_back)
-        ivLeft.setOnClickListener { finish() }
+        ivLeft.setOnClickListener {
+            articleWebView.handleKeyEvent(KeyEvent.KEYCODE_BACK)
+        }
+        ivSecondLeft.setOnClickListener {
+            finish()
+        }
         if(tvTitle.text == "隐私政策与用户协议"){
             ivRight.visibility = View.GONE
         }else{
@@ -81,7 +95,7 @@ class WebViewActivity : BaseActivity() {
      * Android原生分享功能
      * 默认选取手机所有可以分享的APP
      */
-    fun shareArticle(shareContent: String) {
+    private fun shareArticle(shareContent: String) {
         var share_intent = Intent()
         share_intent.action = Intent.ACTION_SEND
         share_intent.type = "text/plain"
@@ -109,6 +123,11 @@ class WebViewActivity : BaseActivity() {
         }
     }
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return if (articleWebView.handleKeyEvent(keyCode)) {
+            true
+        } else super.onKeyDown(keyCode, event)
+    }
 
 
 }

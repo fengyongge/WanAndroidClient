@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
 import com.fengyongge.baselib.BaseActivity
-import com.fengyongge.baselib.utils.SharedPreferencesUtils
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.common.dialog.AgreementDialog
@@ -37,7 +37,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-        SharedPreferencesUtils(App.getContext())?.run {
+        SharedPreferencesUtils(App.getContext())
+            ?.run {
             if(!get("isShow",false)){
                 readAgreement()
             }
@@ -76,7 +77,9 @@ class MainActivity : BaseActivity() {
                         exitApp()
                         return
                     } else if (dialogContent == "confirm") {
-                        SharedPreferencesUtils(App.getContext())?.let {
+                        SharedPreferencesUtils(
+                            App.getContext()
+                        )?.let {
                             it.put("isShow",true)
                         }
                     }

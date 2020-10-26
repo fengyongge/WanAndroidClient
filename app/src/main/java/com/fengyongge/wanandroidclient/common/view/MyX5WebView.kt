@@ -13,10 +13,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.fengyongge.wanandroidclient.R
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest
-import com.tencent.smtt.export.external.interfaces.WebResourceResponse
 import com.tencent.smtt.sdk.*
-import java.io.ByteArrayInputStream
 import java.util.*
 
 
@@ -163,12 +160,12 @@ class MyX5WebView : WebView {
                 }
             }
 
-            override fun shouldInterceptRequest(
-                view: WebView,
-                request: WebResourceRequest
-            ): WebResourceResponse {
-                return super.shouldInterceptRequest(view, request)
-            }
+//            override fun shouldInterceptRequest(
+//                view: WebView,
+//                request: WebResourceRequest
+//            ): WebResourceResponse {
+//                return super.shouldInterceptRequest(view, request)
+//            }
 
 
             override fun onLoadResource(
@@ -229,11 +226,16 @@ class MyX5WebView : WebView {
     companion object {
         private const val MAX_LENGTH = 8
     }
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+
+    fun handleKeyEvent(keyCode: Int): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK && canGoBack()) {
-            goBack() 
+            goBack()
             return true
         }
-        return super.onKeyDown(keyCode, event)
+        return false
     }
+
+
+
+
 }

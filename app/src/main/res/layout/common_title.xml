@@ -27,6 +27,19 @@
             android:visibility="gone"
             />
 
+        <ImageView
+            android:id="@+id/ivSecondLeft"
+            android:layout_toRightOf="@id/ivLeft"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:visibility="gone"
+            />
+
         <TextView
             android:id="@+id/tvBack"
             android:layout_width="wrap_content"
@@ -37,22 +50,24 @@
             android:text="返回"
             android:textColor="@color/black_3c"
             android:textSize="14sp"
-            android:visibility="gone" />
+            android:visibility="gone"
+           />
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
-            tools:text="标题"
             android:maxLines="1"
             android:ellipsize="end"
-            android:maxEms="8"
             android:textColor="@color/black_28"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:textSize="17sp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:textSize="17sp"
+            android:layout_toRightOf="@id/ivSecondLeft"
+            tools:text="标题"
+            />
 
         <Button
             android:id="@+id/btRight"
@@ -62,9 +77,9 @@
             android:layout_centerVertical="true"
             android:background="@null"
             android:gravity="center"
-            android:textColor="@color/white_ef"
+            android:textColor="@color/black_3c"
             android:textSize="14sp"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/ivRight"
@@ -76,9 +91,7 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:layout_marginRight="15dp"
-            android:visibility="gone"
-             />
-
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

@@ -6,7 +6,7 @@
 # 为什么开发这个应用
 
 - [wanandroid](https://wanandroid.com/)网站不错，有一批码友更新学习心得,而且也有开放的api。做个客户端方便小老弟，也可能是老大哥，刷文章，也有可能是刷妹子，刷开眼视频；
-- 试手项目，方便自己技术栈更新。第一版先简单搭建，日后再说，也有可能不说了。
+- 试手项目，方便自己技术栈更新。
 
 
 # 下载地址
@@ -61,8 +61,6 @@
 # 开源库说明
 
 [app开源库相关引用](https://github.com/fengyongge/WanAndroidClient/blob/master/app/build.gradle)
-
-[base开源库相关引用](https://github.com/fengyongge/WanAndroidClient/blob/master/baselib/build.gradle)
 
 # 感谢
 [张鸿洋](https://github.com/hongyangAndroid)

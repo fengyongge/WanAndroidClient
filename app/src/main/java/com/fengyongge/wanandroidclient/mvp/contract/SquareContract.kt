@@ -2,8 +2,8 @@ package com.fengyongge.wanandroidclient.mvp.contract
 
 import com.fengyongge.baselib.mvp.IBasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.SquareBean
 import io.reactivex.Observable
 
@@ -29,6 +29,7 @@ class SquareContract {
         fun postCollectShow(data: BaseResponse<String>)
         fun postCancleCollectShow(data: BaseResponse<String>)
         fun getSquareProjectShow(data: BaseResponse<SquareBean>)
+        fun getSquareProjectFail(data: ResponseException)
         fun onError(data: ResponseException)
 
     }

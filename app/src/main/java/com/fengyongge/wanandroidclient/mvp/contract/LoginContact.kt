@@ -2,8 +2,8 @@ package com.fengyongge.wanandroidclient.mvp.contract
 
 import com.fengyongge.baselib.mvp.IBasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.LoginBean
 import com.fengyongge.wanandroidclient.bean.RegisterBean
 import io.reactivex.Observable

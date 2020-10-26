@@ -3,11 +3,10 @@ package com.fengyongge.wanandroidclient.activity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.fengyongge.androidcommonutils.ktutils.ToolsUtils
 import com.fengyongge.baselib.BaseActivity
-import com.fengyongge.baselib.utils.ToolsUtils
 import com.fengyongge.wanandroidclient.R
 import kotlinx.android.synthetic.main.activity_about.*
-import kotlinx.android.synthetic.main.activity_setting.*
 
 /**
  * describe

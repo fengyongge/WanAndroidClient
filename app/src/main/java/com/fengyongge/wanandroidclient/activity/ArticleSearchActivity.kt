@@ -1,6 +1,7 @@
 package com.fengyongge.wanandroidclient.activity
 
 import android.text.Editable
+import android.text.Html
 import android.text.TextUtils
 import android.view.KeyEvent
 import android.view.View
@@ -14,11 +15,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.donkingliang.labels.LabelsView
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.HotKeyBeanItem
 import com.fengyongge.wanandroidclient.bean.SearchContentBean
@@ -281,8 +282,13 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
             var tvSearchArticleNew = holder.getView<TextView>(R.id.tvSearchArticleNew)
             val lvSearchArticleTag = holder.getView<LabelsView>(R.id.lvSearchArticleTag)
             with(item){
+                var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    Html.fromHtml(item.title, Html.FROM_HTML_MODE_LEGACY).toString()
+                } else {
+                    Html.fromHtml(item.title).toString()
+                }
+                tvSearchArticleContent.text = filtTitle
                 tvSearchArticleAuthor.text = if(shareUser == "") author else shareUser
-                tvSearchArticleContent.text = title
                 tvSearchArticleTime.text = niceDate
                 tvSearchArticleType.text = item.superChapterName+"/"+item.chapterName
                 if(item.tags.isNotEmpty()){

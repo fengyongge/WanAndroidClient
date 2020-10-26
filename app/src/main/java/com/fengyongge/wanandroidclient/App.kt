@@ -3,6 +3,8 @@ package com.fengyongge.wanandroidclient
 import android.app.Application
 import android.content.Context
 import android.os.Environment
+import com.fengyongge.androidcommonutils.AndroidCommonUtils
+import com.fengyongge.rxhttp.core.RxHttp
 import com.fengyongge.wanandroidclient.common.db.AppDataBase
 import com.fengyongge.wanandroidclient.constant.Const
 import com.nostra13.universalimageloader.core.DisplayImageOptions
@@ -30,6 +32,8 @@ class App: Application() {
         initUmeng()
         initBugly()
         initTbs()
+        AndroidCommonUtils.init(getAppContext)
+        RxHttp.init(getAppContext)
     }
 
     companion object {
@@ -126,9 +130,7 @@ class App: Application() {
          * 取消按钮：beta_cancel_button 如：android:tag="beta_cancel_button"
          * 确定按钮：beta_confirm_button 如：android:tag="beta_confirm_button"
          */
-//        Beta.upgradeDialogLayoutId = R.layout.dialog_customer_update
-
-        //        CrashReport.initCrashReport(getApplicationContext(), BuildConfig.BUGLY_APP_ID, false); //新版本用以下初始化方式替换
+        Beta.upgradeDialogLayoutId = R.layout.dialog_customer_update
         Bugly.init(applicationContext, Const.BUGLY_APP_ID, false)
     }
 

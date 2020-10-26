@@ -8,12 +8,14 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.RxNotify
-import com.fengyongge.baselib.utils.SharedPreferencesUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.wanandroidclient.common.RxNotify
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
+import com.fengyongge.androidcommonutils.ktutils.ToolsUtils
+
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.LoginBean
@@ -22,7 +24,9 @@ import com.fengyongge.wanandroidclient.bean.RegisterBean
 import com.fengyongge.wanandroidclient.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.LoginContact
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.LoginPresenterImpl
+import kotlinx.android.synthetic.main.activity_about.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.tvVersionName
 
 /**
  * describe
@@ -44,7 +48,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenterImpl>(),LoginContact.View,Vi
     }
 
     override fun initView() {
-
+        tvVersionName.text = "V${ToolsUtils.getVersionName(this)}"
         btLogin.background.alpha = 100
         btLogin.isEnabled = false
 

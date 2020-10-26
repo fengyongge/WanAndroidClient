@@ -2,9 +2,9 @@ package com.fengyongge.wanandroidclient.mvp.presenterImpl
 
 import com.fengyongge.baselib.mvp.BasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.rx.observer.BaseObserver
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.core.BaseObserver
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.WxAccountBeanItem
 import com.fengyongge.wanandroidclient.bean.WxAccountSearchBean
 import com.fengyongge.wanandroidclient.bean.WxHistoryBean
@@ -89,7 +89,7 @@ class WxAccountPresenterImpl : BasePresenter<WxAccountContact.View>(),WxAccountC
                         it.getWxHistoryList(data)
                     }
                     override fun onError(e: ResponseException) {
-                        it.onError(e)
+                        it.getWxHistoryListFail(e)
                     }
                 })
 

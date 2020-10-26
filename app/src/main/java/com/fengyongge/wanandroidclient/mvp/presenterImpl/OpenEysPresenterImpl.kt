@@ -2,8 +2,8 @@ package com.fengyongge.wanandroidclient.mvp.presenterImpl
 
 import com.fengyongge.baselib.mvp.BasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.rx.observer.BaseObserver
+import com.fengyongge.rxhttp.core.BaseObserver
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeDailyBean
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeRelateCommentBean
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeRelateVideoBean
@@ -23,7 +23,7 @@ class OpenEysPresenterImpl : BasePresenter<OpenEyeContract.View>(),OpenEyeContra
                     }
 
                     override fun onError(e: ResponseException) {
-                        it.onError(e)
+                        it.getOpenEyeDailyShowFail(e)
                     }
 
                 })

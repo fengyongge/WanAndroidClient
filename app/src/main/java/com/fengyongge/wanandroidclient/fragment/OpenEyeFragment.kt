@@ -17,11 +17,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpFragment
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.TimeUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.OpenEyeDetailActivity
 import com.fengyongge.wanandroidclient.bean.openeye.*
@@ -177,7 +176,8 @@ class OpenEyeFragment : BaseMvpFragment<OpenEysPresenterImpl>(),OpenEyeContract.
                         .load(item.data.content.data.cover.feed)
                         .transform( CenterCrop(), RoundedCorners(20))
                         .into(ivOpenEyeCoverImage)
-                    tvOpenEyeDuration.text =TimeUtils.convertMinAndSec(item.data.content.data.duration)
+                    tvOpenEyeDuration.text =
+                        TimeUtils.convertMinAndSec(item.data.content.data.duration)
                     tvOpenEyeTitle.text = item.data.content.data.title
                     Glide.with(context)
                         .load(item.data.content.data.author?.icon)
@@ -227,6 +227,12 @@ class OpenEyeFragment : BaseMvpFragment<OpenEysPresenterImpl>(),OpenEyeContract.
             DialogUtils.dismissProgressMD()
             myAdapter.loadMoreModule.loadMoreEnd()
         }
+    }
+
+    override fun getOpenEyeDailyShowFail(data: ResponseException) {
+        ToastUtils.showToast(activity, data.getErrorMessage())
+        DialogUtils.dismissProgressMD()
+        myAdapter.loadMoreModule.loadMoreFail()
     }
 
     override fun getOeRelateVideoShow(data: OpenEyeRelateVideoBean) {

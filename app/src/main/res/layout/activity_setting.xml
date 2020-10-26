@@ -24,6 +24,43 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/llCache"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:text="清楚缓存"
+                    android:textColor="@color/black_55"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvCache"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:gravity="center"
+                    android:textColor="@color/black_55"
+                    android:textSize="16sp"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/llVersion"
+                android:background="@color/white_cc" />
+
+            <RelativeLayout
                 android:id="@+id/llShareApplication"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"

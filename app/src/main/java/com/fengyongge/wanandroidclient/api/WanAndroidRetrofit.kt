@@ -1,6 +1,6 @@
 package com.fengyongge.wanandroidclient.api
 
-import com.fengyongge.baselib.net.RetrofitFactory
+import com.fengyongge.rxhttp.core.RetrofitFactory
 import com.fengyongge.wanandroidclient.constant.Const
 import com.fengyongge.wanandroidclient.common.interceptor.AddCookiesInterceptor
 import com.fengyongge.wanandroidclient.common.interceptor.HeaderInterceptor
@@ -31,5 +31,6 @@ object WanAndroidRetrofit : RetrofitFactory<WanandroidApi>() {
         interceptorList.add(HeaderInterceptor())
         return interceptorList
     }
+
 
 }

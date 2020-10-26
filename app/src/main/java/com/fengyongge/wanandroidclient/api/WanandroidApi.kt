@@ -1,6 +1,6 @@
 package com.fengyongge.wanandroidclient.api
 
-import com.fengyongge.baselib.net.BaseResponse
+import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.wanandroidclient.bean.*
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeDailyBean
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeRelateCommentBean

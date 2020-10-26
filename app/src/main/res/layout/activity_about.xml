@@ -15,7 +15,7 @@
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:src="@drawable/ic_logo" />
+        android:src="@mipmap/ic_launcher" />
 
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_below="@+id/ivAboutLogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:textColor="@color/gray_99"
+        android:textColor="@color/gray_66"
         tools:text="V1.0.0" />
 
     <LinearLayout

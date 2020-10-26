@@ -1,5 +1,6 @@
 package com.fengyongge.wanandroidclient.activity.channel
 
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,10 +12,10 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.GankGirlBean
@@ -102,6 +103,7 @@ class GirlActivity : BaseMvpActivity<GirlPresenterImpl>(),GirlContract.view,Swip
             item?.let {
                 Glide.with(App.getContext())
                     .load(item.url)
+                    .placeholder(R.drawable.shape_girl_default_bg)
                     .into(ivGirl)
             }
         }
@@ -134,8 +136,14 @@ class GirlActivity : BaseMvpActivity<GirlPresenterImpl>(),GirlContract.view,Swip
         }
     }
 
-    private fun showEmptyView(){
+    override fun getGankGirlFail(data: ResponseException) {
+        ToastUtils.showToast(GirlActivity@this,data.getErrorMessage())
+        DialogUtils.dismissProgressMD()
+        adapter.loadMoreModule.loadMoreFail()
+    }
 
+    private fun showEmptyView(){
+        adapter.setEmptyView(LayoutInflater.from(this).inflate(R.layout.activity_common_empty,null))
     }
 
     override fun onError(data: ResponseException) {

@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.jzvd.JZVideoPlayer
 import cn.jzvd.JZVideoPlayerStandard
 import com.bumptech.glide.Glide
@@ -18,11 +16,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.TimeUtils
-import com.fengyongge.baselib.utils.ToastUtils
+
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.openeye.*
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeDetailBean.Companion.TYPE_ONE
@@ -180,6 +178,10 @@ class OpenEyeDetailActivity : BaseMvpActivity<OpenEysPresenterImpl>(), OpenEyeCo
     }
 
     override fun getOpenEyeDailyShow(data: OpenEyeDailyBean) {
+
+    }
+
+    override fun getOpenEyeDailyShowFail(data: ResponseException) {
 
     }
 

@@ -1,6 +1,7 @@
 package com.fengyongge.wanandroidclient.fragment
 
 import android.content.Intent
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,12 +23,12 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.donkingliang.labels.LabelsView
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.SizeUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpFragment
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.SizeUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.ArticleSearchActivity
 import com.fengyongge.wanandroidclient.activity.WebViewActivity
@@ -206,6 +207,7 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
 
     override fun initLoad() {
         initTitle()
+        activity?.let { DialogUtils.showProgress(it,getString(R.string.load_hint1)) }
         loadMore(true, 0)
     }
 
@@ -241,7 +243,12 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
                     val tvHomeArticleTime = holder.getView<TextView>(R.id.tvHomeArticleTime)
                     val lvArticleTag = holder.getView<LabelsView>(R.id.lvArticleTag)
                     with(item){
-                        tvArticleContent.text = title
+                        var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                            Html.fromHtml(title,Html.FROM_HTML_MODE_LEGACY).toString()
+                        } else {
+                            Html.fromHtml(title).toString()
+                        }
+                        tvArticleContent.text = filtTitle
                         tvHomeArticleTime.text = niceDate
                         tvHomeArticleAuthor.text =  "作者:"+item.author
                         tvHomeArticleType.text = item.superChapterName+"/"+item.chapterName
@@ -300,9 +307,6 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
         }else{
             mPresenter?.articleList(pageNum)
         }
-        if(isRefresh){
-            activity?.let { DialogUtils.showProgress(it,getString(R.string.load_hint1)) }
-        }
     }
 
     private fun showEmptyView() {
@@ -323,6 +327,10 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
                 ToastUtils.showToast(activity, data.errorMsg)
             }
         }
+    }
+
+    override fun bannerListFail(data: ResponseException) {
+
     }
 
     private fun setBannerData(data: BaseResponse<List<BannerBean>>){
@@ -378,6 +386,12 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
 
     }
 
+    override fun articleListFail(data: ResponseException) {
+        DialogUtils.dismissProgressMD()
+        ToastUtils.showToast(activity,data.getErrorMessage())
+        myAdapter.loadMoreModule.loadMoreFail()
+    }
+
     override fun projectListShow(data: BaseResponse<ArticleBean>) {
         if (data.errorCode == "0") {
             list = data.data.datas as MutableList<DataX>
@@ -403,12 +417,21 @@ class HomePageFragment : BaseMvpFragment<HomePagePresenterImpl>(), HomePageContr
             DialogUtils.dismissProgressMD()
             activity?.let { ToastUtils.showToast(it, data.errorMsg) }
         }
+    }
 
+    override fun projectListFail(data: ResponseException) {
+        DialogUtils.dismissProgressMD()
+        ToastUtils.showToast(activity,data.getErrorMessage())
+        myAdapter.loadMoreModule.loadMoreFail()
     }
 
     override fun onError(data: ResponseException) {
         DialogUtils.dismissProgressMD()
         ToastUtils.showToast(activity, data.getErrorMessage())
+    }
+
+    override fun onAllFail() {
+        DialogUtils.dismissProgressMD()
     }
 
     override fun postCollectShow(data: BaseResponse<String>) {

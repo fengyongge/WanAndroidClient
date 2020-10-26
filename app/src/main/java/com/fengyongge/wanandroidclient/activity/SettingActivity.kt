@@ -5,17 +5,17 @@ import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.fengyongge.androidcommonutils.ktutils.*
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.*
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.LogoutUpdateBean
-import com.fengyongge.wanandroidclient.bean.UserInforBean
+import com.fengyongge.wanandroidclient.common.RxNotify
 import com.fengyongge.wanandroidclient.constant.Const
-import com.fengyongge.wanandroidclient.mvp.contract.UserInforContact
-import com.fengyongge.wanandroidclient.mvp.presenterImpl.UserInforPresenterImpl
+import com.fengyongge.wanandroidclient.mvp.contract.SettingContract
+import com.fengyongge.wanandroidclient.mvp.presenterImpl.SettingPreseenterImpl
 import com.tencent.bugly.beta.Beta
 import kotlinx.android.synthetic.main.activity_setting.*
 
@@ -26,9 +26,9 @@ import kotlinx.android.synthetic.main.activity_setting.*
  * @version V1.0
  * @date 2020/09/08
  */
-class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforContact.View,View.OnClickListener {
-    override fun initPresenter(): UserInforPresenterImpl {
-        return UserInforPresenterImpl()
+class SettingActivity : BaseMvpActivity<SettingPreseenterImpl>(), SettingContract.View,View.OnClickListener {
+    override fun initPresenter(): SettingPreseenterImpl {
+        return SettingPreseenterImpl()
     }
 
     override fun initLayout(): Int {
@@ -36,6 +36,7 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
     }
 
     override fun initView() {
+        llCache.setOnClickListener(this)
         rlLogout.setOnClickListener(this)
         llContract.setOnClickListener(this)
         llVersion.setOnClickListener(this)
@@ -60,37 +61,25 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
         } else {
             rlLogout.visibility = View.GONE
         }
+        tvCache.text = CacheUtils.totalCacheSize()
     }
 
     override fun initData() {
     }
 
-    override fun getLogoutShow(data: BaseResponse<String>) {
-        if (data.errorCode == "0") {
-            ToastUtils.showToast(this, "登出成功")
-            logoutHandle()
-            var logoutUpdateBean = LogoutUpdateBean()
-            logoutUpdateBean.isUpdate = true
-            RxNotify.instance?.post(logoutUpdateBean)
-            finish()
-        } else {
-            ToastUtils.showToast(this, data.errorMsg)
-        }
-    }
-
     private fun logoutHandle() {
-        SharedPreferencesUtils(App.getContext()).remove(Const.IS_LOGIN)
-        SharedPreferencesUtils(App.getContext()).remove(Const.COOKIE)
-        SharedPreferencesUtils(App.getContext()).remove(Const.USER_ID)
-        SharedPreferencesUtils(App.getContext()).remove(Const.NICKNAME)
-        SharedPreferencesUtils(App.getContext()).remove(Const.ICON)
+        SharedPreferencesUtils(App.getContext())
+            .remove(Const.IS_LOGIN)
+        SharedPreferencesUtils(App.getContext())
+            .remove(Const.COOKIE)
+        SharedPreferencesUtils(App.getContext())
+            .remove(Const.USER_ID)
+        SharedPreferencesUtils(App.getContext())
+            .remove(Const.NICKNAME)
+        SharedPreferencesUtils(App.getContext())
+            .remove(Const.ICON)
     }
 
-    override fun getAccountShow(data: BaseResponse<UserInforBean>) {
-    }
-
-    override fun onError(data: ResponseException) {
-    }
 
     override fun onClick(v: View?) {
         when(v?.id){
@@ -130,6 +119,20 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
             }
             R.id.llShareApplication ->{
                 share()
+            }
+            R.id.llCache ->{
+                DialogUtils.showAlertDialog(
+                    this, "确定", "取消", null, "确定要清除缓存吗?",
+                    object : DialogUtils.Companion.OnOkClickListener{
+                        override fun onOkClick() {
+                            mPresenter?.clearCache()
+                        }
+                    },
+                    object : DialogUtils.Companion.OnCancelClickListener{
+                        override fun onCancelClick() {
+                            DialogUtils.dismissAlertDialog()
+                        }
+                    })
             }
             else ->{
 
@@ -179,9 +182,32 @@ class SettingActivity : BaseMvpActivity<UserInforPresenterImpl>(), UserInforCont
 
 
     private fun isLogin(): Boolean{
-        if(SharedPreferencesUtils(App.getContext()).get(Const.IS_LOGIN,false)){
+        if(SharedPreferencesUtils(App.getContext())
+                .get(Const.IS_LOGIN,false)){
             return true
         }
         return false
     }
+
+    override fun getLogoutSuccess(data: BaseResponse<String>) {
+        if (data.errorCode == "0") {
+            ToastUtils.showToast(this, "登出成功")
+            logoutHandle()
+            var logoutUpdateBean = LogoutUpdateBean()
+            logoutUpdateBean.isUpdate = true
+            RxNotify.instance?.post(logoutUpdateBean)
+            finish()
+        } else {
+            ToastUtils.showToast(this, data.errorMsg)
+        }
+    }
+
+    override fun getLogoutFail(e: ResponseException) {
+        ToastUtils.showToast(this, e.getErrorMessage())
+    }
+
+    override fun clearCacheSuccess(size: String) {
+        tvCache.text = size
+    }
+
 }

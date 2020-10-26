@@ -2,8 +2,8 @@ package com.fengyongge.wanandroidclient.mvp.contract
 
 import com.fengyongge.baselib.mvp.IBasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.WxAccountBeanItem
 import com.fengyongge.wanandroidclient.bean.WxAccountSearchBean
 import com.fengyongge.wanandroidclient.bean.WxHistoryBean
@@ -33,6 +33,7 @@ class WxAccountContact {
         fun postCancleCollectShow(data: BaseResponse<String>)
         fun getWxAccountShow(data: BaseResponse<List<WxAccountBeanItem>>)
         fun getWxHistoryList(data: BaseResponse<WxHistoryBean>)
+        fun getWxHistoryListFail(e: ResponseException)
         fun onError(e: ResponseException)
     }
 

@@ -1,6 +1,7 @@
 package com.fengyongge.wanandroidclient.fragment
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,12 +12,10 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpFragment
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.TimeUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.bean.Data
@@ -135,8 +134,18 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
                 ivProjectCollect.setImageResource(R.drawable.ic_collect)
             }
             with(item){
-                tvTitle.text = title
-                tvContent.text = desc
+                var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString()
+                } else {
+                    Html.fromHtml(title).toString()
+                }
+                tvTitle.text = filtTitle
+                var filtDes = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    Html.fromHtml(desc, Html.FROM_HTML_MODE_LEGACY).toString()
+                } else {
+                    Html.fromHtml(desc).toString()
+                }
+                tvContent.text = filtDes
                 tvTime.text = TimeUtils.formatDateLongToString(publishTime,"yyyy-MM-dd HH:mm")
                 Glide.with(context)
                     .load(envelopePic)
@@ -200,6 +209,11 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
                 }
             }
         }
+    }
+
+    override fun getProjectByTypeFail(data: ResponseException) {
+        ToastUtils.showToast(activity,data.getErrorMessage())
+        myAdapter.loadMoreModule.loadMoreFail()
     }
 
     private fun showEmptyView(){

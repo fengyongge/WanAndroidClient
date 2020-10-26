@@ -11,11 +11,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fengyongge.androidcommonutils.ktutils.DialogUtils
+import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baselib.mvp.BaseMvpActivity
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
-import com.fengyongge.baselib.utils.DialogUtils
-import com.fengyongge.baselib.utils.ToastUtils
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.MyShareBean
 import com.fengyongge.wanandroidclient.bean.MyShareData
@@ -140,7 +140,7 @@ class MyShareActivity : BaseMvpActivity<SharePresenterImpl>(),ShareContract.View
             } else {
                 myAdapter.loadMoreModule.loadMoreEnd()
                 if(pageNum==1){
-                    showNotEmpty()
+                    showEmpty()
                 }
             }
             DialogUtils.dismissProgressMD()
@@ -150,7 +150,7 @@ class MyShareActivity : BaseMvpActivity<SharePresenterImpl>(),ShareContract.View
         }
     }
 
-    private fun showNotEmpty(){
+    private fun showEmpty(){
         myAdapter.setEmptyView(LayoutInflater.from(this).inflate(R.layout.activity_common_empty,null))
     }
 

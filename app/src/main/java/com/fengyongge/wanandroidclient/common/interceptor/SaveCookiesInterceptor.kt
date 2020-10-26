@@ -1,6 +1,6 @@
 package com.fengyongge.wanandroidclient.common.interceptor
 
-import com.fengyongge.baselib.utils.SharedPreferencesUtils
+import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.constant.Const
 import okhttp3.Interceptor
@@ -26,7 +26,8 @@ class SaveCookiesInterceptor : Interceptor {
                         cookieStr.append(cookie)
                         cookieStr.append("#")
                     }
-                    SharedPreferencesUtils(App.getContext()).put(Const.COOKIE,cookieStr.toString())
+                    SharedPreferencesUtils(App.getContext())
+                        .put(Const.COOKIE,cookieStr.toString())
                 }
             }
         }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6000"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_update_bg"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/update_title_image"
+            android:tag="beta_upgrade_banner" />
+
+        <LinearLayout
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:tag="beta_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_33"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:tag="beta_upgrade_feature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="8"
+                android:ellipsize="end"
+                android:textColor="@color/gray_66"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="43dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0.0dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:text="暂不更新"
+                android:gravity="center"
+                android:tag="beta_cancel_button"
+                android:background="@drawable/shape_update_gray"
+                android:textColor="@color/gray_66"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0.0dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:text="立即更新"
+                android:gravity="center"
+                android:tag="beta_confirm_button"
+                android:background="@drawable/shape_update_blue"
+                android:textColor="@color/white_ff"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:tag="beta_upgrade_info"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
+</RelativeLayout>

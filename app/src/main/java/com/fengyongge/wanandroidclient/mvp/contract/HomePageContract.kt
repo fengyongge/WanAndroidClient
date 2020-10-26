@@ -2,8 +2,8 @@ package com.fengyongge.wanandroidclient.mvp.contract
 
 import com.fengyongge.baselib.mvp.IBasePresenter
 import com.fengyongge.baselib.mvp.IBaseView
-import com.fengyongge.baselib.net.BaseResponse
-import com.fengyongge.baselib.net.exception.ResponseException
+import com.fengyongge.rxhttp.bean.BaseResponse
+import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.ArticleBean
 import com.fengyongge.wanandroidclient.bean.BannerBean
 import com.fengyongge.wanandroidclient.bean.DataX
@@ -18,6 +18,7 @@ interface HomePageContract {
         fun projectList(pageNum: Int)
         fun postCollect(id: Int)
         fun postCancleCollect(id: Int)
+        fun onAllFail()
     }
 
     interface Model {
@@ -31,12 +32,17 @@ interface HomePageContract {
 
     interface View : IBaseView {
         fun bannerListShow(data: BaseResponse<List<BannerBean>>)
-        fun stickArticleShow(data: BaseResponse<List<DataX>>)
+        fun bannerListFail(data: ResponseException)
         fun articleListShow(data: BaseResponse<ArticleBean>)
+        fun articleListFail(data: ResponseException)
         fun projectListShow(data: BaseResponse<ArticleBean>)
-        fun onError(data: ResponseException)
+        fun projectListFail(data: ResponseException)
+
+        fun stickArticleShow(data: BaseResponse<List<DataX>>)
         fun postCollectShow(data: BaseResponse<String>)
         fun postCancleCollectShow(data: BaseResponse<String>)
+        fun onError(data: ResponseException)
+        fun onAllFail()
     }
 
 }
