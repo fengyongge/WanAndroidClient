@@ -7,10 +7,8 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.fengyongge.baselib.BaseActivity
 import com.fengyongge.wanandroidclient.R
 import kotlinx.android.synthetic.main.activity_article_detail.*
-import kotlinx.android.synthetic.main.common_title.*
 
 
 /**
@@ -20,7 +18,7 @@ import kotlinx.android.synthetic.main.common_title.*
  * @version V1.0
  * @date 2020/09/08
  */
-class WebViewActivity : BaseActivity() {
+class WebViewActivity : com.fengyongge.baseframework.BaseActivity() {
 
     lateinit var link: String
     lateinit var title: String
@@ -47,6 +45,8 @@ class WebViewActivity : BaseActivity() {
 
     private fun initTitle() {
         var tvTitle = findViewById<TextView>(R.id.tvTitle)
+        var ivSecondLeft = findViewById<ImageView>(R.id.ivSecondLeft)
+        var ivRight = findViewById<ImageView>(R.id.ivRight)
         var filtTitle = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString()
         } else {

@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpActivity
+import com.fengyongge.baseframework.mvp.BaseMvpActivity
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
@@ -18,7 +18,7 @@ import com.fengyongge.wanandroidclient.bean.ProjectTypeBeanItem
 import com.fengyongge.wanandroidclient.fragment.ProjectItemFragment
 import com.fengyongge.wanandroidclient.mvp.contract.ProjectContract
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.ProjectPresenterImpl
-import kotlinx.android.synthetic.main.fragment_project.*
+import kotlinx.android.synthetic.main.activity_project.*
 
 /**
  * describe

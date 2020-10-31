@@ -1,7 +1,7 @@
 package com.fengyongge.wanandroidclient.activity
 
 import android.content.Intent
-import com.fengyongge.baselib.BaseActivity
+import com.fengyongge.baseframework.BaseActivity
 import com.fengyongge.wanandroidclient.R
 
 /**
@@ -11,7 +11,7 @@ import com.fengyongge.wanandroidclient.R
  * @version V1.0
  * @date 2020/09/08
  */
-class SplishActivity : BaseActivity() {
+class SplishActivity : com.fengyongge.baseframework.BaseActivity() {
     override fun initLayout(): Int {
         return R.layout.activity_splish
     }

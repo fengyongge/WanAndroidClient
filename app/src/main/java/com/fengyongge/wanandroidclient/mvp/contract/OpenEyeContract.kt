@@ -1,7 +1,7 @@
 package com.fengyongge.wanandroidclient.mvp.contract
 
-import com.fengyongge.baselib.mvp.IBasePresenter
-import com.fengyongge.baselib.mvp.IBaseView
+import com.fengyongge.baseframework.mvp.IBasePresenter
+import com.fengyongge.baseframework.mvp.IBaseView
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeDailyBean
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeRelateCommentBean

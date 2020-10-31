@@ -13,13 +13,13 @@ import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpActivity
+import com.fengyongge.baseframework.mvp.BaseMvpActivity
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.MyShareBean
 import com.fengyongge.wanandroidclient.bean.MyShareData
-import com.fengyongge.wanandroidclient.constant.Const
+import com.fengyongge.basecomponent.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.ShareContract
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.SharePresenterImpl
 import kotlinx.android.synthetic.main.activity_my_share.*

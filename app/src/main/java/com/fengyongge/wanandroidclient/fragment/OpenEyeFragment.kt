@@ -19,7 +19,7 @@ import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpFragment
+import com.fengyongge.baseframework.mvp.BaseMvpFragment
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.OpenEyeDetailActivity

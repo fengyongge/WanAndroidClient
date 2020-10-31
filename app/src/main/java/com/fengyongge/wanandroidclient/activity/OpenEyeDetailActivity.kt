@@ -18,7 +18,7 @@ import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpActivity
+import com.fengyongge.baseframework.mvp.BaseMvpActivity
 
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R

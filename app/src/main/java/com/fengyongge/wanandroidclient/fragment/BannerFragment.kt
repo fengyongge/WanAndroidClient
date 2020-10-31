@@ -3,7 +3,7 @@ package com.fengyongge.wanandroidclient.fragment
 
 import android.os.Bundle
 import com.bumptech.glide.Glide
-import com.fengyongge.baselib.BaseFragment
+import com.fengyongge.baseframework.BaseFragment
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.bean.BannerBean
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_banner.*
  * @version V1.0
  * @date 2020/09/08
  */
-class BannerFragment : BaseFragment() {
+class BannerFragment : com.fengyongge.baseframework.BaseFragment() {
 
 
     private lateinit var bannerBean: BannerBean

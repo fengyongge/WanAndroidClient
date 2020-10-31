@@ -1,10 +1,10 @@
 package com.fengyongge.wanandroidclient.api
 
 import com.fengyongge.rxhttp.core.RetrofitFactory
-import com.fengyongge.wanandroidclient.constant.Const
-import com.fengyongge.wanandroidclient.common.interceptor.AddCookiesInterceptor
-import com.fengyongge.wanandroidclient.common.interceptor.HeaderInterceptor
-import com.fengyongge.wanandroidclient.common.interceptor.SaveCookiesInterceptor
+import com.fengyongge.basecomponent.constant.Const
+import com.fengyongge.basecomponent.interceptor.AddCookiesInterceptor
+import com.fengyongge.basecomponent.interceptor.HeaderInterceptor
+import com.fengyongge.basecomponent.interceptor.SaveCookiesInterceptor
 import okhttp3.Interceptor
 
 /**

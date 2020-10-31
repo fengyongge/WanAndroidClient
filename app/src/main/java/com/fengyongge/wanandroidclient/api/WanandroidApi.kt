@@ -5,8 +5,9 @@ import com.fengyongge.wanandroidclient.bean.*
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeDailyBean
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeRelateCommentBean
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeRelateVideoBean
-import com.fengyongge.wanandroidclient.constant.Const.Companion.URL_GANK
-import com.fengyongge.wanandroidclient.constant.Const.Companion.URL_OPEN_EYE
+import com.fengyongge.basecomponent.constant.Const.Companion.URL_GANK
+import com.fengyongge.basecomponent.constant.Const.Companion.URL_OPEN_EYE
+import com.fengyongge.gank.bean.GankGirlBean
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -127,21 +128,7 @@ interface WanandroidApi {
     @GET("wxarticle/list/{id}/{pageNum}/json?")
     fun getSearchWxContent(@Path("id")id: Int,@Path("pageNum")pageNum: Int,@Query("k")content: String): Observable<BaseResponse<WxAccountSearchBean>>
 
-    /**
-     * 登录
-     */
-    @FormUrlEncoded
-    @POST("user/login")
-    fun login(@Field("username")username: String,@Field("password")password: String): Observable<BaseResponse<LoginBean>>
 
-
-    /**
-     * 注册
-     */
-    @FormUrlEncoded
-    @POST("user/register")
-    fun register(@Field("username")username: String,@Field("password")password: String,
-                 @Field("repassword")repassword: String): Observable<BaseResponse<RegisterBean>>
 
     /**
      * 登出
@@ -200,13 +187,6 @@ interface WanandroidApi {
     @POST("lg/user_article/delete/{id}/json")
     fun postDeleteMyShare(@Path("id")pageNum: Int): Observable<BaseResponse<String>>
 
-
-    /**
-     * 获取妹子数据
-     */
-    @Headers(URL_GANK)
-    @GET("api/v2/data/category/Girl/type/Girl/page/{pageNum}/count/{pageSize}")
-    fun getGankGirl(@Path("pageNum")pageNum: Int,@Path("pageSize")pageSize: Int): Observable<GankGirlBean>
 
 
     /**

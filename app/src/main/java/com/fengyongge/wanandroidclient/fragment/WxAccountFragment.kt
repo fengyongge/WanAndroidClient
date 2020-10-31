@@ -13,7 +13,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.fengyongge.baselib.mvp.BaseMvpFragment
+import com.fengyongge.baseframework.mvp.BaseMvpFragment
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.rxhttp.bean.BaseResponse
@@ -25,7 +25,7 @@ import com.fengyongge.wanandroidclient.bean.DataItem
 import com.fengyongge.wanandroidclient.bean.WxAccountBeanItem
 import com.fengyongge.wanandroidclient.bean.WxAccountSearchBean
 import com.fengyongge.wanandroidclient.bean.WxHistoryBean
-import com.fengyongge.wanandroidclient.constant.Const
+import com.fengyongge.basecomponent.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.WxAccountContact
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.WxAccountPresenterImpl
 import kotlinx.android.synthetic.main.fragment_wxaccount.*

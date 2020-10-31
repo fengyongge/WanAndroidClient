@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.fengyongge.baselib.BaseActivity
+import com.fengyongge.baseframework.BaseActivity
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.OpenSourceBean
 import kotlinx.android.synthetic.main.activity_open_source.*
@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_open_source.*
  * @version V1.0
  * @date 2020/09/08
  */
-class OpenSourceActivity : BaseActivity() {
+class OpenSourceActivity : com.fengyongge.baseframework.BaseActivity() {
 
     var list = mutableListOf<OpenSourceBean>()
     lateinit var myAdapter:MyAdapter

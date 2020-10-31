@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.fengyongge.androidcommonutils.ktutils.ToolsUtils
-import com.fengyongge.baselib.BaseActivity
 import com.fengyongge.wanandroidclient.R
 import kotlinx.android.synthetic.main.activity_about.*
 
@@ -15,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_about.*
  * @version V1.0
  * @date 2020/09/08
  */
-class AboutActivity : BaseActivity() {
+class AboutActivity : com.fengyongge.baseframework.BaseActivity() {
 
     private val officialUrl = "https://www.wanandroid.com"
     private val githubUrl = "https://github.com/fengyongge/WanAndroidClient"

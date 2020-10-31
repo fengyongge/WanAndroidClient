@@ -17,7 +17,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.donkingliang.labels.LabelsView
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpActivity
+import com.fengyongge.baseframework.mvp.BaseMvpActivity
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
@@ -26,7 +26,7 @@ import com.fengyongge.wanandroidclient.bean.SearchContentBean
 import com.fengyongge.wanandroidclient.bean.SearchData
 import com.fengyongge.wanandroidclient.common.db.AppDataBase
 import com.fengyongge.wanandroidclient.common.db.SearchHistoryEntity
-import com.fengyongge.wanandroidclient.constant.Const
+import com.fengyongge.basecomponent.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.SearchContact
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.SearchPresenterImpl
 import kotlinx.android.synthetic.main.activity_article_search.*

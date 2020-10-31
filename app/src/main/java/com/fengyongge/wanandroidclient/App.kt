@@ -6,7 +6,7 @@ import android.os.Environment
 import com.fengyongge.androidcommonutils.AndroidCommonUtils
 import com.fengyongge.rxhttp.core.RxHttp
 import com.fengyongge.wanandroidclient.common.db.AppDataBase
-import com.fengyongge.wanandroidclient.constant.Const
+import com.fengyongge.basecomponent.constant.Const
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration

@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpActivity
+import com.fengyongge.baseframework.mvp.BaseMvpActivity
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R

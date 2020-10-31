@@ -56,13 +56,13 @@
             android:name=".activity.channel.SystemArticleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name="com.fengyongge.login.activity.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.channel.SystemActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.channel.GirlActivity"
+            android:name="com.fengyongge.gank.activity.GirlActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.WebViewActivity"
@@ -71,7 +71,7 @@
             android:name=".activity.ShareProjectActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.fengyongge.login.activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.channel.ProjectActivity"

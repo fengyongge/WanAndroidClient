@@ -15,21 +15,22 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpFragment
+import com.fengyongge.baseframework.mvp.BaseMvpFragment
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.ArticleSearchActivity
-import com.fengyongge.wanandroidclient.activity.LoginActivity
+import com.fengyongge.login.activity.LoginActivity
 import com.fengyongge.wanandroidclient.activity.ShareProjectActivity
 import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.bean.SquareBean
 import com.fengyongge.wanandroidclient.bean.SquareItemData
-import com.fengyongge.wanandroidclient.constant.Const
+import com.fengyongge.basecomponent.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.SquareContract
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.SquarePresenterImpl
 import kotlinx.android.synthetic.main.fragment_square.*
+
 /**
  * describe
  *

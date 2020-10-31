@@ -13,7 +13,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpFragment
+import com.fengyongge.baseframework.mvp.BaseMvpFragment
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
@@ -21,10 +21,11 @@ import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.bean.Data
 import com.fengyongge.wanandroidclient.bean.ProjectBean
 import com.fengyongge.wanandroidclient.bean.ProjectTypeBeanItem
-import com.fengyongge.wanandroidclient.constant.Const
+import com.fengyongge.basecomponent.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.ProjectContract
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.ProjectPresenterImpl
 import kotlinx.android.synthetic.main.fragment_project_item.*
+
 /**
  * describe
  *

@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
-import com.fengyongge.baselib.BaseActivity
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.common.dialog.AgreementDialog
@@ -24,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @version V1.0
  * @date 2020/09/08
  */
-class MainActivity : BaseActivity() {
+class MainActivity : com.fengyongge.baseframework.BaseActivity() {
 
     private lateinit var tab: TabLayout.Tab
     private val titleList = mutableListOf<String>()

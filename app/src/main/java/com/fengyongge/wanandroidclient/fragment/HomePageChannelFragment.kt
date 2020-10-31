@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.ScreenUtls
 import com.fengyongge.androidcommonutils.ktutils.SizeUtils
-import com.fengyongge.baselib.BaseFragment
+import com.fengyongge.gank.activity.GirlActivity
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.channel.*
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_homepage_header_channel.*
  * @version V1.0
  * @date 2020/09/08
  */
-class HomePageChannelFragment : BaseFragment() {
+class HomePageChannelFragment : com.fengyongge.baseframework.BaseFragment() {
 
     private lateinit var myAdapter: MyAdapter
     private var list = mutableListOf("项目","体系","问答","面试","妹子")

@@ -8,19 +8,21 @@ import com.bumptech.glide.Glide
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpFragment
-import com.fengyongge.wanandroidclient.common.RxNotify
+import com.fengyongge.baseframework.mvp.BaseMvpFragment
+import com.fengyongge.login.activity.LoginActivity
+import com.fengyongge.basecomponent.utils.RxNotify
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.*
-import com.fengyongge.wanandroidclient.bean.LogoutUpdateBean
+import com.fengyongge.basecomponent.bean.LogoutUpdateBean
 import com.fengyongge.wanandroidclient.bean.UserInforBean
-import com.fengyongge.wanandroidclient.constant.Const
+import com.fengyongge.basecomponent.constant.Const
 import com.fengyongge.wanandroidclient.mvp.contract.UserInforContact
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.UserInforPresenterImpl
 import kotlinx.android.synthetic.main.fragment_my.*
+
 /**
  * describe
  *
