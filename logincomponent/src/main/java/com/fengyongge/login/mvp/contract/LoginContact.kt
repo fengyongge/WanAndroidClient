@@ -17,14 +17,14 @@ class LoginContact {
 
     interface Model{
 
-        fun postLogin(userName: String,password: String): Observable<BaseResponse<com.fengyongge.login.bean.LoginBean>>
-        fun postRegister(userName: String,password: String,passwordConfirm: String): Observable<BaseResponse<com.fengyongge.login.bean.RegisterBean>>
+        fun postLogin(userName: String,password: String): Observable<BaseResponse<LoginBean>>
+        fun postRegister(userName: String,password: String,passwordConfirm: String): Observable<BaseResponse<RegisterBean>>
     }
 
     interface View : IBaseView{
 
-        fun postLoginShow(data: BaseResponse<com.fengyongge.login.bean.LoginBean>)
-        fun postRegisterShow(data: BaseResponse<com.fengyongge.login.bean.RegisterBean>)
+        fun postLoginShow(data: BaseResponse<LoginBean>)
+        fun postRegisterShow(data: BaseResponse<RegisterBean>)
         fun onError(data: ResponseException)
     }
 }

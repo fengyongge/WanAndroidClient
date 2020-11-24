@@ -1,10 +1,10 @@
 package com.fengyongge.login.api
 
-import com.fengyongge.rxhttp.core.RetrofitFactory
 import com.fengyongge.basecomponent.constant.Const
 import com.fengyongge.basecomponent.interceptor.AddCookiesInterceptor
 import com.fengyongge.basecomponent.interceptor.HeaderInterceptor
 import com.fengyongge.basecomponent.interceptor.SaveCookiesInterceptor
+import com.fengyongge.rxhttp.core.RetrofitFactory
 import okhttp3.Interceptor
 
 /**

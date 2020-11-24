@@ -4,21 +4,22 @@ import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
+import com.alibaba.android.arouter.launcher.ARouter
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
+import com.fengyongge.basecomponent.app.BaseApplication
 import com.fengyongge.baseframework.mvp.BaseMvpFragment
-import com.fengyongge.login.activity.LoginActivity
 import com.fengyongge.basecomponent.utils.RxNotify
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
-import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.*
 import com.fengyongge.basecomponent.bean.LogoutUpdateBean
 import com.fengyongge.wanandroidclient.bean.UserInforBean
 import com.fengyongge.basecomponent.constant.Const
+import com.fengyongge.basecomponent.constant.RouterManageConst
+import com.fengyongge.imageloaderutils.ImageLoaderSdk
 import com.fengyongge.wanandroidclient.mvp.contract.UserInforContact
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.UserInforPresenterImpl
 import kotlinx.android.synthetic.main.fragment_my.*
@@ -74,25 +75,23 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
             tvHint.visibility = View.GONE
             llUserInfor.visibility = View.VISIBLE
             tvUserName.text = SharedPreferencesUtils(
-                App.getContext()
+                BaseApplication.getAppContext()
             ).get(Const.NICKNAME, hintContent)
             activity?.let {
-                Glide.with(it).load(R.drawable.ic_default_user_blue)
-                    .into(ivAvatar)
+                ImageLoaderSdk.getInstance().loadImageResources(R.drawable.ic_default_user_blue,ivAvatar)
             }
             tvUserName.text = SharedPreferencesUtils(
-                App.getContext()
+                BaseApplication.getAppContext()
             ).get(Const.NICKNAME, hintContent)
             mPresenter?.getAccount()
         } else {
             tvHint.visibility = View.VISIBLE
             llUserInfor.visibility = View.GONE
             tvUserName.text = SharedPreferencesUtils(
-                App.getContext()
+                BaseApplication.getAppContext()
             ).get(Const.NICKNAME, hintContent)
             activity?.let {
-                Glide.with(it).load(R.drawable.ic_default_user_gray)
-                    .into(ivAvatar)
+                ImageLoaderSdk.getInstance().loadImageResources(R.drawable.ic_default_user_gray,ivAvatar)
             }
         }
     }
@@ -122,7 +121,7 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
             R.id.ivAvatar -> {
                 if (!isLogin()) {
                     activity?.let {
-                        startActivity(Intent(activity, LoginActivity::class.java))
+                        ARouter.getInstance().build(RouterManageConst.LOGIN_LOGIN).navigation()
                     }
                 }
             }
@@ -133,21 +132,21 @@ class MyFragment: BaseMvpFragment<UserInforPresenterImpl>(),UserInforContact.Vie
                 if (isLogin()) {
                     startActivity(Intent(activity, MyCollectArticleActivity::class.java))
                 } else {
-                    startActivity(Intent(activity, LoginActivity::class.java))
+                    ARouter.getInstance().build(RouterManageConst.LOGIN_LOGIN).navigation()
                 }
             }
             R.id.tvShare -> {
                 if (isLogin()) {
                     startActivity(Intent(activity, MyShareActivity::class.java))
                 } else {
-                    startActivity(Intent(activity, LoginActivity::class.java))
+                    ARouter.getInstance().build(RouterManageConst.LOGIN_LOGIN).navigation()
                 }
             }
         }
     }
 
     private fun isLogin(): Boolean{
-        if(SharedPreferencesUtils(App.getContext())
+        if(SharedPreferencesUtils(BaseApplication.getAppContext())
                 .get(Const.IS_LOGIN,false)){
             return true
         }

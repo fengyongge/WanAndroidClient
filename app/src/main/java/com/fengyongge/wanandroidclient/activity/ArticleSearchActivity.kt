@@ -171,20 +171,26 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
     private fun addNotify() {
         var searchHistoryEntityList =
             AppDataBase.getInstance(this).serchHistoryDao().getSearchContent()
-        if (searchHistoryEntityList.size >= 10) {
-            var search = SearchHistoryEntity(searchHistoryEntityList[0].uid, searchContent)
-            AppDataBase.getInstance(this).serchHistoryDao().updateSearchContent(search)
-            searchHistoryLabels.setLabels(AppDataBase.getInstance(this).serchHistoryDao().getSearchContent()) { _, _, data -> data?.searchContent }
-        }else{
-            var search = SearchHistoryEntity(0, searchContent)
-            AppDataBase.getInstance(this).serchHistoryDao().insertSearchContent(search)
-            searchHistoryLabels.setLabels(AppDataBase.getInstance(this).serchHistoryDao().getSearchContent()) { _, _, data -> data?.searchContent }
+
+        searchHistoryEntityList?.let {
+            if (it.size >= 10) {
+                var search = SearchHistoryEntity(it[0].uid, searchContent)
+                AppDataBase.getInstance(this).serchHistoryDao().updateSearchContent(search)
+                searchHistoryLabels.setLabels(AppDataBase.getInstance(this).serchHistoryDao().getSearchContent()) { _, _, data -> data?.searchContent }
+            }else{
+                var search = SearchHistoryEntity(0, searchContent)
+                AppDataBase.getInstance(this).serchHistoryDao().insertSearchContent(search)
+                searchHistoryLabels.setLabels(AppDataBase.getInstance(this).serchHistoryDao().getSearchContent()) { _, _, data -> data?.searchContent }
+            }
         }
+
+
+
     }
 
     private fun deleteNotify() {
 
-        if(AppDataBase.getInstance(this@ArticleSearchActivity).serchHistoryDao().getSearchContent().size>0){
+        AppDataBase.getInstance(this@ArticleSearchActivity).serchHistoryDao().getSearchContent().let {
             DialogUtils.showAlertDialog(
                 this, "是的,给老子删了", "草率了", null, "真的要删除搜索记录吗?",
                 object : DialogUtils.Companion.OnOkClickListener {
@@ -192,8 +198,11 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
 
                         var searchHistoryEntityList =
                             AppDataBase.getInstance(this@ArticleSearchActivity).serchHistoryDao().getSearchContent()
-                        for(item in searchHistoryEntityList){
-                            AppDataBase.getInstance(this@ArticleSearchActivity).serchHistoryDao().deleteSearchContent(item)
+
+                        searchHistoryEntityList?.let {
+                            for(item in searchHistoryEntityList){
+                                AppDataBase.getInstance(this@ArticleSearchActivity).serchHistoryDao().deleteSearchContent(item)
+                            }
                         }
                         searchHistoryLabels.setLabels( AppDataBase.getInstance(this@ArticleSearchActivity).serchHistoryDao().getSearchContent()) {
                                 label, position, data -> data?.searchContent }
@@ -204,8 +213,6 @@ class ArticleSearchActivity : BaseMvpActivity<SearchPresenterImpl>(), SearchCont
                         DialogUtils.dismissAlertDialog()
                     }
                 })
-        }else{
-            ToastUtils.showToast(this,"胸弟,先搜索")
         }
 
     }

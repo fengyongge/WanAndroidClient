@@ -26,7 +26,7 @@ class SaveCookiesInterceptor : Interceptor {
                         cookieStr.append(cookie)
                         cookieStr.append("#")
                     }
-                    SharedPreferencesUtils(BaseApplication.getBaseApplicaton())
+                    SharedPreferencesUtils(BaseApplication.getAppContext())
                         .put(Const.COOKIE,cookieStr.toString())
                 }
             }

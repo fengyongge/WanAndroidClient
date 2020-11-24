@@ -5,9 +5,7 @@ import com.fengyongge.wanandroidclient.bean.*
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeDailyBean
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeRelateCommentBean
 import com.fengyongge.wanandroidclient.bean.openeye.OpenEyeRelateVideoBean
-import com.fengyongge.basecomponent.constant.Const.Companion.URL_GANK
 import com.fengyongge.basecomponent.constant.Const.Companion.URL_OPEN_EYE
-import com.fengyongge.gank.bean.GankGirlBean
 import io.reactivex.Observable
 import retrofit2.http.*
 

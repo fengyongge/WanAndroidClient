@@ -61,7 +61,7 @@
                 android:id="@+id/tvConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:background="@drawable/login_shape_button_bg"
+                android:background="@drawable/main_shape_button_bg"
                 android:gravity="center"
                 android:text="同意并继续"
                 android:textColor="@color/white"

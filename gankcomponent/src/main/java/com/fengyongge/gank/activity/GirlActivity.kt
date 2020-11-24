@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.bumptech.glide.Glide
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
@@ -17,13 +17,14 @@ import com.fengyongge.androidcommonutils.ktutils.ToastUtils
 import com.fengyongge.baseframework.mvp.BaseMvpActivity
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.basecomponent.constant.Const
-import com.fengyongge.basecomponent.app.BaseApplication
+import com.fengyongge.basecomponent.constant.RouterManageConst
 import com.fengyongge.gank.R
 import com.fengyongge.gank.bean.GankGirlBean
 import com.fengyongge.gank.bean.GirlItemData
 import com.fengyongge.gank.mvp.contract.GirlContract
 import com.fengyongge.gank.mvp.presenterImpl.GirlPresenterImpl
 import com.fengyongge.gank.view.ScaleImageView
+import com.fengyongge.imageloaderutils.ImageLoaderSdk
 import com.zzti.fengyongge.imagepicker.ImagePickerInstance
 import com.zzti.fengyongge.imagepicker.model.PhotoModel
 import kotlinx.android.synthetic.main.gank_activity_girl.*
@@ -35,6 +36,7 @@ import kotlinx.android.synthetic.main.gank_activity_girl.*
  * @version V1.0
  * @date 2020/09/08
  */
+@Route(path = RouterManageConst.GANK_GIRL)
 class GirlActivity : BaseMvpActivity<GirlPresenterImpl>(), GirlContract.view,SwipeRefreshLayout.OnRefreshListener{
 
     private lateinit var adapter: MyAdapter
@@ -101,10 +103,10 @@ class GirlActivity : BaseMvpActivity<GirlPresenterImpl>(), GirlContract.view,Swi
         override fun convert(holder: BaseViewHolder, item: GirlItemData) {
             var ivGirl = holder.getView<ScaleImageView>(R.id.ivGirl)
             item?.let {
-                Glide.with(BaseApplication.getBaseApplicaton())
-                    .load(item.url)
-                    .placeholder(R.drawable.gank_shape_girl_default_bg)
-                    .into(ivGirl)
+                ImageLoaderSdk.getInstance().placeholder = R.drawable.common_shape_image_default_bg
+                ImageLoaderSdk.getInstance().error = R.drawable.common_shape_image_default_bg
+                ImageLoaderSdk.getInstance().fallback = R.drawable.common_shape_image_default_bg
+                ImageLoaderSdk.getInstance().loadImage(item.url,ivGirl)
             }
         }
     }

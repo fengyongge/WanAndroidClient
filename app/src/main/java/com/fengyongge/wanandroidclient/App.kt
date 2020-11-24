@@ -1,12 +1,14 @@
 package com.fengyongge.wanandroidclient
 
-import android.app.Application
 import android.content.Context
 import android.os.Environment
+import androidx.multidex.MultiDex
+import com.alibaba.android.arouter.launcher.ARouter
 import com.fengyongge.androidcommonutils.AndroidCommonUtils
+import com.fengyongge.basecomponent.app.BaseApplication
+import com.fengyongge.basecomponent.constant.Const
 import com.fengyongge.rxhttp.core.RxHttp
 import com.fengyongge.wanandroidclient.common.db.AppDataBase
-import com.fengyongge.basecomponent.constant.Const
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
@@ -16,6 +18,7 @@ import com.tencent.smtt.sdk.QbSdk
 import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 
+
 /**
  * describe
  *
@@ -23,25 +26,28 @@ import com.umeng.commonsdk.UMConfigure
  * @version V1.0
  * @date 2020/09/08
  */
-class App: Application() {
+class App: BaseApplication() {
+
     override fun onCreate() {
         super.onCreate()
-        getAppContext = this
-        initImageload()
-        AppDataBase.getInstance(this)
+        init(this)
         initUmeng()
         initBugly()
         initTbs()
-        AndroidCommonUtils.init(getAppContext)
-        RxHttp.init(getAppContext)
+//        AppDataBase.getInstance(this)
+        RxHttp.init(this)
+        AndroidCommonUtils.init(this)
+        initImageload()
+        ARouter.openLog()
+        ARouter.openDebug()
+        ARouter.init(this)
     }
 
-    companion object {
-        private lateinit var getAppContext: Application
-        fun getContext(): Context {
-            return getAppContext
-        }
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
+
 
     private fun initImageload(){
         val defaultOptions =
@@ -135,7 +141,7 @@ class App: Application() {
     }
 
     private fun initTbs(){
-        QbSdk.initX5Environment(this,object :QbSdk.PreInitCallback{
+        QbSdk.initX5Environment(this, object : QbSdk.PreInitCallback {
             override fun onCoreInitFinished() {
             }
 

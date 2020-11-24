@@ -1,12 +1,13 @@
 package com.fengyongge.login.activity
 
-import android.content.Intent
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
@@ -17,24 +18,26 @@ import com.fengyongge.baseframework.mvp.BaseMvpActivity
 import com.fengyongge.login.bean.LoginBean
 import com.fengyongge.login.bean.RegisterBean
 import com.fengyongge.login.mvp.contract.LoginContact
-import com.fengyongge.login.mvp.presenterImpl.LoginPresenterImpl
 
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.basecomponent.constant.Const
+import com.fengyongge.basecomponent.constant.RouterManageConst
 import com.fengyongge.basecomponent.utils.RxNotify
 import com.fengyongge.login.MainActivity
 import com.fengyongge.login.R
+import com.fengyongge.login.mvp.presenterImpl.LoginPresenterImpl
 import kotlinx.android.synthetic.main.activity_login.*
 
 
 /**
  * describe
- *
+ * 登录
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
  * @date 2020/09/08
  */
+@Route(path = RouterManageConst.LOGIN_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenterImpl>(),LoginContact.View,View.OnClickListener{
 
     private var flag = false
@@ -111,13 +114,13 @@ class LoginActivity : BaseMvpActivity<LoginPresenterImpl>(),LoginContact.View,Vi
     override fun postLoginShow(data: BaseResponse<LoginBean>) {
 
         if (data.errorCode == "0") {
-            with(SharedPreferencesUtils(BaseApplication.getBaseApplicaton())){
+            with(SharedPreferencesUtils(BaseApplication.getAppContext())){
                 put(Const.IS_LOGIN,true)
                 put(Const.NICKNAME,data.data.nickname)
                 put(Const.ICON,data.data.icon)
                 put(Const.USER_ID,data.data.id)
             }
-            startActivity(Intent(LoginActivity@this, MainActivity::class.java))
+            ARouter.getInstance().build(RouterManageConst.APP_HOMEPAGE).navigation()
             DialogUtils.dismissProgressMD()
             var logoutUpdateBean = LogoutUpdateBean()
             logoutUpdateBean.isUpdate = true
@@ -161,13 +164,12 @@ class LoginActivity : BaseMvpActivity<LoginPresenterImpl>(),LoginContact.View,Vi
                 etPassword.text = Editable.Factory.getInstance().newEditable("")
             }
             R.id.tvRigister ->{
-                startActivity(Intent(LoginActivity@this,RegisterActivity::class.java))
+                ARouter.getInstance().build(RouterManageConst.LOGIN_REGISTER).navigation()
             }
             R.id.tvForgetPassword ->{
-                var intent = Intent(LoginActivity@this,RegisterActivity::class.java)
-                intent.putExtra("isReset",true)
-                startActivity(intent)
-
+                ARouter.getInstance().build(RouterManageConst.LOGIN_REGISTER)
+                    .withBoolean("isReset",true)
+                    .navigation()
             }
             R.id.btLogin ->{
                 DialogUtils.showProgress(this,getString(R.string.login_hint))

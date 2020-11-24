@@ -3,8 +3,9 @@
     package="com.fengyongge.gank">
 
     <application>
-        <activity android:name="com.fengyongge.gank.MainActivity"/>
 
+    <activity android:name="com.fengyongge.gank.MainActivity"/>
+        <activity android:name="com.fengyongge.gank.activity.GirlActivity"/>
     </application>
 
 </manifest>

@@ -1,23 +1,19 @@
 package com.fengyongge.basecomponent.app
 
-import androidx.multidex.MultiDexApplication
+import android.app.Application
+import android.content.Context
 
-class BaseApplication: MultiDexApplication() {
+open class BaseApplication: Application() {
 
-    companion object{
-
-        private var baseApplication: MultiDexApplication
-
-        init {
-            baseApplication = getBaseApplicaton()
+    companion object {
+        private lateinit var context:Context
+        fun init(context: Context){
+            Companion.context = context
         }
 
-
-        fun getBaseApplicaton(): MultiDexApplication{
-
-            return baseApplication
+        fun getAppContext(): Context{
+            return context
         }
-
     }
 
 }

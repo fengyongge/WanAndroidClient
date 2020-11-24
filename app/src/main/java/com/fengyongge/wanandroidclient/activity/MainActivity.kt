@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
+import com.fengyongge.basecomponent.app.BaseApplication
+import com.fengyongge.basecomponent.constant.RouterManageConst
 import com.fengyongge.wanandroidclient.App
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.common.dialog.AgreementDialog
@@ -23,6 +26,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @version V1.0
  * @date 2020/09/08
  */
+@Route(path = RouterManageConst.APP_HOMEPAGE)
 class MainActivity : com.fengyongge.baseframework.BaseActivity() {
 
     private lateinit var tab: TabLayout.Tab
@@ -36,7 +40,7 @@ class MainActivity : com.fengyongge.baseframework.BaseActivity() {
     }
 
     override fun initView() {
-        SharedPreferencesUtils(App.getContext())
+        SharedPreferencesUtils(BaseApplication.getAppContext())
             ?.run {
             if(!get("isShow",false)){
                 readAgreement()
@@ -77,7 +81,7 @@ class MainActivity : com.fengyongge.baseframework.BaseActivity() {
                         return
                     } else if (dialogContent == "confirm") {
                         SharedPreferencesUtils(
-                            App.getContext()
+                            BaseApplication.getAppContext()
                         )?.let {
                             it.put("isShow",true)
                         }

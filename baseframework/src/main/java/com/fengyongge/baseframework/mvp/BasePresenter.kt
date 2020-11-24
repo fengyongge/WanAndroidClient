@@ -16,7 +16,6 @@ abstract class BasePresenter<V : IBaseView> : IBasePresenter {
     }
 
     override fun detech() {
-
         mView = null
     }
 

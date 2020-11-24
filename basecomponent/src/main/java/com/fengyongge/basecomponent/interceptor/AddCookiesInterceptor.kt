@@ -20,10 +20,10 @@ class AddCookiesInterceptor : Interceptor {
         val builder = chain.request().newBuilder()
         if (!TextUtils.isEmpty(
                 SharedPreferencesUtils(
-                    BaseApplication.getBaseApplicaton()
+                    BaseApplication.getAppContext()
                 ).get(Const.COOKIE, ""))) {
             val cookies =
-                SharedPreferencesUtils(BaseApplication.getBaseApplicaton())
+                SharedPreferencesUtils(BaseApplication.getAppContext())
                     .get(Const.COOKIE, "").split("#")
             for (cookie in cookies) {
                 builder.addHeader("Cookie", cookie)

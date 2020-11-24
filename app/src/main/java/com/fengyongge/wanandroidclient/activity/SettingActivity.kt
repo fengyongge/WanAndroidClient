@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.fengyongge.androidcommonutils.ktutils.*
+import com.fengyongge.basecomponent.app.BaseApplication
 import com.fengyongge.baseframework.mvp.BaseMvpActivity
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
@@ -68,15 +69,15 @@ class SettingActivity : BaseMvpActivity<SettingPreseenterImpl>(), SettingContrac
     }
 
     private fun logoutHandle() {
-        SharedPreferencesUtils(App.getContext())
+        SharedPreferencesUtils(BaseApplication.getAppContext())
             .remove(Const.IS_LOGIN)
-        SharedPreferencesUtils(App.getContext())
+        SharedPreferencesUtils(BaseApplication.getAppContext())
             .remove(Const.COOKIE)
-        SharedPreferencesUtils(App.getContext())
+        SharedPreferencesUtils(BaseApplication.getAppContext())
             .remove(Const.USER_ID)
-        SharedPreferencesUtils(App.getContext())
+        SharedPreferencesUtils(BaseApplication.getAppContext())
             .remove(Const.NICKNAME)
-        SharedPreferencesUtils(App.getContext())
+        SharedPreferencesUtils(BaseApplication.getAppContext())
             .remove(Const.ICON)
     }
 
@@ -182,7 +183,7 @@ class SettingActivity : BaseMvpActivity<SettingPreseenterImpl>(), SettingContrac
 
 
     private fun isLogin(): Boolean{
-        if(SharedPreferencesUtils(App.getContext())
+        if(SharedPreferencesUtils(BaseApplication.getAppContext())
                 .get(Const.IS_LOGIN,false)){
             return true
         }

@@ -1,12 +1,12 @@
 package com.fengyongge.login.activity
 
-import android.content.Intent
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.SharedPreferencesUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
@@ -19,6 +19,7 @@ import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.login.bean.LoginBean
 import com.fengyongge.login.bean.RegisterBean
 import com.fengyongge.basecomponent.constant.Const
+import com.fengyongge.basecomponent.constant.RouterManageConst
 import com.fengyongge.basecomponent.utils.RxNotify
 import com.fengyongge.login.R
 import com.fengyongge.login.mvp.contract.LoginContact
@@ -27,11 +28,12 @@ import kotlinx.android.synthetic.main.activity_register.*
 
 /**
  * describe
- *
+ * 注册
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
  * @date 2020/09/08
  */
+@Route(path = RouterManageConst.LOGIN_REGISTER)
 class RegisterActivity : BaseMvpActivity<LoginPresenterImpl>(), LoginContact.View, View.OnClickListener {
     private var flag = false
     private var confrimFlag = false
@@ -48,6 +50,7 @@ class RegisterActivity : BaseMvpActivity<LoginPresenterImpl>(), LoginContact.Vie
     override fun initView() {
         tvVersionName.text = "V${ToolsUtils.getVersionName(this)}"
         isReset = intent.getBooleanExtra("isReset", false)
+
         if (isReset) {
             etRegisterPassword.hint = Editable.Factory.getInstance().newEditable("新密码")
             etRegisterConfirmPassword.hint = Editable.Factory.getInstance().newEditable("确认新密码")
@@ -142,7 +145,7 @@ class RegisterActivity : BaseMvpActivity<LoginPresenterImpl>(), LoginContact.Vie
 
     override fun postLoginShow(data: BaseResponse<LoginBean>) {
         if (data.errorCode == "0") {
-            with(SharedPreferencesUtils(BaseApplication.getBaseApplicaton())){
+            with(SharedPreferencesUtils(BaseApplication.getAppContext())){
                 put(Const.IS_LOGIN,true)
                 put(Const.NICKNAME,data.data.nickname)
                 put(Const.ICON,data.data.icon)

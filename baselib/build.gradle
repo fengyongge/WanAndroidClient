@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -20,10 +20,18 @@ android {
 
 
     packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
         exclude 'META-INF/NOTICE.txt'
-    }
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/versions'
+        exclude 'META-INF/**'
+        exclude 'META-INF/versions/9/**.class'    }
 
     buildTypes {
         release {
@@ -36,14 +44,17 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'junit:junit:4.13.1'
+    implementation 'com.google.android.material:material:1.2.1'
+    testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.3.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 
-    api rootProject.ext.dependencies.coreKtx
+
+
+//    implementation rootProject.ext.dependencies.coreKtx
     api rootProject.ext.dependencies.kotlinxCoroutinesCore
     api rootProject.ext.dependencies.kotlinxCoroutinesAndroid
     kapt rootProject.ext.dependencies.roomCompiler
@@ -55,15 +66,16 @@ dependencies {
     api rootProject.ext.dependencies.recyclerview
     api rootProject.ext.dependencies.rxjava2Rxjava
     api rootProject.ext.dependencies.rxjava2Rxandroid
-    api rootProject.ext.dependencies.glide
-    api rootProject.ext.dependencies.glideTransformations
     api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper
     api rootProject.ext.dependencies.LabelsView
     api rootProject.ext.dependencies.jiaozivideoplayer
     api rootProject.ext.dependencies.imagepicker
-    debugImplementation rootProject.ext.dependencies.leakcanary
     api rootProject.ext.dependencies.multidex
     api rootProject.ext.dependencies.arouterApi
+//    debugImplementation rootProject.ext.dependencies.leakcanary
+//    api rootProject.ext.dependencies.glide
+//    api rootProject.ext.dependencies.glideTransformations
+
 
     //第三方
     api rootProject.ext.dependencies.umsdkAnalytics

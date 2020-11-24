@@ -5,12 +5,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.ScreenUtls
 import com.fengyongge.androidcommonutils.ktutils.SizeUtils
-import com.fengyongge.gank.activity.GirlActivity
-import com.fengyongge.wanandroidclient.App
+import com.fengyongge.basecomponent.app.BaseApplication
+import com.fengyongge.basecomponent.constant.RouterManageConst
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.channel.*
 import kotlinx.android.synthetic.main.fragment_homepage_header_channel.*
@@ -56,8 +57,7 @@ class HomePageChannelFragment : com.fengyongge.baseframework.BaseFragment() {
                     startActivity(intent)
                 }
                 "妹子" ->{
-                    startActivity(Intent(activity,
-                        GirlActivity::class.java))
+                    ARouter.getInstance().build(RouterManageConst.GANK_GIRL).navigation()
                 }
             }
         }
@@ -81,7 +81,7 @@ class HomePageChannelFragment : com.fengyongge.baseframework.BaseFragment() {
             val tvBanner = holder.getView<TextView>(R.id.tvBanner)
             val ivBanner = holder.getView<ImageView>(R.id.ivBanner)
             var layoutParams = llItem.layoutParams
-            layoutParams.width = (ScreenUtls.getScreenWidth(App.getContext())-4* SizeUtils.dp2px(5))/5
+            layoutParams.width = (ScreenUtls.getScreenWidth(BaseApplication.getAppContext())-4* SizeUtils.dp2px(5))/5
             layoutParams.height = layoutParams.width
 
             item?.let {

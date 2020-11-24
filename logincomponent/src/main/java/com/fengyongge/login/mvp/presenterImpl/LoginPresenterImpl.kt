@@ -1,5 +1,6 @@
 package com.fengyongge.login.mvp.presenterImpl
 
+import android.util.Log
 import com.fengyongge.baseframework.mvp.BasePresenter
 import com.fengyongge.baseframework.mvp.IBaseView
 import com.fengyongge.login.bean.LoginBean
@@ -12,11 +13,12 @@ import com.fengyongge.rxhttp.exception.ResponseException
 
 class LoginPresenterImpl : BasePresenter<LoginContact.View>(), LoginContact.Presenter {
 
-    lateinit var mModel: LoginModelImpl
+     var mModel: LoginModelImpl ?=null
 
     override fun postLogin(userName: String, password: String) {
         mView?.getCurrentView().let {
-            mModel.postLogin(userName, password).subscribe(object :
+
+            mModel?.postLogin(userName, password)?.subscribe(object :
                 BaseObserver<BaseResponse<LoginBean>>() {
                 override fun onSuccess(data: BaseResponse<LoginBean>) {
                     mView?.postLoginShow(data)
@@ -31,8 +33,8 @@ class LoginPresenterImpl : BasePresenter<LoginContact.View>(), LoginContact.Pres
 
     override fun postRegister(userName: String, password: String, passwordConfirm: String) {
         mView?.getCurrentView().let {
-            mModel.postRegister(userName, password, passwordConfirm)
-                .subscribe(object :
+            mModel?.postRegister(userName, password, passwordConfirm)
+                ?.subscribe(object :
                 BaseObserver<BaseResponse<RegisterBean>>() {
                 override fun onSuccess(data: BaseResponse<RegisterBean>) {
                     mView?.postRegisterShow(data)
@@ -55,5 +57,6 @@ class LoginPresenterImpl : BasePresenter<LoginContact.View>(), LoginContact.Pres
 
     override fun detech() {
         super.detech()
+        mModel = null
     }
 }
