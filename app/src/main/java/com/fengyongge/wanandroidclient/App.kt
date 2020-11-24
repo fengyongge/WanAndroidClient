@@ -34,7 +34,6 @@ class App: BaseApplication() {
         initUmeng()
         initBugly()
         initTbs()
-//        AppDataBase.getInstance(this)
         RxHttp.init(this)
         AndroidCommonUtils.init(this)
         initImageload()

@@ -9,7 +9,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 
-class App: BaseApplication() {
+class GankApp: BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         init(this)
