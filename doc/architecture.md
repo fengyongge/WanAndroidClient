@@ -6,6 +6,16 @@
 
 [下载地址](https://www.pgyer.com/lZUG)
 
+## v1.1.0(2020/11/24)
+-----------------
+
+### 组件化拆分
+
+- 壳工程
+- 业务组件：登录组件、干货组件
+- 公共组件：baseframework、basecomponent、baselib、baseresource
+- 基础组件：rxhttp、imageloader、commonutils等
+
 
 ## v1.0.0(2020/09/08)
 -----------------

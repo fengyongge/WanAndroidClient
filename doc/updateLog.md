@@ -4,6 +4,10 @@
 [开源地址](https://github.com/fengyongge/WanAndroidClient)
 [下载地址](https://www.pgyer.com/lZUG)
 
+v1.1.0(2020/11/24)
+-----------------
+【新增】组件化拆分
+
 
 v1.0.1(2020/10/26)
 -----------------
