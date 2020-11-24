@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="gank_scaleImageView">
+        <attr name="gank_origin_width" format="integer"/>
+        <attr name="gank_origin_height" format="integer"/>
+    </declare-styleable>
+</resources>

@@ -1,3 +1,5 @@
+//apply plugin: 'com.fengyongge.plugin'
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -6,6 +8,14 @@ apply plugin: 'kotlin-kapt'
 
 def releaseTime() {
     return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
+
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
 }
 
 android {
@@ -45,6 +55,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    androidExtensions {
+        experimental = true
+    }
+
+
     dexOptions {
         // Sets the maximum number of DEX processes
         // that can be started concurrently.
@@ -63,6 +78,31 @@ android {
         abortOnError false
     }
 
+    androidExtensions {
+        experimental = true
+    }
+
+    dexOptions {
+        maxProcessCount 4
+        preDexLibraries = true
+        javaMaxHeapSize "6g"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/versions'
+        exclude 'META-INF/versions/9/module-info.class'
+        exclude 'META-INF/**'
+        exclude 'META-INF/versions/9/**.class'    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -70,7 +110,7 @@ android {
             signingConfig signingConfigs.release
             buildConfigField 'String', 'BUGLY_APP_ID', '"5a331f52dd"'
             buildConfigField 'String', 'UMENG_KEY', '"5f881d5b94846f78a9739937"'
-            debuggable true
+            debuggable false
 
         }
         debug {
@@ -95,40 +135,27 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.android.material:material:1.2.1'
+    testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    //
-    implementation rootProject.ext.dependencies.coreKtx
-    implementation rootProject.ext.dependencies.kotlinxCoroutinesCore
-    implementation rootProject.ext.dependencies.kotlinxCoroutinesAndroid
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.3.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    kapt 'com.alibaba:arouter-compiler:1.1.4'
+    //baselib中compiler库不能依赖传递
     kapt rootProject.ext.dependencies.roomCompiler
-    implementation rootProject.ext.dependencies.roomRuntime
-    implementation rootProject.ext.dependencies.roomKtx
-    implementation rootProject.ext.dependencies.roomRxjava2
-    implementation rootProject.ext.dependencies.material
-    implementation rootProject.ext.dependencies.swiperefreshlayout
-    implementation rootProject.ext.dependencies.recyclerview
-    implementation rootProject.ext.dependencies.rxjava2Rxjava
-    implementation rootProject.ext.dependencies.rxjava2Rxandroid
-    implementation rootProject.ext.dependencies.glide
-    implementation rootProject.ext.dependencies.glideTransformations
-    implementation rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper
-    implementation rootProject.ext.dependencies.LabelsView
-    implementation rootProject.ext.dependencies.jiaozivideoplayer
-    implementation rootProject.ext.dependencies.imagepicker
-    implementation rootProject.ext.dependencies.commonutils
-    implementation rootProject.ext.dependencies.rxhttp
-    implementation rootProject.ext.dependencies.buglyCrashreportUpgrade
-    implementation rootProject.ext.dependencies.buglyNativecrashreport
-    implementation rootProject.ext.dependencies.tbssdk
-    debugImplementation rootProject.ext.dependencies.leakcanary
-    implementation project(':baselib')
+
+    implementation project(':gankcomponent')
+    implementation project(':logincomponent')
+    implementation project(':baseframework')
+
 
 
 }
+//combuild {
+//    applicationName = 'com.fengyongge.wanandroidclient.App'
+//    isRegisterCompoAuto = true
+//}

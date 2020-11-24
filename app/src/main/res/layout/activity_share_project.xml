@@ -90,7 +90,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/shape_button_bg"
+        android:background="@drawable/main_shape_button_bg"
          />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

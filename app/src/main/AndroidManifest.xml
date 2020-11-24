@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fengyongge.wanandroidclient">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -56,13 +55,10 @@
             android:name=".activity.channel.SystemArticleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name="com.fengyongge.login.activity.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.channel.SystemActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.channel.GirlActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.WebViewActivity"
@@ -71,7 +67,7 @@
             android:name=".activity.ShareProjectActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.fengyongge.login.activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.channel.ProjectActivity"
@@ -81,9 +77,7 @@
         <activity android:name=".activity.OpenSourceActivity"
             android:screenOrientation="portrait" />
 
-
         <activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity" />
-
 
     </application>
 

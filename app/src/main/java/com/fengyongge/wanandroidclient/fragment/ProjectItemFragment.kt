@@ -8,12 +8,11 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpFragment
+import com.fengyongge.baseframework.mvp.BaseMvpFragment
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
@@ -21,10 +20,12 @@ import com.fengyongge.wanandroidclient.activity.WebViewActivity
 import com.fengyongge.wanandroidclient.bean.Data
 import com.fengyongge.wanandroidclient.bean.ProjectBean
 import com.fengyongge.wanandroidclient.bean.ProjectTypeBeanItem
-import com.fengyongge.wanandroidclient.constant.Const
+import com.fengyongge.basecomponent.constant.Const
+import com.fengyongge.imageloaderutils.ImageLoaderSdk
 import com.fengyongge.wanandroidclient.mvp.contract.ProjectContract
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.ProjectPresenterImpl
 import kotlinx.android.synthetic.main.fragment_project_item.*
+
 /**
  * describe
  *
@@ -147,11 +148,12 @@ class ProjectItemFragment: BaseMvpFragment<ProjectPresenterImpl>(),SwipeRefreshL
                 }
                 tvContent.text = filtDes
                 tvTime.text = TimeUtils.formatDateLongToString(publishTime,"yyyy-MM-dd HH:mm")
-                Glide.with(context)
-                    .load(envelopePic)
-                    .error(R.drawable.default_project_img)
-                    .placeholder(R.drawable.default_project_img)
-                    .into(ivProjectCover)
+
+                ImageLoaderSdk.getInstance().placeholder = R.drawable.default_project_img
+                ImageLoaderSdk.getInstance().error = R.drawable.default_project_img
+                ImageLoaderSdk.getInstance().fallback = R.drawable.default_project_img
+                ImageLoaderSdk.getInstance().loadImage(envelopePic,ivProjectCover)
+
             }
         }
 

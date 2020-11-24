@@ -9,17 +9,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpFragment
+import com.fengyongge.baseframework.mvp.BaseMvpFragment
+import com.fengyongge.imageloaderutils.ImageLoaderSdk
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.activity.OpenEyeDetailActivity
@@ -172,25 +168,23 @@ class OpenEyeFragment : BaseMvpFragment<OpenEysPresenterImpl>(),OpenEyeContract.
                     var tvOpenEyeAuthorName = holder.getView<TextView>(R.id.tvOpenEyeAuthorName)
                     var tvOpenEyeCategoryName = holder.getView<TextView>(R.id.tvOpenEyeCategoryName)
 
-                    Glide.with(context)
-                        .load(item.data.content.data.cover.feed)
-                        .transform( CenterCrop(), RoundedCorners(20))
-                        .into(ivOpenEyeCoverImage)
+                    ImageLoaderSdk.getInstance().loadRoundImage(20,item.data.content.data.cover.feed,ivOpenEyeCoverImage)
                     tvOpenEyeDuration.text =
                         TimeUtils.convertMinAndSec(item.data.content.data.duration)
                     tvOpenEyeTitle.text = item.data.content.data.title
-                    Glide.with(context)
-                        .load(item.data.content.data.author?.icon)
-                        .apply(RequestOptions.bitmapTransform(CircleCrop()))
-                        .into(ivOpenEyeAuthorIcon)
+                    ImageLoaderSdk.getInstance().placeholder = R.drawable.common_shape_image_default_bg
+                    ImageLoaderSdk.getInstance().error = R.drawable.common_shape_image_default_bg
+                    ImageLoaderSdk.getInstance().fallback = R.drawable.common_shape_image_default_bg
+                    ImageLoaderSdk.getInstance().loadImage(item.data.content.data.author?.icon,ivOpenEyeAuthorIcon)
                     tvOpenEyeAuthorName.text = item.data.content.data.author?.name
                     tvOpenEyeCategoryName.text = " #${item.data.content.data.category}"
                 }
                 else ->{
                     var tvOpenEyePic = holder.getView<ImageView>(R.id.tvOpenEyePic)
-                    Glide.with(context)
-                        .load(item.data.content.data.url)
-                        .into(tvOpenEyePic)
+                    ImageLoaderSdk.getInstance().placeholder = R.drawable.common_shape_image_default_bg
+                    ImageLoaderSdk.getInstance().error = R.drawable.common_shape_image_default_bg
+                    ImageLoaderSdk.getInstance().fallback = R.drawable.common_shape_image_default_bg
+                    ImageLoaderSdk.getInstance().loadImage(item.data.content.data.url,tvOpenEyePic)
                 }
             }
         }

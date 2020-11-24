@@ -8,17 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.jzvd.JZVideoPlayer
 import cn.jzvd.JZVideoPlayerStandard
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpActivity
+import com.fengyongge.baseframework.mvp.BaseMvpActivity
+import com.fengyongge.imageloaderutils.ImageLoaderSdk
 
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
@@ -93,8 +89,11 @@ class OpenEyeDetailActivity : BaseMvpActivity<OpenEysPresenterImpl>(), OpenEyeCo
 
     private fun loadData() {
         jzVideoPlayerStandard.setUp(playUrl, JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, title)
-        Glide.with(this).load(coverImage)
-            .into(jzVideoPlayerStandard.thumbImageView)
+
+        ImageLoaderSdk.getInstance().placeholder = R.drawable.common_shape_image_default_bg
+        ImageLoaderSdk.getInstance().error = R.drawable.common_shape_image_default_bg
+        ImageLoaderSdk.getInstance().fallback = R.drawable.common_shape_image_default_bg
+        ImageLoaderSdk.getInstance().loadImage(coverImage,jzVideoPlayerStandard.thumbImageView)
         mPresenter?.getOeRelateVideo(id)
     }
 
@@ -137,10 +136,9 @@ class OpenEyeDetailActivity : BaseMvpActivity<OpenEysPresenterImpl>(), OpenEyeCo
                     var tvOeDetailDuration = holder.getView<TextView>(R.id.tvOeDetailDuration)
                     var tvOeDetailTitle = holder.getView<TextView>(R.id.tvOeDetailTitle)
                     var tvOeDetailTag = holder.getView<TextView>(R.id.tvOeDetailTag)
-                    Glide.with(context)
-                        .load(item.video.coverImage)
-                        .transform(CenterCrop(), RoundedCorners(10))
-                        .into(ivOeDetailCoverImage)
+
+                    ImageLoaderSdk.getInstance().loadRoundImage(10,item.video.coverImage,ivOeDetailCoverImage)
+
                     tvOeDetailDuration.text = TimeUtils.convertMinAndSec(item.video.duration)
                     tvOeDetailTitle.text = item.video.title
                     tvOeDetailTag.text = " #${item.video.category}"
@@ -151,12 +149,12 @@ class OpenEyeDetailActivity : BaseMvpActivity<OpenEysPresenterImpl>(), OpenEyeCo
                     var tvOeDetailUserComment = holder.getView<TextView>(R.id.tvOeDetailUserComment)
                     var tvOeDetailUserCommentTime =
                         holder.getView<TextView>(R.id.tvOeDetailUserCommentTime)
-                    Glide.with(context).load(item.comment.avatar)
-                        .apply(RequestOptions.bitmapTransform(CircleCrop()))
-                        .error(R.drawable.default_openeye_user)
-                        .placeholder(R.drawable.default_openeye_user)
-                        .fallback(R.drawable.default_openeye_user)
-                        .into(ivOeDetailUserLogo)
+
+                    ImageLoaderSdk.getInstance().placeholder = R.drawable.default_openeye_user
+                    ImageLoaderSdk.getInstance().error = R.drawable.default_openeye_user
+                    ImageLoaderSdk.getInstance().fallback = R.drawable.default_openeye_user
+                    ImageLoaderSdk.getInstance().loadCircleImage(item.comment.avatar,ivOeDetailUserLogo)
+
                     tvOeDetailUserName.text = item.comment.nickname
                     tvOeDetailUserComment.text = item.comment.message
                     tvOeDetailUserCommentTime.text =

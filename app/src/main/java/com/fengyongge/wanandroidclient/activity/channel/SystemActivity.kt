@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.fengyongge.baselib.BaseActivity
+import com.fengyongge.baseframework.BaseActivity
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.fragment.NavigationFragment
 import com.fengyongge.wanandroidclient.fragment.SystemFragment
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_system.*
  * @version V1.0
  * @date 2020/09/08
  */
-class SystemActivity : BaseActivity(){
+class SystemActivity : com.fengyongge.baseframework.BaseActivity(){
 
     private val tabTitles = arrayListOf("体系","导航")
     private lateinit var myFragmentStateAdapter: MyFragmentStateAdapter

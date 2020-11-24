@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.fengyongge.baselib.BaseActivity
 import com.fengyongge.wanandroidclient.R
 import com.fengyongge.wanandroidclient.bean.OpenSourceBean
 import kotlinx.android.synthetic.main.activity_open_source.*
@@ -21,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_open_source.*
  * @version V1.0
  * @date 2020/09/08
  */
-class OpenSourceActivity : BaseActivity() {
+class OpenSourceActivity : com.fengyongge.baseframework.BaseActivity() {
 
     var list = mutableListOf<OpenSourceBean>()
     lateinit var myAdapter:MyAdapter
@@ -60,12 +59,11 @@ class OpenSourceActivity : BaseActivity() {
         list.add(OpenSourceBean("gson","google","A Java serialization/deserialization library to convert Java Objects into JSON and back","https://github.com/google/gson"))
         list.add(OpenSourceBean("retrofit2","square","A type-safe HTTP client for Android and the JVM","https://github.com/square/retrofit"))
         list.add(OpenSourceBean("Rxjava/RxAndroid","ReactiveX", "RxJava – Reactive Extensions for the JVM – a library for composing asynchronous and event-based programs using observable sequences for the Java VM.\nRxJava bindings for Android\n","https://github.com/ReactiveX"))
-        list.add(OpenSourceBean("glide","bumptech","An image loading and caching library for Android focused on smooth scrolling","https://github.com/bumptech/glide"))
-        list.add(OpenSourceBean("glide-transformations","wasabeef","An Android transformation library providing a variety of image transformations for Glide.","https://github.com/wasabeef/glide-transformations"))
         list.add(OpenSourceBean("leakcanary","square","A memory leak detection library for Android.","https://github.com/square/leakcanary"))
         list.add(OpenSourceBean("imagepicker","fengyongge","imagepicker是一款用于在Android设备上获取照片（拍照或从相册、文件中选择）、压缩图片的开源工具库。","imagepicker是一款用于在Android设备上获取照片（拍照或从相册、文件中选择）、压缩图片的开源工具库"))
         list.add(OpenSourceBean("android-commonutils","fengyongge","Android 开发常用工具类","https://github.com/fengyongge/android-commonutils"))
         list.add(OpenSourceBean("android-rxhttp","fengyongge","Android 基于Retrofit + RxJava封装的http网络请求框架","https://github.com/fengyongge/android-rxhttp"))
+        list.add(OpenSourceBean("android-imageloader-utils","fengyongge","android 图片加载框架封装，本库基于glide的二次封装，底层可切换其他图片加载框架","https://github.com/fengyongge/android-imageloader-utils"))
         list.add(OpenSourceBean("BaseRecyclerViewAdapterHelper","CymChad","BRVAH:Powerful and flexible RecyclerAdapter","https://github.com/CymChad/BaseRecyclerViewAdapterHelper"))
         list.add(OpenSourceBean("material-dialogs","afollestad","material-dialogs","https://github.com/afollestad/material-dialogs"))
         list.add(OpenSourceBean("LabelsView","donkingliang","Android的标签列表控件。可以设置标签的选中效果。 可以设置标签的选中类型：不可选中、单选、限数量多选和不限数量多选等， 并支持设置必选项、单行显示、最大显示行数等功能","https://github.com/donkingliang/LabelsView"))

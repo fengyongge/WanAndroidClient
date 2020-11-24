@@ -1,7 +1,7 @@
 package com.fengyongge.wanandroidclient.mvp.presenterImpl
 
-import com.fengyongge.baselib.mvp.BasePresenter
-import com.fengyongge.baselib.mvp.IBaseView
+import com.fengyongge.baseframework.mvp.BasePresenter
+import com.fengyongge.baseframework.mvp.IBaseView
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.core.BaseObserver
 import com.fengyongge.rxhttp.exception.ResponseException

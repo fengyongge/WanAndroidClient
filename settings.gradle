@@ -1,3 +1,4 @@
-include ':baselib'
-include ':app'
+include ':component-plugin'
+include ':logincomponent' ,':gankcomponent'
+include ':app',':baseframework',':basecomponent',':baselib',':baseresource'
 rootProject.name = "wanandroid"

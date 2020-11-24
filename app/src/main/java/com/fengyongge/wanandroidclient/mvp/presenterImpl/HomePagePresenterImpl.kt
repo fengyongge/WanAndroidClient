@@ -1,7 +1,7 @@
 package com.fengyongge.wanandroidclient.mvp.presenterImpl
 
-import com.fengyongge.baselib.mvp.BasePresenter
-import com.fengyongge.baselib.mvp.IBaseView
+import com.fengyongge.baseframework.mvp.BasePresenter
+import com.fengyongge.baseframework.mvp.IBaseView
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.core.BaseObserver
 import com.fengyongge.rxhttp.exception.ResponseException
@@ -19,7 +19,7 @@ class HomePagePresenterImpl : BasePresenter<HomePageContract.View>(), HomePageCo
 
     lateinit var mModel: HomePageModelImpl
     override fun bannerList() {
-        mView?.getCurrentView().let {
+        mView?.let {
             mModel.bannerList().subscribe(object : BaseObserver<BaseResponse<List<BannerBean>>>() {
                 override fun onSuccess(data: BaseResponse<List<BannerBean>>) {
                     isGetBannerSuccess = true
@@ -34,7 +34,7 @@ class HomePagePresenterImpl : BasePresenter<HomePageContract.View>(), HomePageCo
     }
 
     override fun stickArticle() {
-        mView?.getCurrentView().let {
+        mView?.let {
             mModel.stickArticle().subscribe(object : BaseObserver<BaseResponse<List<DataX>>>() {
                 override fun onSuccess(data: BaseResponse<List<DataX>>) {
                     mView?.stickArticleShow(data)
@@ -47,7 +47,7 @@ class HomePagePresenterImpl : BasePresenter<HomePageContract.View>(), HomePageCo
     }
 
     override fun articleList(pageNum: Int) {
-        mView?.getCurrentView().let {
+        mView?.let {
             mModel.articleList(pageNum).subscribe(object : BaseObserver<BaseResponse<ArticleBean>>() {
                     override fun onSuccess(data: BaseResponse<ArticleBean>) {
                         isGetArticleSuccess = true
@@ -62,7 +62,7 @@ class HomePagePresenterImpl : BasePresenter<HomePageContract.View>(), HomePageCo
     }
 
     override fun projectList(pageNum: Int) {
-        mView?.getCurrentView().let {
+        mView?.let {
             mModel.projectList(pageNum).subscribe(object :
                 BaseObserver<BaseResponse<ArticleBean>>() {
                 override fun onSuccess(data: BaseResponse<ArticleBean>) {

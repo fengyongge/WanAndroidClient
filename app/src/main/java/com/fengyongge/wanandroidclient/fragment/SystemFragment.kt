@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.donkingliang.labels.LabelsView
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpFragment
+import com.fengyongge.baseframework.mvp.BaseMvpFragment
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
@@ -19,6 +19,7 @@ import com.fengyongge.wanandroidclient.bean.SystemCategoryBean
 import com.fengyongge.wanandroidclient.mvp.contract.SystemContact
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.SystemPresenterImpl
 import kotlinx.android.synthetic.main.fragment_system.*
+
 /**
  * describe
  *

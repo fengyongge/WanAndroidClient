@@ -4,9 +4,9 @@
     <string name="collect_success">收藏成功</string>
     <string name="collect_cancle">取消收藏成功</string>
     <string name="commit_hint">数据提交中...</string>
-    <string name="search_hint">搜索内容不能为空</string>
-    <string name="login_hint">登录中...</string>
     <string name="load_hint1">数据加载中...</string>
+    <string name="search_hint">搜索内容不能为空</string>
+
     <string name="slogan">软件改变生活  软件创造价值</string>
 
 </resources>

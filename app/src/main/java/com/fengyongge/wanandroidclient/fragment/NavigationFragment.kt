@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.donkingliang.labels.LabelsView
 import com.fengyongge.androidcommonutils.ktutils.DialogUtils
 import com.fengyongge.androidcommonutils.ktutils.ToastUtils
-import com.fengyongge.baselib.mvp.BaseMvpFragment
+import com.fengyongge.baseframework.mvp.BaseMvpFragment
 import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.rxhttp.exception.ResponseException
 import com.fengyongge.wanandroidclient.R
@@ -17,6 +17,7 @@ import com.fengyongge.wanandroidclient.bean.NavigationBean
 import com.fengyongge.wanandroidclient.mvp.contract.NavigationContact
 import com.fengyongge.wanandroidclient.mvp.presenterImpl.NavigationPresenterImpl
 import kotlinx.android.synthetic.main.fragment_navigation.*
+
 /**
  * describe
  *
