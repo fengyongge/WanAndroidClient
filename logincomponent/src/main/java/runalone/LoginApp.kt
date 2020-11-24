@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.fengyongge.basecomponent.app.BaseApplication
 import com.fengyongge.rxhttp.core.RxHttp
 
-class App: BaseApplication() {
+class LoginApp: BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         init(this)

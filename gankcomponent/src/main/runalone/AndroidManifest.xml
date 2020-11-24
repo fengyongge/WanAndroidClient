@@ -7,7 +7,7 @@
 
     <application
         android:networkSecurityConfig="@xml/network_security_config"
-        android:name="runalone.App"
+        android:name="runalone.GankApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/gank_app_name"
