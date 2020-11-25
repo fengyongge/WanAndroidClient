@@ -8,10 +8,6 @@ import com.fengyongge.androidcommonutils.AndroidCommonUtils
 import com.fengyongge.basecomponent.app.BaseApplication
 import com.fengyongge.basecomponent.constant.Const
 import com.fengyongge.rxhttp.core.RxHttp
-import com.fengyongge.wanandroidclient.common.db.AppDataBase
-import com.nostra13.universalimageloader.core.DisplayImageOptions
-import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.tencent.smtt.sdk.QbSdk
@@ -36,7 +32,6 @@ class App: BaseApplication() {
         initTbs()
         RxHttp.init(this)
         AndroidCommonUtils.init(this)
-        initImageload()
         ARouter.openLog()
         ARouter.openDebug()
         ARouter.init(this)
@@ -45,17 +40,6 @@ class App: BaseApplication() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(this)
-    }
-
-
-    private fun initImageload(){
-        val defaultOptions =
-            DisplayImageOptions.Builder()
-                .cacheInMemory(true).cacheOnDisc(true).build()
-        val config =
-            ImageLoaderConfiguration.Builder(applicationContext)
-                .defaultDisplayImageOptions(defaultOptions).build()
-        ImageLoader.getInstance().init(config)
     }
 
     fun initUmeng() {

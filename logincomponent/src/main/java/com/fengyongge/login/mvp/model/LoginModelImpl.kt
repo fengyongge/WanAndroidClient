@@ -5,7 +5,6 @@ import com.fengyongge.rxhttp.bean.BaseResponse
 import com.fengyongge.login.bean.LoginBean
 import com.fengyongge.login.bean.RegisterBean
 import com.fengyongge.login.mvp.contract.LoginContact
-import com.zzti.fengyongge.imagepicker.util.LogUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

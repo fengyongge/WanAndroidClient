@@ -5,8 +5,8 @@ ext {
             minSdkVersion    : 21,
             targetSdkVersion : 29,
             buildToolsVersion: "29.0.3",
-            versionCode      : 3,
-            versionName      : "1.1.0",
+            versionCode      : 4,
+            versionName      : "1.1.1",
     ]
 
     compileOptions = [
@@ -40,10 +40,10 @@ ext {
             glideTransformations       : 'jp.wasabeef:glide-transformations:2.0.1',
             LabelsView                 : "com.github.donkingliang:LabelsView:1.4.0",
             jiaozivideoplayer          : 'cn.jzvd:jiaozivideoplayer:6.2.12',
-            imagepicker                : 'com.zzti.fengyongge:imagepicker:1.4.2',
+            imagepicker                : 'com.zzti.fengyongge:imagepicker:1.4.5',
             commonutils                : 'com.github.fengyongge:android-commonutils:0.0.5',
             rxhttp                     : 'com.github.fengyongge:android-rxhttp:0.0.2',
-            imageloader                : 'com.github.fengyongge:android-imageloader-utils:0.0.2',
+            imageloader                : 'com.github.fengyongge:android-imageloader-utils:0.0.3',
             buglyCrashreportUpgrade    : 'com.tencent.bugly:crashreport_upgrade:1.4.5',
             buglyNativecrashreport     : 'com.tencent.bugly:nativecrashreport:3.7.1',
             tbssdk                     : 'com.tencent.tbs.tbssdk:sdk:43939',
